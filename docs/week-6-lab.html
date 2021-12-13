@@ -455,32 +455,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb332-7"><a href="week-6-lab.html#cb332-7" aria-hidden="true" tabindex="-1"></a>      }</span>
 <span id="cb332-8"><a href="week-6-lab.html#cb332-8" aria-hidden="true" tabindex="-1"></a>  }</span>
 <span id="cb332-9"><a href="week-6-lab.html#cb332-9" aria-hidden="true" tabindex="-1"></a>p.values</span></code></pre></div>
-<pre><code>##       [,1]      [,2]      [,3]      [,4]      [,5]        [,6]       [,7]
-##  [1,]   NA 0.7606779 0.2944259 0.7408891 0.1220850 0.009183858 0.09702135
-##  [2,]   NA        NA 0.5955068 0.9455341 0.4258633 0.109747867 0.26489847
-##  [3,]   NA        NA        NA 0.4361138 0.7883891 0.186040173 0.46528849
-##  [4,]   NA        NA        NA        NA 0.2130436 0.017697796 0.14895286
-##  [5,]   NA        NA        NA        NA        NA 0.179528310 0.55503295
-##  [6,]   NA        NA        NA        NA        NA          NA 0.73001485
-##  [7,]   NA        NA        NA        NA        NA          NA         NA
-##  [8,]   NA        NA        NA        NA        NA          NA         NA
-##  [9,]   NA        NA        NA        NA        NA          NA         NA
-## [10,]   NA        NA        NA        NA        NA          NA         NA
-##            [,8]       [,9]      [,10]
-##  [1,] 0.2195706 0.03549111 0.04657407
-##  [2,] 0.4286118 0.21190967 0.23486428
-##  [3,] 0.7084474 0.39074117 0.43366935
-##  [4,] 0.3097045 0.06536776 0.08356538
-##  [5,] 0.8408906 0.45776171 0.51748439
-##  [6,] 0.5169542 0.57759673 0.54544899
-##  [7,] 0.7763008 0.95847335 0.91948969
-##  [8,]        NA 0.77568845 0.81415315
-##  [9,]        NA         NA 0.94663823
-## [10,]        NA         NA         NA</code></pre>
+<pre><code>##       [,1]      [,2]      [,3]      [,4]      [,5]      [,6]      [,7]
+##  [1,]   NA 0.9218377 0.8953393 0.6286020 0.5081373 0.7432874 0.9294694
+##  [2,]   NA        NA 0.8303855 0.6107034 0.5164378 0.7064934 0.8595087
+##  [3,]   NA        NA        NA 0.6780376 0.5323247 0.8106900 0.9654871
+##  [4,]   NA        NA        NA        NA 0.9006679 0.8813684 0.6639490
+##  [5,]   NA        NA        NA        NA        NA 0.7735931 0.5280423
+##  [6,]   NA        NA        NA        NA        NA        NA 0.7900845
+##  [7,]   NA        NA        NA        NA        NA        NA        NA
+##  [8,]   NA        NA        NA        NA        NA        NA        NA
+##  [9,]   NA        NA        NA        NA        NA        NA        NA
+## [10,]   NA        NA        NA        NA        NA        NA        NA
+##            [,8]      [,9]      [,10]
+##  [1,] 0.7945224 0.1720945 0.33064244
+##  [2,] 0.8856755 0.1945380 0.47509920
+##  [3,] 0.6961911 0.1693659 0.21098823
+##  [4,] 0.5028082 0.3323111 0.14521780
+##  [5,] 0.4117181 0.3455060 0.07833728
+##  [6,] 0.5917132 0.2790858 0.19907712
+##  [7,] 0.7276721 0.1716520 0.24928476
+##  [8,]        NA 0.1513778 0.58238013
+##  [9,]        NA        NA 0.03225364
+## [10,]        NA        NA         NA</code></pre>
 <p>Now we can see how many of these p.values are “significant.” We know these are false positives, because all the data were generated from the same distribution.</p>
 <div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb334-1"><a href="week-6-lab.html#cb334-1" aria-hidden="true" tabindex="-1"></a>false.positives<span class="ot">&lt;-</span><span class="fu">sum</span>(p.values<span class="sc">&lt;</span><span class="fl">0.05</span>,<span class="at">na.rm=</span>T)</span>
 <span id="cb334-2"><a href="week-6-lab.html#cb334-2" aria-hidden="true" tabindex="-1"></a>false.positives</span></code></pre></div>
-<pre><code>## [1] 4</code></pre>
+<pre><code>## [1] 1</code></pre>
 <p>We could correct this using the Bonferonni method:</p>
 <div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb336-1"><a href="week-6-lab.html#cb336-1" aria-hidden="true" tabindex="-1"></a>k<span class="ot">&lt;-</span><span class="dv">45</span></span>
 <span id="cb336-2"><a href="week-6-lab.html#cb336-2" aria-hidden="true" tabindex="-1"></a>new.threshold.B<span class="ot">&lt;-</span><span class="fl">0.05</span><span class="sc">/</span>k</span>
@@ -521,7 +521,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb344-21"><a href="week-6-lab.html#cb344-21" aria-hidden="true" tabindex="-1"></a>new.threshold.R<span class="ot">&lt;-</span><span class="fu">quantile</span>(min.p.values.all,<span class="at">probs=</span><span class="fu">c</span>(<span class="fl">0.05</span>))</span>
 <span id="cb344-22"><a href="week-6-lab.html#cb344-22" aria-hidden="true" tabindex="-1"></a>new.threshold.R</span></code></pre></div>
 <pre><code>##          5% 
-## 0.001609956</code></pre>
+## 0.001975628</code></pre>
 <div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb346-1"><a href="week-6-lab.html#cb346-1" aria-hidden="true" tabindex="-1"></a>false.positives.R<span class="ot">&lt;-</span><span class="fu">sum</span>(p.values<span class="sc">&lt;</span>new.threshold.R,<span class="at">na.rm=</span>T)</span>
 <span id="cb346-2"><a href="week-6-lab.html#cb346-2" aria-hidden="true" tabindex="-1"></a>false.positives.R</span></code></pre></div>
 <pre><code>## [1] 0</code></pre>

@@ -72,9 +72,11 @@ clouds <- read_csv("https://raw.githubusercontent.com/hlynch/Biometry2021/master
 
 [4] Willems JP, Saunders JT, DE Hunt, JB Schorling: Prevalence of coronary heart disease risk factors among rural blacks: A community-based study. Southern Medical Journal 90:814-820; 1997 Schorling JB, Roach J, Siegel M, Baturka N, Hunt DE, Guterbock TM, Stewart HL: A trial of church-based smoking cessation interventions for rural African Americans. Preventive Medicine 26:92-101; 1997.
 
-*Past exams*
+**Exams**
 
 In an effort to provide as much transparency as possible on the scope and style of exams, I have made all previous exams available below. Keep in mind that Biometry has developed and changed over the 10+ years I have been teaching it. There are topics we used to cover that we no longer cover, and there are topics we cover now that were not always included as part of the syllabus. Some of the questions used in previous exams are now being used in problem sets. Exams are largely written anew each year but some questions get re-used and some of these questions may appear in future exams. Note that I was on sabbatical in 2019 and there are no exams provided for that year.
+
+*Midterms*
 
 * Spring 2012 Midterm: [link](https://github.com/hlynch/Biometry2022/tree/master/_data/Midterm_exam_Spring2012.pdf)
 * Spring 2013 Midterm: [link](https://github.com/hlynch/Biometry2022/tree/master/_data/Midterm_exam_Spring2013.pdf)
@@ -85,6 +87,8 @@ In an effort to provide as much transparency as possible on the scope and style 
 * Spring 2018 Midterm: [link](https://github.com/hlynch/Biometry2022/tree/master/_data/Midterm_exam_Spring2018.pdf)
 * Spring 2020 Midterm: [link](https://github.com/hlynch/Biometry2022/tree/master/_data/Midterm_exam_Spring2020.pdf)
 * Spring 2021 Midterm: [link](https://github.com/hlynch/Biometry2022/tree/master/_data/Midterm_exam_Spring2021.pdf)
+
+*Finals*
 
 * Spring 2012 Final: [link](https://github.com/hlynch/Biometry2022/tree/master/_data/Final_exam_Spring2012.pdf)
 * Spring 2013 Final: [link](https://github.com/hlynch/Biometry2022/tree/master/_data/Final_exam_Spring2013.pdf)
