@@ -1,7 +1,13 @@
 Week 2 Lecture
 ========================================================
 
-Hypothesis testing and p-values
+This week we will learn about two concepts: 1) Hypothesis testing, and 2) Parameter estimation. You can think of these two concepts as two sides of the same coin, since they each allow us to learn from data.
+
+Hypothesis testing is a bit like the game 50-questions (Are you red? Are you blue? Each question is a null hypothesis to be rejected...). One example would be estimating the change in infection rate for patients receiving a Covid vaccine. The null hypothesis is: The vaccine provides no benefit. The test statistic would be the infection rate, and a mathematical way to state the null hypothesis would be $H_{0}: Rate_{Unvaxxed} - Rate_{Vaxxed}=0$. A hypothesis test would allow us to potential *reject* that null hypothesis. 
+
+Parameter estimation is more direct, it just asks "What are you?". In the example provided above, we would estimate the parameter of interest, which is $Rate_{Unvaxxed} - Rate_{Vaxxed}$, and our uncertainty about that parameter of interest. If our estimate of that parameter was so large (or the uncertainty so small) that we could be sure that the parameter was not zero, then this would be equivalent to rejecting the null hypothesis.
+
+Hypothesis testing 
 --------------------
 
 There are few topics in statistics more controversial than the various philosophies behind null hypothesis testing. Over the next two weeks we will learn about the two paradigms (Fisher vs. Neyman-Pearson), the hybrid approach mostly commonly used in ecology, and criticisms of the whole enterprise. Bayesian statistics takes an entirely different approach than either Fisher or Neyman-Pearson, and the Bayesian approach resolves many of the inconsistencies involved with frequentist statistics, but at the expense of increased computation (and the use of prior information…). 
@@ -127,8 +133,9 @@ We are going to introduce the idea of hypothesis testing through the practice of
 
 Permutation tests 
 ------------------------
+<a id="permmethods"></a>
 
-<a id="permmethods"></a>Let’s say we have two random samples drawn from possibly different probability distributions F and G,
+Let’s say we have two random samples drawn from possibly different probability distributions F and G,
 
 $F \rightarrow z=\{z_{1},z_{2},...,z_{n}\}$
 
@@ -152,11 +159,13 @@ We will do an example like this in the problem set.
 Parameter estimation
 -------------------------
 
-Hypothesis testing is a bit like the game 50-questions (Are you red? Are you blue? Each question is a null hypothesis to be rejected...).
+Hypothesis testing answers a very direct question relating to the probability of the data under the null hypothesis, and this can be used to judge whether the data are consistent with the null hypothesis or whether the data are inconsistent with the null hypothesis (in which case we would "reject" it).
 
-<a id="effectsize"></a>Parameter estimation appears at first glance more direct, it just asks "What are you?", and in doing so it estimates the value of a parameter (mean growth rate of a fish population, for example) and provides a measure of uncertainty about that estimate. 
+Parameter estimation represents a more direct approach by directly estimating the parameter of interest.
 
-As a reminder, **estimators are tools that produce estimates of population statistics from sample statistics**. 
+First, a bit of vocabulary:
+
+**Estimators are tools that produce estimates of population statistics from sample statistics.** 
 
 The basic outline of "statistical inference":
 Data = sample $\rightarrow$ sample statistics $\rightarrow$ ESTIMATOR $\rightarrow$ population parameters
@@ -165,11 +174,14 @@ We generally use the word "statistic" when discussing the data, and "parameter" 
 
 **An "estimator" or "point estimate" is a statistic (that is, a function of the data) that is used to infer the value of an unknown parameter in a statistical model. If the parameter is denoted $\theta$ then the estimator is typically written by adding a "hat" over the symbol: $\hat{\theta}$. Being a function of the data, the estimator is itself a random variable; a particular realization of this random variable is called the "estimate".** Sometimes the words "estimator" and "estimate" are used interchangeably, but I will try and be consistent in using the word "estimator" for the function in the generic, and the word "estimate" for the result of applying that function to the data at hand.
 
-Example:
+We have not been formally introduced to statistical distributions yet, but the Normal (a.k.a. Gaussian) distribution is the classic "bell-shaped" curve you may be familiar with. It has two parameters, $\mu$ (the location of the center of the bell curve) and $\sigma$ (the width of the bell curve). 
+
+Let's say we have a random variable X that follows a Normal distribution:
 
 $$
 X \sim N(\mu,\sigma^{2})
 $$
+Parameter estimation involves using the data to estimate the true value of $\mu$ and $\sigma$. 
 
 <a id="estimator"></a>We define the "estimator" for $\mu$ as
 
@@ -242,7 +254,7 @@ In the development to follow, we will assume that we have NO other information a
 
 Summary statistics are easy enough to compute, but we don’t have any way of knowing how accurate those summary statistics might be. The bootstrap gives us a way to calculate the accuracy of our summary statistics $\hat{\theta}$.
 
-The bootstrap works NO MATTER HOW COMPLICATED THE FUNCTION, IT IS COMPLETELY AUTOMATIC, AND REQUIRES NO THEORETICAL CALCULATIONS.
+The bootstrap works NO MATTER HOW COMPLICATED THE FUNCTION, IT IS COMPLETELY AUTOMATIC, AND REQUIRES NO THEORETICAL CALCULATIONS. (I'm simplifying a little. The bootstrap fails in rare cases, which we won't get into.)
 
 First we need the idea of a bootstrap sample. A bootstrap sample is any sample drawn randomly WITH REPLACEMENT from the empirical distribution.
 
@@ -310,63 +322,7 @@ $$
 
 *This is just the standard deviation of the distribution of $\theta$.* This is a really important point that is worth dwelling on for a bit. Our uncertainty about the value is captured by how much variation there is when I draw a different sub-sample of the data, which mimics re-doing the experiment altogether. In this case, I call the standard deviation of those $\theta^{*}$ values a standard error, because they represent my uncertainty (my potential error) about $\hat{\theta}$. Do not confuse standard deviation and standard error. A standard deviation is a statistic (something calculated from data) about the spread of the data. <a id="se"></a>A standard error is the standard deviation of my estimates, and therefore is a measure of how uncertain I am about my estimate.   
 
-We will work through 2 examples, one using hand calculations, and one using R pseudocode.
-
-**Example 1**:
-
-*Data*: 10 pennies that the students have
-
-*Test statistic*: Median
-
-Lets say we are trying to find the median age of all pennies in circulation. We can't figure this out exactly, because we can't collect all the pennies in circulation, but we each have a sample of 10 pennies. The median age of the pennies in our sample is a reasonable estimate for the median age of all pennies in circulation. 
-
-What is our uncertainty about that number? How far might our estimate of the median age be from the true median age? In this case, we don't know the underlying distribution of penny ages. (Let's brainstorm this for a bit. Do we have any guesses what this distribution might look like? What might be a reasonable distribution to describe the shape of penny age?) 
-
-Let’s use bootstrapped samples to calculate the s.e. associated with that estimate.
-
-Procedure: 
-1. Sample WITH REPLACEMENT a group of 10 pennies. (To sample with replacement you will have to sample one penny, write down the age, and repeat that 10 times.)
-2. Calculate the median age from that sample of pennies.
-3. Repeat
-
-Over time you will gather a collection of median estimates, each one of which was calculated using a different bootstrapped dataset. They can be used to calculate the Bias and the Variance of the estimator.
-
-We actually have two primary mechanisms for generating confidence intervals for the statistic.
-
-Method #1: We can use the following normal approximation:
-
-$$
-\hat{\theta^{*}} \sim N(\hat{\theta},\hat{se}^{2})
-$$
-
-**STOP**: How do we construct a confidence interval from this?
-
-$$
-\hat{\theta}_{LL}=\hat{\theta}-1.96*\hat{se}
-$$
-$$
-\hat{\theta}_{UL}=\hat{\theta}+1.96*\hat{se}
-$$
-
-Remember that 95$\%$ of the probability for a Standard Normal distribution lies between (-1.96$\sigma$,+1.96$\sigma$)? Here we are using the same principle, capturing 95$\%$ of the probability of the distribution by assuming the distribution of $\theta^{*}$ is Normal and pulling out the lower limit and the upper limit lying 1.95 times the standard deviation below and above (respectively) the estimate.
-
-**OR** 
-
-Method #2: we could do away with normal approximations altogether and simply take the quantiles directly from the distribution of $\hat{\theta}^{*}$:
-
-$$
-\theta_{LL} = \mbox{2.5th percentile of } \hat{\theta}^{*}
-$$
-$$
-\theta_{UL} = \mbox{97.5th percentile of } \hat{\theta}^{*}
-$$
-
-Notice that (by construction) 95$%$ of the $\hat{\theta}^{*}$ values fall in the interval $(\theta_{LL},\theta_{UL})$.
-
-NB: If you are going to go through the trouble of doing the bootstrap sampling, I don’t know why you would make a normal approximation at the very end to construct the CIs. I recommend Method #2.
-
-
-**Example 2**:
+We will work through  a few examples in the lab. 
 
 Knowing how to draw bootstrap replicates gets more complicated when you have multivariate datasets.
 For example, lets start with a dataset comparing average LSAT scores and GPA for the incoming classes for 15 law schools 
@@ -374,7 +330,6 @@ For example, lets start with a dataset comparing average LSAT scores and GPA for
 ```{r echo=FALSE, fig.align='center', fig.cap='Source: Efron and Tibshirani (1994)', out.width='40%'}
 knitr::include_graphics('LSAT_info.png')
 ```
-
 
 Lets say we want to estimate the true correlation coefficient between LSAT scores and GPA. We haven’t covered this yet, but one estimator for the true correlation coefficient is Pearson’s product moment correlation coefficient r
 

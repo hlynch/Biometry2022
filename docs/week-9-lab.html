@@ -24,7 +24,7 @@
 <meta name="author" content="Heather Lynch" />
 
 
-<meta name="date" content="2021-12-13" />
+<meta name="date" content="2021-12-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -144,7 +144,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="1.4.1" data-path="week-1-lecture.html"><a href="week-1-lecture.html#intersection"><i class="fa fa-check"></i><b>1.4.1</b> Intersection</a></li>
 <li class="chapter" data-level="1.4.2" data-path="week-1-lecture.html"><a href="week-1-lecture.html#union"><i class="fa fa-check"></i><b>1.4.2</b> Union</a></li>
-<li class="chapter" data-level="1.4.3" data-path="week-1-lecture.html"><a href="week-1-lecture.html#complement"><i class="fa fa-check"></i><b>1.4.3</b> Complement:</a></li>
 </ul></li>
 <li class="chapter" data-level="1.5" data-path="week-1-lecture.html"><a href="week-1-lecture.html#multiple-events"><i class="fa fa-check"></i><b>1.5</b> Multiple events</a></li>
 <li class="chapter" data-level="1.6" data-path="week-1-lecture.html"><a href="week-1-lecture.html#conditionals"><i class="fa fa-check"></i><b>1.6</b> Conditionals</a></li>
@@ -171,7 +170,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="3" data-path="week-2-lecture.html"><a href="week-2-lecture.html"><i class="fa fa-check"></i><b>3</b> Week 2 Lecture</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="week-2-lecture.html"><a href="week-2-lecture.html#hypothesis-testing-and-p-values"><i class="fa fa-check"></i><b>3.1</b> Hypothesis testing and p-values</a></li>
+<li class="chapter" data-level="3.1" data-path="week-2-lecture.html"><a href="week-2-lecture.html#hypothesis-testing"><i class="fa fa-check"></i><b>3.1</b> Hypothesis testing</a></li>
 <li class="chapter" data-level="3.2" data-path="week-2-lecture.html"><a href="week-2-lecture.html#permutation-tests"><i class="fa fa-check"></i><b>3.2</b> Permutation tests</a></li>
 <li class="chapter" data-level="3.3" data-path="week-2-lecture.html"><a href="week-2-lecture.html#parameter-estimation"><i class="fa fa-check"></i><b>3.3</b> Parameter estimation</a></li>
 <li class="chapter" data-level="3.4" data-path="week-2-lecture.html"><a href="week-2-lecture.html#method-1-non-parametric-bootstrap"><i class="fa fa-check"></i><b>3.4</b> Method #1: Non-parametric bootstrap</a></li>
@@ -562,19 +561,19 @@ P(tanh(z-\frac{t_{[1-\alpha/2](\infty)}}{\sqrt{n-3}})\leq \rho \leq tanh(z+\frac
 ## lm(formula = value ~ X)
 ## 
 ## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -18.6822  -4.7487  -0.4395   4.4847  20.4275 
+##     Min      1Q  Median      3Q     Max 
+## -23.013  -9.864  -1.830  10.351  24.913 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)   0.6594     3.0385   0.217     0.83    
-## X            -1.9719     0.1712 -11.521 3.87e-12 ***
+## (Intercept)  -0.9509     4.3819  -0.217     0.83    
+## X            -2.0882     0.2468  -8.460 3.36e-09 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 8.114 on 28 degrees of freedom
-## Multiple R-squared:  0.8258,	Adjusted R-squared:  0.8196 
-## F-statistic: 132.7 on 1 and 28 DF,  p-value: 3.872e-12</code></pre>
+## Residual standard error: 11.7 on 28 degrees of freedom
+## Multiple R-squared:  0.7188,	Adjusted R-squared:  0.7088 
+## F-statistic: 71.57 on 1 and 28 DF,  p-value: 3.364e-09</code></pre>
 <p>Copy this script into R and r-run it several times. Notice how the estimates for slope and intercept bounce around, but they should be correct <em>on average</em> and also the scale of variation from one run to the next should make sense given the estimate of the standard error. (Their standard deviation should be the standard error.) Notice also how the residual standard error is equal (within sampling error) to the sigma that you put into the model, and that as you increase sigma, the R2 goes down because now you are increasing the variation that is <em>not</em> explained by the covariate. Try changing the number of samples drawn, either by extending the vector of the covariates or by drawing multiple times for each value (you will have to modify the code to make this latter change work). Notice how the standard errors on the intercept and slope coefficients gets smaller as the data set gets larger but the estimate for sigma does not. The parameter sigma is a property of the underlying population, not a property of the sample drawn, so it does not get smaller as you increase the number of samples in the dataset. (If this does not make sense, ask me!)</p>
 <p><strong>Fitting real data</strong></p>
 <p>Now that we’ve gained some intuition, we can dive into fitting a real dataset. The syntax of ‘lm’ is straightforward. We will run through some examples using a dataset on Old Faithful eruptions. The dataset is built into the MASS library, so we just have to load it.</p>
@@ -889,9 +888,9 @@ SSE = \sum^{n}_{i=1}w_{i}(Y_{i}-\hat{Y}_{i})^{2}
 ## 
 ## 
 ## Bootstrap Statistics :
-##      original      bias    std. error
-## t1* 6.3002197  0.21703190  4.63641256
-## t2* 0.6615263 -0.00621786  0.07603634</code></pre>
+##      original       bias    std. error
+## t1* 6.3002197  0.193748410  4.50843635
+## t2* 0.6615263 -0.005397957  0.07359845</code></pre>
 <p><strong><span style="color: green;">Checkpoint #5: How would we know if the bias is significant (i.e., how would we calculate the standard error of the bias)?</span></strong></p>
 </div>
 <div id="type-i-vs.-type-ii-regression-the-smatr-package" class="section level2" number="17.6">

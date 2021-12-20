@@ -24,7 +24,7 @@
 <meta name="author" content="Heather Lynch" />
 
 
-<meta name="date" content="2021-12-13" />
+<meta name="date" content="2021-12-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -144,7 +144,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="1.4.1" data-path="week-1-lecture.html"><a href="week-1-lecture.html#intersection"><i class="fa fa-check"></i><b>1.4.1</b> Intersection</a></li>
 <li class="chapter" data-level="1.4.2" data-path="week-1-lecture.html"><a href="week-1-lecture.html#union"><i class="fa fa-check"></i><b>1.4.2</b> Union</a></li>
-<li class="chapter" data-level="1.4.3" data-path="week-1-lecture.html"><a href="week-1-lecture.html#complement"><i class="fa fa-check"></i><b>1.4.3</b> Complement:</a></li>
 </ul></li>
 <li class="chapter" data-level="1.5" data-path="week-1-lecture.html"><a href="week-1-lecture.html#multiple-events"><i class="fa fa-check"></i><b>1.5</b> Multiple events</a></li>
 <li class="chapter" data-level="1.6" data-path="week-1-lecture.html"><a href="week-1-lecture.html#conditionals"><i class="fa fa-check"></i><b>1.6</b> Conditionals</a></li>
@@ -171,7 +170,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="3" data-path="week-2-lecture.html"><a href="week-2-lecture.html"><i class="fa fa-check"></i><b>3</b> Week 2 Lecture</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="week-2-lecture.html"><a href="week-2-lecture.html#hypothesis-testing-and-p-values"><i class="fa fa-check"></i><b>3.1</b> Hypothesis testing and p-values</a></li>
+<li class="chapter" data-level="3.1" data-path="week-2-lecture.html"><a href="week-2-lecture.html#hypothesis-testing"><i class="fa fa-check"></i><b>3.1</b> Hypothesis testing</a></li>
 <li class="chapter" data-level="3.2" data-path="week-2-lecture.html"><a href="week-2-lecture.html#permutation-tests"><i class="fa fa-check"></i><b>3.2</b> Permutation tests</a></li>
 <li class="chapter" data-level="3.3" data-path="week-2-lecture.html"><a href="week-2-lecture.html#parameter-estimation"><i class="fa fa-check"></i><b>3.3</b> Parameter estimation</a></li>
 <li class="chapter" data-level="3.4" data-path="week-2-lecture.html"><a href="week-2-lecture.html#method-1-non-parametric-bootstrap"><i class="fa fa-check"></i><b>3.4</b> Method #1: Non-parametric bootstrap</a></li>
@@ -743,8 +742,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="Week-7-lecture_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
 <p>Be aware of overplotting (points that overlap) especially when data are discrete or rounded. One strategy for overcoming this is jittering the points so the density of points can be displayed without overly distorting the underlying relationships. You can use the ‘jitter’ command in the base package.</p>
 <div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb371-1"><a href="week-7-lecturelab.html#cb371-1" aria-hidden="true" tabindex="-1"></a><span class="fu">jitter</span>(<span class="fu">rep</span>(<span class="dv">0</span>, <span class="dv">7</span>))</span></code></pre></div>
-<pre><code>## [1]  0.004893742  0.004315751  0.015565276 -0.002105301  0.002371917
-## [6] -0.001449453 -0.010593210</code></pre>
+<pre><code>## [1] -0.0072676771  0.0109369931  0.0002099833 -0.0099575076 -0.0111621224
+## [6] -0.0183835227 -0.0076254600</code></pre>
 <p>Before we launch into three-dimensional plotting, we should introduce ‘ggplot2’ which is quickly becoming “industry standard” for making plots in R. There is <em>so</em> much that can be done with ggplot2 that we will only scratch the surface today, but at least this introduction will illustrate some of the things that ggplot2 can do.</p>
 <p>The basic function to make plots using ggplot2 is ‘qplot.’ We can recreate the scatterplot of the mtcars data using ggplot2 as follows</p>
 <div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb373-1"><a href="week-7-lecturelab.html#cb373-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
@@ -785,8 +784,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## Number of data points:  2000 
 ## Number of grid bins:  200 x 200 
-## X range: ( -12.81102 , 13.32642 )
-## Y range: ( -12.81102 , 13.32642 )</code></pre>
+## X range: ( -15.90361 , 12.79798 )
+## Y range: ( -15.90361 , 12.79798 )</code></pre>
 <p>Notice that we had to use “same.scale=T” to make sure that distances along the x and y axes were comparable.</p>
 <p>Now we will use the hisr2d function to create inputs for a three-dimensional perspective plot.</p>
 <div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb378-1"><a href="week-7-lecturelab.html#cb378-1" aria-hidden="true" tabindex="-1"></a>h2d <span class="ot">&lt;-</span> <span class="fu">hist2d</span>(x,y,<span class="at">show=</span><span class="cn">FALSE</span>, <span class="at">same.scale=</span><span class="cn">TRUE</span>, <span class="at">nbins=</span><span class="fu">c</span>(<span class="dv">20</span>,<span class="dv">30</span>))</span>

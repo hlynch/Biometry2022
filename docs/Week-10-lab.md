@@ -523,7 +523,7 @@ dev_diff
 ```
 
 ```
-## [1] 4.740182
+## [1] 5.794172
 ```
 
 Notice that even though the covariate that we added is just noise, it still decreases the deviance.
@@ -552,10 +552,8 @@ for (i in 1:1000){
 ```
 
 ```
-## Warning: glm.fit: algorithm did not converge
-```
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
 
-```
 ## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
 ```
 

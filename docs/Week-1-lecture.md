@@ -31,25 +31,13 @@ Second half:
 - non-linear regression 
 - multivariate regression
 
-
-Grading:
-
-- 12 Problem sets (3% each, 36% total)
-
-- 2 Quizzes (2% each, 4% total)
-
-- Midterm (25%)
-
-- Final (35%)
-
-
 Class Structure
 
 - Lecture on Tuesday
 
 - "Lab"" on Thursday
 
-- Problem sets are posted on Wednesdays (feel free to remind me via Slack if I forget), and are due before lecture next Tuesday. This deadline is very strict, no exceptions. Turn in what you have before 8:00 am on Tuesday, even if its not complete. 
+- Problem sets are posted on Wednesdays (feel free to remind me via Slack if I forget), and are due *before lecture* the following Tuesday. This deadline is very strict, no exceptions. Turn in what you have before 8:00 am on Tuesday, even if its not complete. 
 
 
 Communication
@@ -58,10 +46,7 @@ Communication
 
 - Come to (both) office hours
 
-- E-mail me
-    + Weekdays 9 am - 10 pm
-    + Sundays 8 pm - 10 pm
-  
+- I have instituted a new participation component to Biometry's grading, see syllabus.  
 
 Today's Agenda
 --------------------
@@ -79,12 +64,22 @@ Let's imagine that we have a bag with a mix of regular and peanut M&Ms. Each M&M
 
 $$ \sum_{all \: colors} P(color) = 1 $$
 $$ \sum_{all \: types} P(types) = ? $$
+Note that the probabilities have to sum to 1.0 and that the probabilities also have to be non-negative. It turns out these are the only two requirements for a "legal" probability function. (Here we have discrete categories and so the probabilities add to one through a straightforward summation. The distribution of probabilities across categories is called the probability *mass* function. If these were continuous probabilities, like the distribution describing the weight of each M&M, the distribution would be called a probability *density* function and we would have to integrate [the continuous version of a sum] over all possible weights. Either way, the sum [or integral] over all possible values of the variable has to equal 1.0.)
+
+The complement (indicated by a superscript C) of a trait represents every object that does *not* have that trait, so the probability of the complement to Green is the probability of getting an M&M that is *anything but green*.
+
+<div class="figure" style="text-align: center">
+<img src="comp.png" alt="Red shading represents the complement. Source: Wikimedia Commons" width="25%" />
+<p class="caption">(\#fig:unnamed-chunk-1)Red shading represents the complement. Source: Wikimedia Commons</p>
+</div>
+
+$$ P(Green^c) = 1 - P(Green)  $$
 
 ### Intersection
 
 <div class="figure" style="text-align: center">
 <img src="inter.png" alt="Red shading represents the intersection. Source: Wikimedia Commons" width="25%" />
-<p class="caption">(\#fig:unnamed-chunk-1)Red shading represents the intersection. Source: Wikimedia Commons</p>
+<p class="caption">(\#fig:unnamed-chunk-2)Red shading represents the intersection. Source: Wikimedia Commons</p>
 </div>
 
 Now let's pull one M&M out of the bag. *If* the color distribution of chocolate M&Ms and peanut M&Ms is the same, then these two traits are independent, and we can write the probability of being *both* Green and Peanut as  
@@ -93,11 +88,21 @@ $$ P(Green \: AND \:  Peanut) = P(Green \cap Peanut) = P(Green) \cdot P(Peanut) 
 
 This is called a Joint Probability and we usually write it as $P(Green,Peanut)$. *This only works if these two traits are independent of one another.* If color and type were not independent of one another, we would have to calculate the joint probability differently, but in the vast majority of cases we are working with data that we assuming are independent of one another. In these cases, the joint probability is simply the product of all the individual probabilities.
 
+Note that 
+
+$$ P(Green \: AND \:  Blue) = P(Green \cap Blue) = 0$$
+because an M&M cannot be Green and Blue at the same time. in this case, 
+
+<div class="figure" style="text-align: center">
+<img src="EmptySet.png" alt="In the case of two different colors, the intersection is empty." width="25%" />
+<p class="caption">(\#fig:unnamed-chunk-3)In the case of two different colors, the intersection is empty.</p>
+</div>
+
 ### Union
 
 <div class="figure" style="text-align: center">
 <img src="union.png" alt="Red shading represents the union. Source: Wikimedia Commons" width="25%" />
-<p class="caption">(\#fig:unnamed-chunk-2)Red shading represents the union. Source: Wikimedia Commons</p>
+<p class="caption">(\#fig:unnamed-chunk-4)Red shading represents the union. Source: Wikimedia Commons</p>
 </div>
  
 
@@ -113,18 +118,6 @@ P(Green \: OR \: Peanut) &= P(Green \cup Peanut) \\
     If we do not subtract off the intersection, then the probability of Green AND Peanut will be double counted.
 </span>
 </details> 
-
-### Complement:
-
-The complement of a trait represents everything that does *not* have that trait.
-
-<div class="figure" style="text-align: center">
-<img src="comp.png" alt="Red shading represents the complement. Source: Wikimedia Commons" width="25%" />
-<p class="caption">(\#fig:unnamed-chunk-3)Red shading represents the complement. Source: Wikimedia Commons</p>
-</div>
-
-$$ P(Green^c) = 1 - P(Green)  $$
-
 
 ## Multiple events
 
@@ -289,7 +282,7 @@ Some terminology:
 
 <div class="figure" style="text-align: center">
 <img src="popper.png" alt="Hypothetico-deductive view of the scientific method. Photo Source: LSE Library" width="75%" />
-<p class="caption">(\#fig:unnamed-chunk-4)Hypothetico-deductive view of the scientific method. Photo Source: LSE Library</p>
+<p class="caption">(\#fig:unnamed-chunk-5)Hypothetico-deductive view of the scientific method. Photo Source: LSE Library</p>
 </div>
 
 Not all hypotheses are created equal. Consider the following two hypotheses:
