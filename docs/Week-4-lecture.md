@@ -528,6 +528,6 @@ We used the $\chi^{2}$ distribution to derive the confidence interval for the pa
 We used the F distribution to derive the confidence interval for the ratio of two variances.
 
 
-## Readings for this week
+## Week 4 Readings
 
 For this week, I suggest reading Aho Sections 4.4.2, 5.1, 5.2, 5.3-5.3.4 and Logan Chapter 3. I also strongly recommend reading Sections 1.1, 2.1, 3.1, and 4.1 of [Bolker Chapter 6](https://github.com/hlynch/Biometry2022/tree/master/_data/Bolker_Chapter6.pdf). Note that most students dislike this chapter by Bolker but it covers some fundamental information that will be important throughout your statistics journey and many advanced students come around to Bolker's way of thinking over time, so bear with it.

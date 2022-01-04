@@ -513,7 +513,7 @@ $$
 We have one degree of freedom from each row and column because the total sample size in each row and column is fixed by the marginal totals. 
 This test is used to test whether the characters are independent.
 
-## Readings for this week
+## Week 5 Readings
 
 For this week, I suggest reading Aho Sections 6.1-6.5 and Logan Chapter 6. I also strongly recommend reading [Johnson (2002)](https://github.com/hlynch/Biometry2022/tree/master/_data/Johnson_2002.pdf), [Simberloff (1990)](https://github.com/hlynch/Biometry2022/tree/master/_data/Simberloff_1990.pdf), and [Brosi and Biber (2009)](https://github.com/hlynch/Biometry2022/tree/master/_data/Brosi_Biber_2009.pdf). 
 

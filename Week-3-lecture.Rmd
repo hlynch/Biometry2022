@@ -503,6 +503,6 @@ By the end of Week 3, you should understand...
 
 - the PDFs for the Normal distribution, Standard Normal, Log-Normal, Binomial, and Poisson distributions
 
-## Readings for this week
+## Week 3 Readings
 
 For this week, I suggest reading Aho Chapter 3. The context of the problem set will make more sense if you skim [Viswanathan et al. (2008)](https://github.com/hlynch/Biometry2022/tree/master/_data/Viswanathan_etal_2008.pdf) before doing the problem set (those interested in animal movement models should read the whole paper).
