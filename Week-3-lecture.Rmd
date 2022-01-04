@@ -1,7 +1,7 @@
 Week 3 Lecture
 ========================================================
 
-There is a handout for this week [here](https://github.com/hlynch/Biometry2022/tree/master/_data/Figure_from_Leemis_1986.pdf). *Important* - This figure has a typo. Please print it out and fix it. The arrow heads connecting the Normal distribution and the Standard Normal distribution should be reverse. We will discuss this in class as well so you understand why these arrows need to be reversed.
+There is a handout for this week [here](https://github.com/hlynch/Biometry2022/tree/master/_data/Figure_from_Leemis_1986.pdf). **Important** - This figure has a typo. Please print it out and fix it. The arrow heads connecting the Normal distribution and the Standard Normal distribution should be reversed. We will discuss this in class as well so you understand why these arrows need to be reversed.
 
 Overview of probability distributions
 -------------------------------
