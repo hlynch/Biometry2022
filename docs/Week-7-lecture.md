@@ -5,7 +5,7 @@ Week 7 Lecture/Lab
 
 For this week, I suggest reading Logan Chapter 5. There are many papers that might be helpful in the design of effective visualizations. Two that I would recommend highly are [Wainer (1984)](https://github.com/hlynch/Biometry2022/tree/master/_data/Wainer_1984.pdf) and [Rougier et al. (2014)](https://github.com/hlynch/Biometry2022/tree/master/_data/Rougier_etal_2014.pdf).
 
-There are a suite of additional papers you should at least open and skim, papers on: [three-dimensional visualizations](https://github.com/hlynch/Biometry2022/tree/master/_data/Gehlenborg_Wong_2012.pdf), [callouts and labels](https://github.com/hlynch/Biometry2022/tree/master/_data/Krzywinski_2013.pdf), [axis ticks and grids](https://github.com/hlynch/Biometry2022/tree/master/_data/Krzywinski_2014.pdf), [error bars](https://github.com/hlynch/Biometry2022/tree/master/_data/Krzywinski_Altman_2013.pdf), and [box plots](https://github.com/hlynch/Biometry2022/tree/master/_data/Krzywinski_Altman_2014a.pdf).
+There are a suite of additional papers you should at least open and skim, papers on: [three-dimensional visualizations](https://github.com/hlynch/Biometry2022/tree/master/_data/Gehlenborg_Wong_2012.pdf), [callouts and labels](https://github.com/hlynch/Biometry2022/tree/master/_data/Krzywinski_2013.pdf), [axes, ticks, and grids](https://github.com/hlynch/Biometry2022/tree/master/_data/Krzywinski_2014.pdf), [error bars](https://github.com/hlynch/Biometry2022/tree/master/_data/Krzywinski_Altman_2013.pdf), and [box plots](https://github.com/hlynch/Biometry2022/tree/master/_data/Krzywinski_Altman_2014a.pdf).
 
 ## Introduction to plotting in R
 
@@ -433,8 +433,8 @@ jitter(rep(0, 7))
 ```
 
 ```
-## [1] -0.0005572075  0.0094361484 -0.0002926570  0.0049665985 -0.0004262343
-## [6] -0.0139465219  0.0133758022
+## [1] -0.018737671  0.015626376 -0.011228249  0.008533752 -0.008305140
+## [6] -0.019077132  0.018934631
 ```
 
 Before we launch into three-dimensional plotting, we should introduce 'ggplot2' which is quickly becoming "industry standard" for making plots in R. There is *so* much that can be done with ggplot2 that we will only scratch the surface today, but at least this introduction will illustrate some of the things that ggplot2 can do.
@@ -506,8 +506,8 @@ hist2d(x,y, same.scale=TRUE)
 ## 
 ## Number of data points:  2000 
 ## Number of grid bins:  200 x 200 
-## X range: ( -14.12764 , 12.73323 )
-## Y range: ( -14.12764 , 12.73323 )
+## X range: ( -12.45984 , 13.42264 )
+## Y range: ( -12.45984 , 13.42264 )
 ```
 
 Notice that we had to use "same.scale=T" to make sure that distances along the x and y axes were comparable.

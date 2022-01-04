@@ -5,7 +5,7 @@ Week 7 Lecture/Lab
 
 For this week, I suggest reading Logan Chapter 5. There are many papers that might be helpful in the design of effective visualizations. Two that I would recommend highly are [Wainer (1984)](https://github.com/hlynch/Biometry2022/tree/master/_data/Wainer_1984.pdf) and [Rougier et al. (2014)](https://github.com/hlynch/Biometry2022/tree/master/_data/Rougier_etal_2014.pdf).
 
-There are a suite of additional papers you should at least open and skim, papers on: [three-dimensional visualizations](https://github.com/hlynch/Biometry2022/tree/master/_data/Gehlenborg_Wong_2012.pdf), [callouts and labels](https://github.com/hlynch/Biometry2022/tree/master/_data/Krzywinski_2013.pdf), [axis ticks and grids](https://github.com/hlynch/Biometry2022/tree/master/_data/Krzywinski_2014.pdf), [error bars](https://github.com/hlynch/Biometry2022/tree/master/_data/Krzywinski_Altman_2013.pdf), and [box plots](https://github.com/hlynch/Biometry2022/tree/master/_data/Krzywinski_Altman_2014a.pdf).
+There are a suite of additional papers you should at least open and skim, papers on: [three-dimensional visualizations](https://github.com/hlynch/Biometry2022/tree/master/_data/Gehlenborg_Wong_2012.pdf), [callouts and labels](https://github.com/hlynch/Biometry2022/tree/master/_data/Krzywinski_2013.pdf), [axes, ticks, and grids](https://github.com/hlynch/Biometry2022/tree/master/_data/Krzywinski_2014.pdf), [error bars](https://github.com/hlynch/Biometry2022/tree/master/_data/Krzywinski_Altman_2013.pdf), and [box plots](https://github.com/hlynch/Biometry2022/tree/master/_data/Krzywinski_Altman_2014a.pdf).
 
 ## Introduction to plotting in R
 

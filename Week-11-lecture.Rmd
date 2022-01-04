@@ -1,7 +1,11 @@
 Week 11 Lecture
 =============
 
-Outline:
+## Week 11 Readings
+
+For this week, I suggest reading Aho Sections 10.1-10.7, as well as Logan Chapter 10. 
+
+## Week 11 outline
 
 1. Basic idea behind ANOVA
 

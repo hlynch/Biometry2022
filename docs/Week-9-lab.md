@@ -257,18 +257,18 @@ summary(fit)
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -16.289  -7.162  -1.668   7.905  23.835 
+## -18.789  -7.399   1.627   7.634  17.754 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)   1.8090     4.0073   0.451    0.655    
-## X            -2.2924     0.2257 -10.156 6.83e-11 ***
+## (Intercept)  -4.1242     3.6354  -1.134    0.266    
+## X            -1.9505     0.2048  -9.525 2.79e-10 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 10.7 on 28 degrees of freedom
-## Multiple R-squared:  0.7865,	Adjusted R-squared:  0.7789 
-## F-statistic: 103.1 on 1 and 28 DF,  p-value: 6.835e-11
+## Residual standard error: 9.708 on 28 degrees of freedom
+## Multiple R-squared:  0.7642,	Adjusted R-squared:  0.7557 
+## F-statistic: 90.72 on 1 and 28 DF,  p-value: 2.787e-10
 ```
 
 Copy this script into R and r-run it several times. Notice how the estimates for slope and intercept bounce around, but they should be correct *on average* and also the scale of variation from one run to the next should make sense given the estimate of the standard error. (Their standard deviation should be the standard error.) Notice also how the residual standard error is equal (within sampling error) to the sigma that you put into the model, and that as you increase sigma, the R2 goes down because now you are increasing the variation that is *not* explained by the covariate. Try changing the number of samples drawn, either by extending the vector of the covariates or by drawing multiple times for each value (you will have to modify the code to make this latter change work). Notice how the standard errors on the intercept and slope coefficients gets smaller as the data set gets larger but the estimate for sigma does not. The parameter sigma is a property of the underlying population, not a property of the sample drawn, so it does not get smaller as you increase the number of samples in the dataset. (If this does not make sense, ask me!)
@@ -791,8 +791,8 @@ duncan.boot
 ## 
 ## Bootstrap Statistics :
 ##      original       bias    std. error
-## t1* 6.3002197  0.336768019  4.70819124
-## t2* 0.6615263 -0.008814301  0.07753517
+## t1* 6.3002197  0.292028391  4.53132583
+## t2* 0.6615263 -0.005923435  0.07519247
 ```
 
 **<span style="color: green;">Checkpoint #5: How would we know if the bias is significant (i.e., how would we calculate the standard error of the bias)?</span>**

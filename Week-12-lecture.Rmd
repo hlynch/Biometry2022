@@ -6,7 +6,11 @@ library(ggplot2)
 text.size <- 16
 ```
 
-Outline:
+## Week 12 Readings
+
+For this week, I suggest reading Aho Sections 7.65 and 10.8-10.14, as well as Logan Chapters 11-12. You will also need to read [Hurlbert (1984)](https://github.com/hlynch/Biometry2022/tree/master/_data/Hurlbert_1984.pdf). Note that I have long considered eliminating this paper because Hurlbert has made statements in the public sphere that many find offensive (regarding politics, not statistics), I continue to assign this paper because the paper itself is so well known that it would be a disservice not to familiarize everyone with the topics and terminology introduced here. We will discuss this paper at length in class and while it is a bit long, I would encourage you to read it carefully. Here is a nice simple overview on [two factor designs](https://github.com/hlynch/Biometry2022/tree/master/_data/Krzywinski_Altman_2014d.pdf) worth reading as well. There are several other (very short) papers that may help clarify some of the more nuanced issues of this week, on ['blocking' in ANOVA](https://github.com/hlynch/Biometry2022/tree/master/_data/Krzywinski_Altman_2014c.pdf), [split plot designs](https://github.com/hlynch/Biometry2022/tree/master/_data/Altman_Krzywinski_2015b.pdf), and [nested designs](https://github.com/hlynch/Biometry2022/tree/master/_data/Krzywinski_etal_2014.pdf).
+
+## Week 12 outline
 
 1. ANOVA for two-way factorial design
 
