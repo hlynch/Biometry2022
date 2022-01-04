@@ -1,15 +1,11 @@
 Week 1 Lecture
 ========================================================
 
-Reading Material
----------------------
+## Week 1 Readings
 
-- Text
-    + Foundational and Applied Statistics for Biologists Using R
-    + Biostatistical Design and Analysis Using R
+For this week, I suggest Aho Chapter 2, and Sections 4.1, 4.2, 4.3.1, 4.3.2, 4.3.3, 4.3.4, 4.3.7, and 4.5. Logan Chapter 1 will help you get started in R if you are not already familiar with it.
 
-- Papers from primary literature
-
+I also recommend reviewing the [Algebra Rules sheet](https://github.com/hlynch/Biometry2022/tree/master/_data/Algebra_rules.pdf).
 
 Basic Outline
 ------------------------
@@ -339,9 +335,5 @@ Estimators are imperfect tools
 
 - Variance
 
-## Week 1 Readings
 
-For this week, I suggest Aho Chapter 2, and Sections 4.1, 4.2, 4.3.1, 4.3.2, 4.3.3, 4.3.4, 4.3.7, and 4.5. Logan Chapter 1 will help you get started in R if you are not already familiar with it.
-
-I also recommend reviewing the [Algebra Rules sheet](https://github.com/hlynch/Biometry2022/tree/master/_data/Algebra_rules.pdf).
 

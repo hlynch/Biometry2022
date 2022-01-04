@@ -1,6 +1,13 @@
 Week 2 Lecture
 ========================================================
 
+## Week 2 Readings
+
+For this week, I suggest reading Aho Sections 5.4 and 6.6.1 and [Johnson (1995)](https://github.com/hlynch/Biometry2022/tree/master/_data/Johnson_1995.pdf). Those interested in a historical but still relevant perspective on how we learn from data should check out [Tukey (1969)](https://github.com/hlynch/Biometry2022/tree/master/_data/Tukey_1969.pdf).
+
+Today's Agenda
+--------------------
+
 This week we will learn about two concepts: 1) Hypothesis testing, and 2) Parameter estimation. You can think of these two concepts as two sides of the same coin, since they each allow us to learn from data.
 
 Hypothesis testing is a bit like the game 50-questions (Are you red? Are you blue? Each question is a null hypothesis to be rejected...). One example would be estimating the change in infection rate for patients receiving a Covid vaccine. The null hypothesis is: The vaccine provides no benefit. The test statistic would be the infection rate, and a mathematical way to state the null hypothesis would be $H_{0}: Rate_{Unvaxxed} - Rate_{Vaxxed}=0$. A hypothesis test would allow us to potential *reject* that null hypothesis. 
@@ -483,6 +490,3 @@ By the end of Week 2, you should understand...
 - when to use parametric bootstrap vs. non-parametric bootstrap (hint: rarely) 
 - how to use [jackknife](#jackknife) to estimate bias and standard errors of an estimate
 
-## Week 2 Readings
-
-For this week, I suggest reading Aho Sections 5.4 and 6.6.1 and [Johnson (1995)](https://github.com/hlynch/Biometry2022/tree/master/_data/Johnson_1995.pdf). Those interested in a historical but still relevant perspective on how we learn from data should check out [Tukey (1969)](https://github.com/hlynch/Biometry2022/tree/master/_data/Tukey_1969.pdf).

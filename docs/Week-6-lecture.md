@@ -1,6 +1,14 @@
 Week 6 Lecture
 ========================================================
 
+## Week 6 Readings
+
+For this week, I suggest reading Aho Sections 6.5. In class this week, we will also discuss [Bender and Lange (2001)](https://github.com/hlynch/Biometry2022/tree/master/_data/Bender_Lange_2001.pdf), [Berger and Berry (1988)](https://github.com/hlynch/Biometry2022/tree/master/_data/Berger_Berry_1988.pdf), [Cohen (1994)](https://github.com/hlynch/Biometry2022/tree/master/_data/Cohen_1994.pdf), [Gawande (1999)](https://github.com/hlynch/Biometry2022/tree/master/_data/Gawande_1999.pdf), [Johnson (1999)](https://github.com/hlynch/Biometry2022/tree/master/_data/Johnson_1999.pdf), and [Nuzzo (2014)](https://github.com/hlynch/Biometry2022/tree/master/_data/Nuzzo_2014.pdf). Yes, there are a lot of papers this week, but I would encourage you to read efficiently - get the gist but don't get bogged down in the details. There is an overarching theme among these papers I want to make sure you really take to heart.
+
+There are additional readings that I highlight here because they may be of interest, or may provide additional perspectives on the themes of the week, including [this paper on the problems of null hypothesis testing](https://github.com/hlynch/Biometry2022/tree/master/_data/Anderson_etal_2000.pdf), [this cheeky analysis of disease and astrological sign](https://github.com/hlynch/Biometry2022/tree/master/_data/Austin_etal_2006.pdf), [this paper on the hazards of sequential Bonferroni](https://github.com/hlynch/Biometry2022/tree/master/_data/Moran_2003.pdf), and [this review of the past, present, and future of null hypothesis testing](https://github.com/hlynch/Biometry2022/tree/master/_data/Robinson_Wainer_2002.pdf).
+
+## Family-wise error rates
+
 The ''family-wise error rate'' is
 
 $$
@@ -44,8 +52,4 @@ $$
 
 In other words, if you were to simulate data under the null hypothesis, what is the probability that the smallest p-value among the set of comparisons made is smaller than or equal to the p-value that you actually obtained. (In other words, the adjusted p-value asks “how extreme is my most extreme p-value when compared against the most extreme p-values I would expect under the null hypothesis?)
 
-## Week 6 Readings
 
-For this week, I suggest reading Aho Sections 6.5. In class this week, we will also discuss [Bender and Lange (2001)](https://github.com/hlynch/Biometry2022/tree/master/_data/Bender_Lange_2001.pdf), [Berger and Berry (1988)](https://github.com/hlynch/Biometry2022/tree/master/_data/Berger_Berry_1988.pdf), [Cohen (1994)](https://github.com/hlynch/Biometry2022/tree/master/_data/Cohen_1994.pdf), [Gawande (1999)](https://github.com/hlynch/Biometry2022/tree/master/_data/Gawande_1999.pdf), [Johnson (1999)](https://github.com/hlynch/Biometry2022/tree/master/_data/Johnson_1999.pdf), and [Nuzzo (2014)](https://github.com/hlynch/Biometry2022/tree/master/_data/Nuzzo_2014.pdf). Yes, there are a lot of papers this week, but I would encourage you to read efficiently - get the gist but don't get bogged down in the details. There is an overarching theme among these papers I want to make sure you really take to heart.
-
-There are additional readings that I highlight here because they may be of interest, or may provide additional perspectives on the themes of the week, including [this paper on the problems of null hypothesis testing](https://github.com/hlynch/Biometry2022/tree/master/_data/Anderson_etal_2000.pdf), [this cheeky analysis of disease and astrological sign](https://github.com/hlynch/Biometry2022/tree/master/_data/Austin_etal_2006.pdf), [this paper on the hazards of sequential Bonferroni](https://github.com/hlynch/Biometry2022/tree/master/_data/Moran_2003.pdf), and [this review of the past, present, and future of null hypothesis testing](https://github.com/hlynch/Biometry2022/tree/master/_data/Robinson_Wainer_2002.pdf).

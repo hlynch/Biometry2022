@@ -1,5 +1,12 @@
 Week 5 Lecture
 ========================================================
+
+## Week 5 Readings
+
+For this week, I suggest reading Aho Sections 6.1-6.5 and Logan Chapter 6. I also strongly recommend reading [Johnson (2002)](https://github.com/hlynch/Biometry2022/tree/master/_data/Johnson_2002.pdf), [Simberloff (1990)](https://github.com/hlynch/Biometry2022/tree/master/_data/Simberloff_1990.pdf), and [Brosi and Biber (2009)](https://github.com/hlynch/Biometry2022/tree/master/_data/Brosi_Biber_2009.pdf). 
+
+There are additional readings that I highlight here because they may be of interest, or may provide additional perspectives on the themes of the week, including [this paper on the irreproducibility of results based on p-values](https://github.com/hlynch/Biometry2022/tree/master/_data/Halsey_etal_2015.pdf), [this article on p-values from The Scientist Magazine](https://github.com/hlynch/Biometry2022/tree/master/_data/ScientistMagazine.pdf), [this paper on p-hacking](https://github.com/hlynch/Biometry2022/tree/master/_data/Head_etal_2015.pdf), and [the official statement on p-values by the American Statistical Association](https://github.com/hlynch/Biometry2022/tree/master/_data/ASA_statement.pdf).
+
 Statistical power
 ----------
 
@@ -518,8 +525,4 @@ $$
 We have one degree of freedom from each row and column because the total sample size in each row and column is fixed by the marginal totals. 
 This test is used to test whether the characters are independent.
 
-## Week 5 Readings
 
-For this week, I suggest reading Aho Sections 6.1-6.5 and Logan Chapter 6. I also strongly recommend reading [Johnson (2002)](https://github.com/hlynch/Biometry2022/tree/master/_data/Johnson_2002.pdf), [Simberloff (1990)](https://github.com/hlynch/Biometry2022/tree/master/_data/Simberloff_1990.pdf), and [Brosi and Biber (2009)](https://github.com/hlynch/Biometry2022/tree/master/_data/Brosi_Biber_2009.pdf). 
-
-There are additional readings that I highlight here because they may be of interest, or may provide additional perspectives on the themes of the week, including [this paper on the irreproducibility of results based on p-values](https://github.com/hlynch/Biometry2022/tree/master/_data/Halsey_etal_2015.pdf), [this article on p-values from The Scientist Magazine](https://github.com/hlynch/Biometry2022/tree/master/_data/ScientistMagazine.pdf), [this paper on p-hacking](https://github.com/hlynch/Biometry2022/tree/master/_data/Head_etal_2015.pdf), and [the official statement on p-values by the American Statistical Association](https://github.com/hlynch/Biometry2022/tree/master/_data/ASA_statement.pdf).
