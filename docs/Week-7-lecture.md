@@ -425,8 +425,8 @@ jitter(rep(0, 7))
 ```
 
 ```
-## [1] -0.016174871 -0.005370124  0.016345111  0.016009808  0.005201532
-## [6]  0.005013590 -0.017365371
+## [1]  0.0018708214  0.0004007678  0.0068412827 -0.0125461693 -0.0004241854
+## [6]  0.0167005045 -0.0086115101
 ```
 
 Before we launch into three-dimensional plotting, we should introduce 'ggplot2' which is quickly becoming "industry standard" for making plots in R. There is *so* much that can be done with ggplot2 that we will only scratch the surface today, but at least this introduction will illustrate some of the things that ggplot2 can do.
@@ -498,8 +498,8 @@ hist2d(x,y, same.scale=TRUE)
 ## 
 ## Number of data points:  2000 
 ## Number of grid bins:  200 x 200 
-## X range: ( -13.18861 , 14.17528 )
-## Y range: ( -13.18861 , 14.17528 )
+## X range: ( -15.97046 , 12.70039 )
+## Y range: ( -15.97046 , 12.70039 )
 ```
 
 Notice that we had to use "same.scale=T" to make sure that distances along the x and y axes were comparable.
@@ -636,3 +636,8 @@ Except is very rare cases where you have an actual photo or image in your figure
 
 In Illustrator, you can relabel everything (in whatever font the editor prefers), fix the line widths, tweak the colors as needed, arrange multiple panels as needed, add arrows and legends or other details, make one figure an inset of another, or do anything else you could possibly want to do. Illustrator has a learning curve of its own but is well worth the investment.
 
+## Week 7 Readings
+
+For this week, I suggest reading Logan Chapter 5. There are many papers that might be helpful in the design of effective visualizations. Two that I would recommend highly are [Wainer (1984)](https://github.com/hlynch/Biometry2022/tree/master/_data/Wainer_1984.pdf) and [Rougier et al. (2014)](https://github.com/hlynch/Biometry2022/tree/master/_data/Rougier_etal_2014.pdf).
+
+There are a suite of additional papers you should at least open and skim, papers on: [three-dimensional visualizations](https://github.com/hlynch/Biometry2022/tree/master/_data/Gehlenborg_Wong_2012.pdf), [callouts and labels](https://github.com/hlynch/Biometry2022/tree/master/_data/Krzywinski_2013.pdf), [axis ticks and grids](https://github.com/hlynch/Biometry2022/tree/master/_data/Krzywinski_2014.pdf), [error bars](https://github.com/hlynch/Biometry2022/tree/master/_data/Krzywinski_Altman_2013.pdf), and [box plots](https://github.com/hlynch/Biometry2022/tree/master/_data/Krzywinski_Altman_2014a.pdf).
