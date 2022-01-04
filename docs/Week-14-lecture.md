@@ -5,7 +5,7 @@ Week 14 Lecture
 
 ## Week 14 Readings
 
-For this week, I suggest reading Aho Sections 9.17 and Rexstad et al. (1988).
+For this week, I suggest reading Aho Sections 9.17.
 
 There are also a suite of papers we will discuss as part of our end-of-semester review for the final exam. I suggest reading them all but I will assign you one to focus on (and present) before class: [Anderson et al. (2001)](https://github.com/hlynch/Biometry2022/tree/master/_data/Anderson_etal_2001.pdf), [Beninger et al. (2012)](https://github.com/hlynch/Biometry2022/tree/master/_data/Beninger_etal_2012.pdf), [Borer et al. (2009)](https://github.com/hlynch/Biometry2022/tree/master/_data/Borer_etal_2009.pdf), [Gelman (2011)](https://github.com/hlynch/Biometry2022/tree/master/_data/Gelman_2011.pdf), [Guthery et al. (2001)](https://github.com/hlynch/Biometry2022/tree/master/_data/Guthery_etal_2001.pdf), [Makin and Xivry (2019)](https://github.com/hlynch/Biometry2022/tree/master/_data/Makin_Xivry_2019.pdf), and [Murtaugh (2007)](https://github.com/hlynch/Biometry2022/tree/master/_data/Murtaugh_2007.pdf).
 
