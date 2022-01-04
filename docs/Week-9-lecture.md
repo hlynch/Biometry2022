@@ -3,6 +3,10 @@ Week 9 Lecture
 
 
 
+## Week 9 Readings
+
+For this week, I suggest reading Aho Chapters 8 and 9 up to and including Section 9.16, as well as Logan Chapter 8. 
+
 ##Correlation
 
 Correlation and regression are two ways of looking at the relationship between two continuous variables. Correlation is testing the null hypothesis that the two variables are uncorrelated, and there is complete symmetry between the two variables. On the other hand, regression is concerned with using one variable to PREDICT another, and there is an asymmetry between the predictor and the response variable. A regression model for $Y \sim X$ is different than $X \sim Y$.
@@ -87,13 +91,13 @@ Let's look at a few examples...
 <img src="Week-9-lecture_files/figure-html/unnamed-chunk-4-1.png" width="240" />
 
 ```
-## [1] -0.09888828
+## [1] 0.165402
 ```
 
 <img src="Week-9-lecture_files/figure-html/unnamed-chunk-4-2.png" width="240" />
 
 ```
-## [1] 0.929427
+## [1] 0.9427703
 ```
 
 ## Hypothesis testing - Pearson's *r*
@@ -187,7 +191,7 @@ cor(df$A, df$B)
 ```
 
 ```
-## [1] -0.2658489
+## [1] 0.4133824
 ```
 
 Even though *A* and *B* clearly have a strong relationship, correlation is only effective if the relationship is **linear**.
@@ -221,7 +225,7 @@ paste("The 95% confidence interval for the estimated correlation coefficient, ",
 ```
 
 ```
-## [1] "The 95% confidence interval for the estimated correlation coefficient, 0.882 is (0.841, 0.916)"
+## [1] "The 95% confidence interval for the estimated correlation coefficient, 0.87 is (0.815, 0.909)"
 ```
 </span>
 </details> 
@@ -267,7 +271,7 @@ pnorm(q = z.obs, mean = 0, sd = sqrt(1 / (100 - 3)), lower.tail = FALSE)
 ```
 
 ```
-## [1] 1.844783e-47
+## [1] 2.705987e-50
 ```
 
 ```r
@@ -277,7 +281,7 @@ pnorm(q = test.stat, lower.tail = FALSE)
 ```
 
 ```
-## [1] 1.844783e-47
+## [1] 2.705987e-50
 ```
 
 To simply the notation, let us define

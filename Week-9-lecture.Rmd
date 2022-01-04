@@ -8,6 +8,10 @@ library(asbio)
 text.size <- 14
 ```
 
+## Week 9 Readings
+
+For this week, I suggest reading Aho Chapters 8 and 9 up to and including Section 9.16, as well as Logan Chapter 8. 
+
 ##Correlation
 
 Correlation and regression are two ways of looking at the relationship between two continuous variables. Correlation is testing the null hypothesis that the two variables are uncorrelated, and there is complete symmetry between the two variables. On the other hand, regression is concerned with using one variable to PREDICT another, and there is an asymmetry between the predictor and the response variable. A regression model for $Y \sim X$ is different than $X \sim Y$.

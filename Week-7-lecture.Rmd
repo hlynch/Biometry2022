@@ -7,6 +7,8 @@ For this week, I suggest reading Logan Chapter 5. There are many papers that mig
 
 There are a suite of additional papers you should at least open and skim, papers on: [three-dimensional visualizations](https://github.com/hlynch/Biometry2022/tree/master/_data/Gehlenborg_Wong_2012.pdf), [callouts and labels](https://github.com/hlynch/Biometry2022/tree/master/_data/Krzywinski_2013.pdf), [axis ticks and grids](https://github.com/hlynch/Biometry2022/tree/master/_data/Krzywinski_2014.pdf), [error bars](https://github.com/hlynch/Biometry2022/tree/master/_data/Krzywinski_Altman_2013.pdf), and [box plots](https://github.com/hlynch/Biometry2022/tree/master/_data/Krzywinski_Altman_2014a.pdf).
 
+## Introduction to plotting in R
+
 We have already covered most of the basic elements of plotting, but here I'll go over some elements of plotting that you may not have learned already this semester.
 
 You will need the packages 'ggplot2','gplots', and 'ade4' so you might as well install them now.

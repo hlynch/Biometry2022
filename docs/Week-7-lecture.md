@@ -7,6 +7,8 @@ For this week, I suggest reading Logan Chapter 5. There are many papers that mig
 
 There are a suite of additional papers you should at least open and skim, papers on: [three-dimensional visualizations](https://github.com/hlynch/Biometry2022/tree/master/_data/Gehlenborg_Wong_2012.pdf), [callouts and labels](https://github.com/hlynch/Biometry2022/tree/master/_data/Krzywinski_2013.pdf), [axis ticks and grids](https://github.com/hlynch/Biometry2022/tree/master/_data/Krzywinski_2014.pdf), [error bars](https://github.com/hlynch/Biometry2022/tree/master/_data/Krzywinski_Altman_2013.pdf), and [box plots](https://github.com/hlynch/Biometry2022/tree/master/_data/Krzywinski_Altman_2014a.pdf).
 
+## Introduction to plotting in R
+
 We have already covered most of the basic elements of plotting, but here I'll go over some elements of plotting that you may not have learned already this semester.
 
 You will need the packages 'ggplot2','gplots', and 'ade4' so you might as well install them now.
@@ -431,8 +433,8 @@ jitter(rep(0, 7))
 ```
 
 ```
-## [1] -0.001278230 -0.015912149 -0.002322384 -0.013237618 -0.010032991
-## [6]  0.011593735  0.010178709
+## [1] -0.0005572075  0.0094361484 -0.0002926570  0.0049665985 -0.0004262343
+## [6] -0.0139465219  0.0133758022
 ```
 
 Before we launch into three-dimensional plotting, we should introduce 'ggplot2' which is quickly becoming "industry standard" for making plots in R. There is *so* much that can be done with ggplot2 that we will only scratch the surface today, but at least this introduction will illustrate some of the things that ggplot2 can do.
@@ -504,8 +506,8 @@ hist2d(x,y, same.scale=TRUE)
 ## 
 ## Number of data points:  2000 
 ## Number of grid bins:  200 x 200 
-## X range: ( -14.93756 , 14.87268 )
-## Y range: ( -14.93756 , 14.87268 )
+## X range: ( -14.12764 , 12.73323 )
+## Y range: ( -14.12764 , 12.73323 )
 ```
 
 Notice that we had to use "same.scale=T" to make sure that distances along the x and y axes were comparable.

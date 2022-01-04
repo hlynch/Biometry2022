@@ -3,6 +3,12 @@ Week 10 Lecture
 
 
 
+## Week 10 Readings
+
+For this week, I suggest reading Aho Section 9.20, as well as Logan Chapters 9 and 16-17. You will also need to read [Siddhartha et al. (1989)](https://github.com/hlynch/Biometry2022/tree/master/_data/Siddhartha_1989.pdf). This paper is another one that is quite important and should be read carefully. We will also discuss it at length in class.
+
+Week 10 outline
+-----------
 This week we will cover my favorite topic of all: Generalized Linear Regression and Multiple Regression!
 
 An outline for this week's materials:

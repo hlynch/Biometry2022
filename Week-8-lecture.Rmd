@@ -1,6 +1,10 @@
 Week 8 Lecture
 =============
 
+## Week 8 Readings
+
+For this week, I suggest reading Logan Chapter 7. I have also assigned [Shmueli (2010)](https://github.com/hlynch/Biometry2022/tree/master/_data/Shmueli_2010.pdf). This is quite an important paper and I encourage you to read it quite carefully. 
+
 Warm-up
 -----------
 
