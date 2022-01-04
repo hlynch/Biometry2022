@@ -1,6 +1,8 @@
 Week 3 Lecture
 ========================================================
 
+There is a handout for this week [here](https://github.com/hlynch/Biometry2022/tree/master/_data/Figure_from_Leemis_1986.pdf). *Important* - This figure has a typo. Please print it out and fix it. The arrow heads connecting the Normal distribution and the Standard Normal distribution should be reverse. We will discuss this in class as well so you understand why these arrows need to be reversed.
+
 Overview of probability distributions
 -------------------------------
 
@@ -501,3 +503,6 @@ By the end of Week 3, you should understand...
 
 - the PDFs for the Normal distribution, Standard Normal, Log-Normal, Binomial, and Poisson distributions
 
+## Readings for this week
+
+For this week, I suggest reading Aho Chapter 3. The context of the problem set will make more sense if you skim [Viswanathan et al. (2008)](https://github.com/hlynch/Biometry2022/tree/master/_data/Viswanathan_etal_2008.pdf) before doing the problem set (those interested in animal movement models should read the whole paper).
