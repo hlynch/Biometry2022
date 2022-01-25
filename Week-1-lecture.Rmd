@@ -128,16 +128,97 @@ $$ P (Green \: AND \: THEN \: Blue) = P(Green) \cdot P(Blue) $$
 
 ## Conditionals
 
+Now we will introduce the ideal of a conditional probability.
+
 $$ P(A \mid B) = P(A \: conditional \: on \: B) $$
+Let’s say we have a bivariate distribution (that just means we have two traits being discussed, similar to M&M color and M&M type above) for discrete quantities such as hair color and eye color (which we will use because they are intuitive but *not* independent traits), and we survey a number (n=20 in this case) of students.
 
-$$ \begin{align*}  P(A,B) = P(A \cap B) &= P(A \mid B) \cdot P(B) \\
-&= P(B \mid A) \cdot P(A) \end{align*} $$
+|                     | Brown    | Blond     | Red       |
+| ------------------- |:--------:|:---------:|:---------:| 
+| Blue eyes           |    3     |    4      |      0    |
+| Brown eyes          |   7      |     2     |      0    | 
+| Green eyes          |    2     |    1      |      1    |
 
-## Bayes Theorem
+This table summarizes the joint distribution for hair color and eye color, which we would write as
 
-$$ P(A \mid B) \cdot P(B) = P(B \mid A) \cdot P(A) $$
+$$
+P(hair,eye)
+$$
 
-$$ P(A \mid B) = \frac{P(B \mid A) \cdot P(A)}{P(B)}$$
+Remember that for any two traits A and B that are independent, 
+
+$$
+P(A,B) = P(A) \times P(B)
+$$
+
+However, in this case, we don't have any reason to believe that hair and eye color are independent traits. People with blue eyes have a different probability of having brown hair than people with brown eyes. These are called *conditional probabilities*. For example, the probability of having blue eyes conditional on having blond hair is given by 4/7. We write this as follows
+
+$$
+P(eyes=blue|hair=blond)
+$$
+
+The | symbol represents the "conditional on" statement.
+
+We might also be interested in the *marginal* probabilities, which are those probabilities representing hair color irrespective of eye color, or eye color irrespective of hair color. In the example given, the marginal probability of having blue eyes is 7/20. The marginal probability of having blond hair is also 7/20. These are univariate probabilities, and are written as 
+
+$$
+P(eye)
+$$
+
+or
+
+$$
+P(hair)
+$$
+
+The relationship between joint, marginal, and conditional distributions can be seen in the following statement
+
+$$
+P(\mbox{eyes}=\mbox{blue},\mbox{hair}=\mbox{blond})=P(\mbox{eyes}=\mbox{blue}|\mbox{hair}=\mbox{blond})P(\mbox{hair}=\mbox{blond})
+$$
+
+We can see that this works out as it should 
+
+$$
+\frac{4}{20}=\frac{4}{7} \times \frac{7}{20}
+$$
+
+If we want to know the probability of having blue eyes (and didn't care about hair color) than we would want to add up all the possibilities:
+
+$$
+P(\mbox{eyes}=\mbox{blue})=P(\mbox{eyes}=\mbox{blue}|\mbox{hair}=\mbox{blond})P(\mbox{hair}=\mbox{blond}) \\ +P(\mbox{eyes}=\mbox{blue}|\mbox{hair}=\mbox{brown})P(\mbox{hair}=\mbox{brown}) \\
++P(\mbox{eyes}=\mbox{blue}|\mbox{hair}=\mbox{red})P(\mbox{hair}=\mbox{red})
+$$
+We can state this more simply as a sum:
+
+$$
+P(\mbox{eyes}=\mbox{blue})=\sum_{\mbox{all hair colors}}P(\mbox{eyes}=\mbox{blue}|\mbox{hair}=\square)P(\mbox{hair}=\square)
+$$
+
+For continuous distributions, the same principles apply. Let’s say we have a continuous bivariate distribution $p(A,B)$. The marginal distribution for A can be calculated by integrating over B (we call this “marginalizing out” or “marginalizing over” B)
+
+$$
+p(A=a)=\int_{b=-\infty}^{b=\infty}p(A=a|B=b)p(B=b)db = \int_{b=-\infty}^{b=\infty}p(A=a,B=b)db
+$$
+
+Notice that, in all cases (discrete or continuous), the relationships among marginal, conditional, and joint distribution can written as
+
+$$
+p(A|B)\times p(B)=p(A,B)
+$$
+or as
+
+$$
+p(B|A)\times p(A)=p(A,B)
+$$
+
+Therefore,
+
+$$
+p(A|B)=\frac{p(B|A)p(A)}{p(B)} = \frac{p(A,B)}{p(B)}
+$$
+Ta da! We've arrived at Bayes Theorem, using nothing more than some basic definitions of probability.
+
 
 In Bayesian analyses (which we will not get into this semester), we are using this to calculate the probability of certain model parameters conditional on the data you have. But to find out more, you'll have to take BEE 569.
 

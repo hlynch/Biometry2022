@@ -24,7 +24,7 @@
 <meta name="author" content="Heather Lynch" />
 
 
-<meta name="date" content="2022-01-04" />
+<meta name="date" content="2022-01-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -147,16 +147,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="1.5" data-path="week-1-lecture.html"><a href="week-1-lecture.html#multiple-events"><i class="fa fa-check"></i><b>1.5</b> Multiple events</a></li>
 <li class="chapter" data-level="1.6" data-path="week-1-lecture.html"><a href="week-1-lecture.html#conditionals"><i class="fa fa-check"></i><b>1.6</b> Conditionals</a></li>
-<li class="chapter" data-level="1.7" data-path="week-1-lecture.html"><a href="week-1-lecture.html#bayes-theorem"><i class="fa fa-check"></i><b>1.7</b> Bayes Theorem</a></li>
-<li class="chapter" data-level="1.8" data-path="week-1-lecture.html"><a href="week-1-lecture.html#a-few-foundational-ideas"><i class="fa fa-check"></i><b>1.8</b> A few foundational ideas</a></li>
-<li class="chapter" data-level="1.9" data-path="week-1-lecture.html"><a href="week-1-lecture.html#overview-of-univariate-distributions"><i class="fa fa-check"></i><b>1.9</b> Overview of Univariate Distributions</a></li>
-<li class="chapter" data-level="1.10" data-path="week-1-lecture.html"><a href="week-1-lecture.html#what-can-you-ask-of-a-distribution"><i class="fa fa-check"></i><b>1.10</b> What can you ask of a distribution?</a>
+<li class="chapter" data-level="1.7" data-path="week-1-lecture.html"><a href="week-1-lecture.html#a-few-foundational-ideas"><i class="fa fa-check"></i><b>1.7</b> A few foundational ideas</a></li>
+<li class="chapter" data-level="1.8" data-path="week-1-lecture.html"><a href="week-1-lecture.html#overview-of-univariate-distributions"><i class="fa fa-check"></i><b>1.8</b> Overview of Univariate Distributions</a></li>
+<li class="chapter" data-level="1.9" data-path="week-1-lecture.html"><a href="week-1-lecture.html#what-can-you-ask-of-a-distribution"><i class="fa fa-check"></i><b>1.9</b> What can you ask of a distribution?</a>
 <ul>
-<li class="chapter" data-level="1.10.1" data-path="week-1-lecture.html"><a href="week-1-lecture.html#expected-value-of-a-random-variable"><i class="fa fa-check"></i><b>1.10.1</b> Expected Value of a Random Variable</a></li>
-<li class="chapter" data-level="1.10.2" data-path="week-1-lecture.html"><a href="week-1-lecture.html#discrete-case"><i class="fa fa-check"></i><b>1.10.2</b> Discrete Case</a></li>
-<li class="chapter" data-level="1.10.3" data-path="week-1-lecture.html"><a href="week-1-lecture.html#continuous-case"><i class="fa fa-check"></i><b>1.10.3</b> Continuous Case</a></li>
+<li class="chapter" data-level="1.9.1" data-path="week-1-lecture.html"><a href="week-1-lecture.html#expected-value-of-a-random-variable"><i class="fa fa-check"></i><b>1.9.1</b> Expected Value of a Random Variable</a></li>
+<li class="chapter" data-level="1.9.2" data-path="week-1-lecture.html"><a href="week-1-lecture.html#discrete-case"><i class="fa fa-check"></i><b>1.9.2</b> Discrete Case</a></li>
+<li class="chapter" data-level="1.9.3" data-path="week-1-lecture.html"><a href="week-1-lecture.html#continuous-case"><i class="fa fa-check"></i><b>1.9.3</b> Continuous Case</a></li>
 </ul></li>
-<li class="chapter" data-level="1.11" data-path="week-1-lecture.html"><a href="week-1-lecture.html#a-brief-introduction-to-scientific-method"><i class="fa fa-check"></i><b>1.11</b> A Brief Introduction to Scientific Method</a></li>
+<li class="chapter" data-level="1.10" data-path="week-1-lecture.html"><a href="week-1-lecture.html#a-brief-introduction-to-scientific-method"><i class="fa fa-check"></i><b>1.10</b> A Brief Introduction to Scientific Method</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="week-1-lab-handout.html"><a href="week-1-lab-handout.html"><i class="fa fa-check"></i><b>2</b> Week 1 Lab Handout</a>
 <ul>
@@ -579,20 +578,100 @@ If we do not care about the order, then the combination of one Green M&amp;M and
 </div>
 <div id="conditionals" class="section level2" number="1.6">
 <h2><span class="header-section-number">1.6</span> Conditionals</h2>
-<p><span class="math display">\[ P(A \mid B) = P(A \: conditional \: on \: B) \]</span></p>
-<p><span class="math display">\[ \begin{align*}  P(A,B) = P(A \cap B) &amp;= P(A \mid B) \cdot P(B) \\
-&amp;= P(B \mid A) \cdot P(A) \end{align*} \]</span></p>
-</div>
-<div id="bayes-theorem" class="section level2" number="1.7">
-<h2><span class="header-section-number">1.7</span> Bayes Theorem</h2>
-<p><span class="math display">\[ P(A \mid B) \cdot P(B) = P(B \mid A) \cdot P(A) \]</span></p>
-<p><span class="math display">\[ P(A \mid B) = \frac{P(B \mid A) \cdot P(A)}{P(B)}\]</span></p>
+<p>Now we will introduce the ideal of a conditional probability.</p>
+<p><span class="math display">\[ P(A \mid B) = P(A \: conditional \: on \: B) \]</span>
+Let’s say we have a bivariate distribution (that just means we have two traits being discussed, similar to M&amp;M color and M&amp;M type above) for discrete quantities such as hair color and eye color (which we will use because they are intuitive but <em>not</em> independent traits), and we survey a number (n=20 in this case) of students.</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center">Brown</th>
+<th align="center">Blond</th>
+<th align="center">Red</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Blue eyes</td>
+<td align="center">3</td>
+<td align="center">4</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td>Brown eyes</td>
+<td align="center">7</td>
+<td align="center">2</td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td>Green eyes</td>
+<td align="center">2</td>
+<td align="center">1</td>
+<td align="center">1</td>
+</tr>
+</tbody>
+</table>
+<p>This table summarizes the joint distribution for hair color and eye color, which we would write as</p>
+<p><span class="math display">\[
+P(hair,eye)
+\]</span></p>
+<p>Remember that for any two traits A and B that are independent,</p>
+<p><span class="math display">\[
+P(A,B) = P(A) \times P(B)
+\]</span></p>
+<p>However, in this case, we don’t have any reason to believe that hair and eye color are independent traits. People with blue eyes have a different probability of having brown hair than people with brown eyes. These are called <em>conditional probabilities</em>. For example, the probability of having blue eyes conditional on having blond hair is given by 4/7. We write this as follows</p>
+<p><span class="math display">\[
+P(eyes=blue|hair=blond)
+\]</span></p>
+<p>The | symbol represents the “conditional on” statement.</p>
+<p>We might also be interested in the <em>marginal</em> probabilities, which are those probabilities representing hair color irrespective of eye color, or eye color irrespective of hair color. In the example given, the marginal probability of having blue eyes is 7/20. The marginal probability of having blond hair is also 7/20. These are univariate probabilities, and are written as</p>
+<p><span class="math display">\[
+P(eye)
+\]</span></p>
+<p>or</p>
+<p><span class="math display">\[
+P(hair)
+\]</span></p>
+<p>The relationship between joint, marginal, and conditional distributions can be seen in the following statement</p>
+<p><span class="math display">\[
+P(\mbox{eyes}=\mbox{blue},\mbox{hair}=\mbox{blond})=P(\mbox{eyes}=\mbox{blue}|\mbox{hair}=\mbox{blond})P(\mbox{hair}=\mbox{blond})
+\]</span></p>
+<p>We can see that this works out as it should</p>
+<p><span class="math display">\[
+\frac{4}{20}=\frac{4}{7} \times \frac{7}{20}
+\]</span></p>
+<p>If we want to know the probability of having blue eyes (and didn’t care about hair color) than we would want to add up all the possibilities:</p>
+<p><span class="math display">\[
+P(\mbox{eyes}=\mbox{blue})=P(\mbox{eyes}=\mbox{blue}|\mbox{hair}=\mbox{blond})P(\mbox{hair}=\mbox{blond}) \\ +P(\mbox{eyes}=\mbox{blue}|\mbox{hair}=\mbox{brown})P(\mbox{hair}=\mbox{brown}) \\
++P(\mbox{eyes}=\mbox{blue}|\mbox{hair}=\mbox{red})P(\mbox{hair}=\mbox{red})
+\]</span>
+We can state this more simply as a sum:</p>
+<p><span class="math display">\[
+P(\mbox{eyes}=\mbox{blue})=\sum_{\mbox{all hair colors}}P(\mbox{eyes}=\mbox{blue}|\mbox{hair}=\square)P(\mbox{hair}=\square)
+\]</span></p>
+<p>For continuous distributions, the same principles apply. Let’s say we have a continuous bivariate distribution <span class="math inline">\(p(A,B)\)</span>. The marginal distribution for A can be calculated by integrating over B (we call this “marginalizing out” or “marginalizing over” B)</p>
+<p><span class="math display">\[
+p(A=a)=\int_{b=-\infty}^{b=\infty}p(A=a|B=b)p(B=b)db = \int_{b=-\infty}^{b=\infty}p(A=a,B=b)db
+\]</span></p>
+<p>Notice that, in all cases (discrete or continuous), the relationships among marginal, conditional, and joint distribution can written as</p>
+<p><span class="math display">\[
+p(A|B)\times p(B)=p(A,B)
+\]</span>
+or as</p>
+<p><span class="math display">\[
+p(B|A)\times p(A)=p(A,B)
+\]</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+p(A|B)=\frac{p(B|A)p(A)}{p(B)} = \frac{p(A,B)}{p(B)}
+\]</span>
+Ta da! We’ve arrived at Bayes Theorem, using nothing more than some basic definitions of probability.</p>
 <p>In Bayesian analyses (which we will not get into this semester), we are using this to calculate the probability of certain model parameters conditional on the data you have. But to find out more, you’ll have to take BEE 569.</p>
 <p><span class="math display">\[ P(parameters \mid data) \cdot P(data) = P(data \mid parameters) \cdot P(parameters) \]</span></p>
 <p><span class="math display">\[ P(parameters \mid data) = \frac{P(data \mid parameters) \cdot P(parameters)}{P(data)}\]</span></p>
 </div>
-<div id="a-few-foundational-ideas" class="section level2" number="1.8">
-<h2><span class="header-section-number">1.8</span> A few foundational ideas</h2>
+<div id="a-few-foundational-ideas" class="section level2" number="1.7">
+<h2><span class="header-section-number">1.7</span> A few foundational ideas</h2>
 <p>There are a few statistics (a <em>statistic</em> is just something calculated from data) that we will need to know right at the beginning.</p>
 <p>For illustration purposes, lets assume we have the following (sorted) series of data points: (1,3,3,4,7,8,13)</p>
 <p>There are three statistics relating the “central tendancy”: the <em>mean</em> (the average value; 5.57), the <em>mode</em> (the most common value; 3), and the <em>median</em> (the “middle” value; 4). We often denote the mean of a variable with a bar, as in <span class="math inline">\(\bar{x}\)</span>. There are also two statistics relating to how much variation there is in the data. The <em>variance</em> measures the average squared distance between each point and the mean. For reasons that we will discuss in lab, we estimate the variance using the following formula</p>
@@ -611,8 +690,8 @@ rather than the more intuitive</p>
 <p>If you were handed a distribution and you were asked to measure a characteristic “fatness” for the distribution, your estimate would be approximately <span class="math inline">\(\sigma\)</span>. Note that <span class="math inline">\(\sigma\)</span> has the same units as the original data, so if your data were in meters, <span class="math inline">\(\sigma\)</span> would also be in meters.</p>
 <p>We won’t get to Normal distributions properly until Week 3, but we will need one fact about the “Standard Normal Distribution” now. The Standard Normal distribution is a Normal (or Gaussian, bell-shaped) distribution with mean equal to zero and standard deviation equal to 1. 68<span class="math inline">\(\%\)</span> of the probability is contained within 1 standard deviation of the mean (so from -<span class="math inline">\(\sigma\)</span> to +<span class="math inline">\(\sigma\)</span>), and 95<span class="math inline">\(\%\)</span> of the probability is contained within 2 standard deviations of the mean (so from -2<span class="math inline">\(\sigma\)</span> to +2<span class="math inline">\(\sigma\)</span>). (Actually, 95<span class="math inline">\(\%\)</span> is contained with 1.96 standard deviations, so sometimes we will use the more precise 1.96 and sometimes you will see this rounded to 2.)</p>
 </div>
-<div id="overview-of-univariate-distributions" class="section level2" number="1.9">
-<h2><span class="header-section-number">1.9</span> Overview of Univariate Distributions</h2>
+<div id="overview-of-univariate-distributions" class="section level2" number="1.8">
+<h2><span class="header-section-number">1.8</span> Overview of Univariate Distributions</h2>
 <p>Discrete Distributions</p>
 <ul>
 <li><p>Binomial</p></li>
@@ -629,8 +708,8 @@ rather than the more intuitive</p>
 <li><p><span class="math inline">\(\chi^2\)</span></p></li>
 </ul>
 </div>
-<div id="what-can-you-ask-of-a-distribution" class="section level2" number="1.10">
-<h2><span class="header-section-number">1.10</span> What can you ask of a distribution?</h2>
+<div id="what-can-you-ask-of-a-distribution" class="section level2" number="1.9">
+<h2><span class="header-section-number">1.9</span> What can you ask of a distribution?</h2>
 <ul>
 <li><strong>Probability Density Function</strong>: <span class="math inline">\(P(x_1&lt;X&lt;x_2)\)</span> (continuous distributions)</li>
 </ul>
@@ -644,12 +723,12 @@ rather than the more intuitive</p>
 <li><p><strong>Sample from the distribution</strong>: With a large enough sample, the histogram will come very close to the underlying PDF.</p></li>
 </ul>
 <p>Note that the CDF is the integration of the PDF, and the PDF is the derivative of the CDF, so if you have one of these you can always get the other. Likewise, you can always get from the quantiles to the CDF (and then to the PDF). These three things are all equally informative about the shape of the distribution.</p>
-<div id="expected-value-of-a-random-variable" class="section level3" number="1.10.1">
-<h3><span class="header-section-number">1.10.1</span> Expected Value of a Random Variable</h3>
+<div id="expected-value-of-a-random-variable" class="section level3" number="1.9.1">
+<h3><span class="header-section-number">1.9.1</span> Expected Value of a Random Variable</h3>
 <p>In probability theory the expected value of a random variable is the weighted average of all possible values that this random variable can take on. The weights used in computing this average correspond to the probabilities in case of a discrete random variable, or densities in case of continious random variable.</p>
 </div>
-<div id="discrete-case" class="section level3" number="1.10.2">
-<h3><span class="header-section-number">1.10.2</span> Discrete Case</h3>
+<div id="discrete-case" class="section level3" number="1.9.2">
+<h3><span class="header-section-number">1.9.2</span> Discrete Case</h3>
 <p><span class="math display">\[ X = \{X_1, X_2,...,X_k\} \\
 E[X] = \sum_{i=1}^n{X_i \cdot P(X_i)}\]</span></p>
 <ul>
@@ -657,14 +736,14 @@ E[X] = \sum_{i=1}^n{X_i \cdot P(X_i)}\]</span></p>
 </ul>
 <p><span class="math display">\[ \begin{align*} E[X] &amp;= (0.1 \cdot 1) + (0.1 \cdot 2) + (0.1 \cdot 3) + (0.1 \cdot 4) + (0.6 \cdot 5) \\ &amp;=4 \end{align*}\]</span></p>
 </div>
-<div id="continuous-case" class="section level3" number="1.10.3">
-<h3><span class="header-section-number">1.10.3</span> Continuous Case</h3>
+<div id="continuous-case" class="section level3" number="1.9.3">
+<h3><span class="header-section-number">1.9.3</span> Continuous Case</h3>
 <p><span class="math display">\[ E[X] = \int_{-\infty}^{\infty}{X \cdot f(X)dX}\]</span></p>
 <p>Note that the function <span class="math inline">\(f(x)\)</span> in the above equation is the probability density function.</p>
 </div>
 </div>
-<div id="a-brief-introduction-to-scientific-method" class="section level2" number="1.11">
-<h2><span class="header-section-number">1.11</span> A Brief Introduction to Scientific Method</h2>
+<div id="a-brief-introduction-to-scientific-method" class="section level2" number="1.10">
+<h2><span class="header-section-number">1.10</span> A Brief Introduction to Scientific Method</h2>
 <p>INDUCTIVE reasoning:</p>
 <p>A set of specific observations <span class="math inline">\(\rightarrow\)</span> A general principle</p>
 <p>Example: I observe a number of elephants and they were all gray. Therefore, all elephants are gray.</p>
