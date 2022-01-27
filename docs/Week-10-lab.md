@@ -523,7 +523,7 @@ dev_diff
 ```
 
 ```
-## [1] 2.037727
+## [1] 0.7790628
 ```
 
 Notice that even though the covariate that we added is just noise, it still decreases the deviance.

@@ -24,7 +24,7 @@
 <meta name="author" content="Heather Lynch" />
 
 
-<meta name="date" content="2022-01-25" />
+<meta name="date" content="2022-01-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="index.html"/>
-<link rel="next" href="week-1-lab-handout.html"/>
+<link rel="next" href="week-1-lab.html"/>
 <script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -157,15 +157,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="1.10" data-path="week-1-lecture.html"><a href="week-1-lecture.html#a-brief-introduction-to-scientific-method"><i class="fa fa-check"></i><b>1.10</b> A Brief Introduction to Scientific Method</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="week-1-lab-handout.html"><a href="week-1-lab-handout.html"><i class="fa fa-check"></i><b>2</b> Week 1 Lab Handout</a>
+<li class="chapter" data-level="2" data-path="week-1-lab.html"><a href="week-1-lab.html"><i class="fa fa-check"></i><b>2</b> Week 1 Lab</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="week-1-lab-handout.html"><a href="week-1-lab-handout.html#using-r-like-a-calculator"><i class="fa fa-check"></i><b>2.1</b> Using R like a calculator</a></li>
-<li class="chapter" data-level="2.2" data-path="week-1-lab-handout.html"><a href="week-1-lab-handout.html#the-basic-data-structures-in-r"><i class="fa fa-check"></i><b>2.2</b> The basic data structures in R</a></li>
-<li class="chapter" data-level="2.3" data-path="week-1-lab-handout.html"><a href="week-1-lab-handout.html#writing-functions-in-r"><i class="fa fa-check"></i><b>2.3</b> Writing functions in R</a></li>
-<li class="chapter" data-level="2.4" data-path="week-1-lab-handout.html"><a href="week-1-lab-handout.html#writing-loops-and-ifelse"><i class="fa fa-check"></i><b>2.4</b> Writing loops and if/else</a></li>
-<li class="chapter" data-level="2.5" data-path="week-1-lab-handout.html"><a href="week-1-lab-handout.html#a-short-diversion-bias-in-estimators"><i class="fa fa-check"></i><b>2.5</b> (A short diversion) Bias in estimators</a></li>
-<li class="chapter" data-level="2.6" data-path="week-1-lab-handout.html"><a href="week-1-lab-handout.html#lesson-6-some-practice-writing-r-code"><i class="fa fa-check"></i><b>2.6</b> Lesson #6: Some practice writing R code</a></li>
-<li class="chapter" data-level="2.7" data-path="week-1-lab-handout.html"><a href="week-1-lab-handout.html#a-few-final-notes"><i class="fa fa-check"></i><b>2.7</b> A few final notes</a></li>
+<li class="chapter" data-level="2.1" data-path="week-1-lab.html"><a href="week-1-lab.html#using-r-like-a-calculator"><i class="fa fa-check"></i><b>2.1</b> Using R like a calculator</a></li>
+<li class="chapter" data-level="2.2" data-path="week-1-lab.html"><a href="week-1-lab.html#the-basic-data-structures-in-r"><i class="fa fa-check"></i><b>2.2</b> The basic data structures in R</a></li>
+<li class="chapter" data-level="2.3" data-path="week-1-lab.html"><a href="week-1-lab.html#writing-functions-in-r"><i class="fa fa-check"></i><b>2.3</b> Writing functions in R</a></li>
+<li class="chapter" data-level="2.4" data-path="week-1-lab.html"><a href="week-1-lab.html#writing-loops-and-ifelse"><i class="fa fa-check"></i><b>2.4</b> Writing loops and if/else</a></li>
+<li class="chapter" data-level="2.5" data-path="week-1-lab.html"><a href="week-1-lab.html#a-short-diversion-bias-in-estimators"><i class="fa fa-check"></i><b>2.5</b> (A short diversion) Bias in estimators</a></li>
+<li class="chapter" data-level="2.6" data-path="week-1-lab.html"><a href="week-1-lab.html#lesson-6-some-practice-writing-r-code"><i class="fa fa-check"></i><b>2.6</b> Lesson #6: Some practice writing R code</a></li>
+<li class="chapter" data-level="2.7" data-path="week-1-lab.html"><a href="week-1-lab.html#a-few-final-notes"><i class="fa fa-check"></i><b>2.7</b> A few final notes</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="week-2-lecture.html"><a href="week-2-lecture.html"><i class="fa fa-check"></i><b>3</b> Week 2 Lecture</a>
 <ul>
@@ -674,7 +674,7 @@ Ta da! We’ve arrived at Bayes Theorem, using nothing more than some basic defi
 <h2><span class="header-section-number">1.7</span> A few foundational ideas</h2>
 <p>There are a few statistics (a <em>statistic</em> is just something calculated from data) that we will need to know right at the beginning.</p>
 <p>For illustration purposes, lets assume we have the following (sorted) series of data points: (1,3,3,4,7,8,13)</p>
-<p>There are three statistics relating the “central tendancy”: the <em>mean</em> (the average value; 5.57), the <em>mode</em> (the most common value; 3), and the <em>median</em> (the “middle” value; 4). We often denote the mean of a variable with a bar, as in <span class="math inline">\(\bar{x}\)</span>. There are also two statistics relating to how much variation there is in the data. The <em>variance</em> measures the average squared distance between each point and the mean. For reasons that we will discuss in lab, we estimate the variance using the following formula</p>
+<p>There are three statistics relating the “central tendency”: the <em>mean</em> (the average value; 5.57), the <em>mode</em> (the most common value; 3), and the <em>median</em> (the “middle” value; 4). We often denote the mean of a variable with a bar, as in <span class="math inline">\(\bar{x}\)</span>. There are also two statistics relating to how much variation there is in the data. The <em>variance</em> measures the average squared distance between each point and the mean. For reasons that we will discuss in lab, we estimate the variance using the following formula</p>
 <p><span class="math display">\[
 \mbox{variance}_{unbiased} = \frac{1}{n-1}\sum_{i=1}^{n}(x_{i}-\bar{x})^{2}
 \]</span>
@@ -714,7 +714,7 @@ rather than the more intuitive</p>
 <li><strong>Probability Density Function</strong>: <span class="math inline">\(P(x_1&lt;X&lt;x_2)\)</span> (continuous distributions)</li>
 </ul>
 <p><span style="color: green;">
-<strong>Stop: Let’s pause for a second and discuss the probability density function. This is a concdept that student’s often struggle with. What is the interpretation of <span class="math inline">\(P(x)\)</span>? What is <span class="math inline">\(P(x=3)\)</span>? Can <span class="math inline">\(P(x)\)</span> ever be negative? [No.] Can <span class="math inline">\(P(x)\)</span> ever be greater than 1? [Yes! Why?]</strong>
+<strong>Stop: Let’s pause for a second and discuss the probability density function. This is a concept that student’s often struggle with. What is the interpretation of <span class="math inline">\(P(x)\)</span>? What is <span class="math inline">\(P(x=3)\)</span>? Can <span class="math inline">\(P(x)\)</span> ever be negative? [No.] Can <span class="math inline">\(P(x)\)</span> ever be greater than 1? [Yes! Why?]</strong>
 </span></p>
 <ul>
 <li><p><strong>Probability Mass Function</strong>: <span class="math inline">\(P(X=x_1)\)</span> (discrete distributions)</p></li>
@@ -801,7 +801,7 @@ Figure 1.4: Hypothetico-deductive view of the scientific method. Photo Source: L
         </div>
       </div>
 <a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="week-1-lab-handout.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="week-1-lab.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -1,4 +1,4 @@
-Week 1 Lab Handout
+Week 1 Lab
 ========================================================
 
 In lab today, we will cover just a few of the basic elements of using R. If you are not already fluent with R, you should work through all of Logan Chapter 1, as there are many important elements covered in that chapter that we will not have time to go through in lab. I will assume everyone is using RStudio to run R - exercises and associated code will be written accordingly.
@@ -396,6 +396,15 @@ length(Prestige[,1])
 ```
 ## [1] 102
 ```
+
+Note: Depending on your version of R and operating system, and how you loaded the dataset Prestige, R may not be holding Prestige as a simple dataframe, and if so, it may tell you that the length(Prestige[,1])=1. In this case, we need to tell R that it should force it into a data.frame (more generally in programming, this is called 'casting') and we can do this as
+
+
+```r
+Prestige<-as.data.frame(Prestige)
+```
+
+What this does is take the object Prestiage and change it into a data.frame and then assign that to the variable Prestige (i.e. it replaces Prestiage with the new object). Now try the 'length' command above again and it should yield a more sensible result.
 
 Factors are character labels which take fixed values. First just look at the data.
 
@@ -825,7 +834,7 @@ if (a > 4) {
 (A short diversion) Bias in estimators
 -----------------------------------
 
-Now we will stop for a short digression about how to calculate the population variance (i.e. the variamce assuming the data I have is from the entire population) and how to estimate the sample variance (i.e. the variance assuming what I have is a *sample* from the population, and I want to infer the variance of the underlying but unknown population), since we can now use R to convince ourselves that the naive estimator for variance is biased. 
+Now we will stop for a short digression about how to calculate the population variance (i.e. the variance assuming the data I have is from the entire population) and how to estimate the sample variance (i.e. the variance assuming what I have is a *sample* from the population, and I want to infer the variance of the underlying but unknown population), since we can now use R to convince ourselves that the naive estimator for variance is biased. 
 
 The population variance is the variance of a population which, by definition, means that every single individual of interest has been measured. Remember, in this case there is no inference going on. When we have measured every single individual of interest, all we can do (statistically) is describe that population. The population variance describes the variation in the quantity of interest *for that population you have completely sampled*).
 

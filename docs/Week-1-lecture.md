@@ -236,7 +236,7 @@ There are a few statistics (a *statistic* is just something calculated from data
 
 For illustration purposes, lets assume we have the following (sorted) series of data points: (1,3,3,4,7,8,13)
 
-There are three statistics relating the "central tendancy": the *mean* (the average value; 5.57), the *mode* (the most common value; 3), and the *median* (the "middle" value; 4). We often denote the mean of a variable with a bar, as in $\bar{x}$. There are also two statistics relating to how much variation there is in the data. The *variance* measures the average squared distance between each point and the mean. For reasons that we will discuss in lab, we estimate the variance using the following formula
+There are three statistics relating the "central tendency": the *mean* (the average value; 5.57), the *mode* (the most common value; 3), and the *median* (the "middle" value; 4). We often denote the mean of a variable with a bar, as in $\bar{x}$. There are also two statistics relating to how much variation there is in the data. The *variance* measures the average squared distance between each point and the mean. For reasons that we will discuss in lab, we estimate the variance using the following formula
 
 $$
 \mbox{variance}_{unbiased} = \frac{1}{n-1}\sum_{i=1}^{n}(x_{i}-\bar{x})^{2}
@@ -291,7 +291,7 @@ What can you ask of a distribution?
 - **Probability Density Function**: $P(x_1<X<x_2)$ (continuous distributions)
 
 <span style="color: green;">
-    **Stop: Let's pause for a second and discuss the probability density function. This is a concdept that student's often struggle with. What is the interpretation of $P(x)$? What is $P(x=3)$? Can $P(x)$ ever be negative? [No.] Can $P(x)$ ever be greater than 1? [Yes! Why?]**
+    **Stop: Let's pause for a second and discuss the probability density function. This is a concept that student's often struggle with. What is the interpretation of $P(x)$? What is $P(x=3)$? Can $P(x)$ ever be negative? [No.] Can $P(x)$ ever be greater than 1? [Yes! Why?]**
 </span>
 
 - **Probability Mass Function**: $P(X=x_1)$ (discrete distributions)
