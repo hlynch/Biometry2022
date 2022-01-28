@@ -1,7 +1,7 @@
 --- 
 title: "Biometry Lecture and Lab Notes"
 author: "Heather Lynch"
-date: "2022-01-27"
+date: "2022-01-28"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib]
@@ -38,39 +38,61 @@ clouds <- read_csv("https://raw.githubusercontent.com/hlynch/Biometry2021/master
 * `Prestige`: [link](https://github.com/hlynch/Biometry2022/tree/master/_data/Prestige.csv) [2]
 * `skulls`: [link](https://github.com/hlynch/Biometry2022/tree/master/_data/skulls.txt) [3]
 * `diabetes`: [link](https://github.com/hlynch/Biometry2022/tree/master/_data/diabetes.csv) [4]
-* `WaterData`: [link](https://github.com/hlynch/Biometry2022/tree/master/_data/WaterData.csv)
-* `FoxFurProduction`: [link](https://github.com/hlynch/Biometry2022/tree/master/_data/FoxFurProduction.csv)   
-* `fish`: [link](https://github.com/hlynch/Biometry2022/tree/master/_data/fish.txt) 
-* `Week-9-Data`: [link](https://github.com/hlynch/Biometry2022/tree/master/_data/Week-9-Data.txt) 
-* `bomregions2012`: [link](https://github.com/hlynch/Biometry2022/tree/master/_data/bomregions2012.csv) 
-* `Challenger_data`: [link](https://github.com/hlynch/Biometry2022/tree/master/_data/Challenger_data.csv) 
-* `Challenger_data_fieldandnozzle`: [link](https://github.com/hlynch/Biometry2022/tree/master/_data/Challenger_data_fieldandnozzle.csv) 
-* `Brogan_et_al_2013_Fig1Data`: [link](https://github.com/hlynch/Biometry2022/tree/master/_data/Brogan_et_al_2013_Fig1Data.xlsx) 
-* `fruit_flies`: [link](https://github.com/hlynch/Biometry2022/tree/master/_data/fruit_flies.csv) 
-* `medley`: [link](https://github.com/hlynch/Biometry2022/tree/master/_data/medley.csv) 
-* `quinn`: [link](https://github.com/hlynch/Biometry2022/tree/master/_data/quinn.csv) 
-* `TwoWayANOVAdata_balanced`: [link](https://github.com/hlynch/Biometry2022/tree/master/_data/TwoWayANOVAdata_balanced.csv) 
-* `TwoWayANOVAdata`: [link](https://github.com/hlynch/Biometry2022/tree/master/_data/TwoWayANOVAdata.csv) 
-* `TwoWayANOVAdata`: [link](https://github.com/hlynch/Biometry2022/tree/master/_data/TwoWayANOVAdata.csv) 
-* `flatworms`: [link](https://github.com/hlynch/Biometry2022/tree/master/_data/flatworms.csv) 
-* `flies`: [link](https://github.com/hlynch/Biometry2022/tree/master/_data/flies.txt) 
-* `rats`: [link](https://github.com/hlynch/Biometry2022/tree/master/_data/rats.txt) 
-* `tobacco`: [link](https://github.com/hlynch/Biometry2022/tree/master/_data/tobacco.csv) 
-* `crabs`: [link](https://github.com/hlynch/Biometry2022/tree/master/_data/crabs.csv) 
-* `frogs`: [link](https://github.com/hlynch/Biometry2022/tree/master/_data/frogs.csv) 
-* `MammalLifeHistory`: [link](https://github.com/hlynch/Biometry2022/tree/master/_data/MammalLifeHistory.csv) 
-* `Historic-lichen_data`: [link](https://github.com/hlynch/Biometry2022/tree/master/_data/Historic-lichen-data.xls) 
-* `Lichen-sites-area`: [link](https://github.com/hlynch/Biometry2022/tree/master/_data/Lichen-sites-area.xls) 
-* `Temperature_and_isolation`: [link](https://github.com/hlynch/Biometry2022/tree/master/_data/Temperature_and_isolation.xls) 
-* `lovett2`: [link](https://github.com/hlynch/Biometry2022/tree/master/_data/lovett2.csv) 
+* `WaterData`: [link](https://github.com/hlynch/Biometry2022/tree/master/_data/WaterData.csv) [5]
+* `FoxFurProduction`: [link](https://github.com/hlynch/Biometry2022/tree/master/_data/FoxFurProduction.csv) [6]  
+* `fish`: [link](https://github.com/hlynch/Biometry2022/tree/master/_data/fish.txt) [7]
+* `Week-9-Data`: [link](https://github.com/hlynch/Biometry2022/tree/master/_data/Week-9-Data.txt) [8]
+* `bomregions2012`: [link](https://github.com/hlynch/Biometry2022/tree/master/_data/bomregions2012.csv) [9]
+* `Challenger_data`: [link](https://github.com/hlynch/Biometry2022/tree/master/_data/Challenger_data.csv) [10]
+* `Challenger_data_fieldandnozzle`: [link](https://github.com/hlynch/Biometry2022/tree/master/_data/Challenger_data_fieldandnozzle.csv) [10]
+* `Brogan_et_al_2013_Fig1Data`: [link](https://github.com/hlynch/Biometry2022/tree/master/_data/Brogan_et_al_2013_Fig1Data.xlsx) [11]
+* `fruit_flies`: [link](https://github.com/hlynch/Biometry2022/tree/master/_data/fruit_flies.csv) [12]
+* `medley`: [link](https://github.com/hlynch/Biometry2022/tree/master/_data/medley.csv) [13]
+* `quinn`: [link](https://github.com/hlynch/Biometry2022/tree/master/_data/quinn.csv) [14]
+* `TwoWayANOVAdata_balanced`: [link](https://github.com/hlynch/Biometry2022/tree/master/_data/TwoWayANOVAdata_balanced.csv) [15]
+* `TwoWayANOVAdata`: [link](https://github.com/hlynch/Biometry2022/tree/master/_data/TwoWayANOVAdata.csv) [16]
+* `TwoWayANOVAdata`: [link](https://github.com/hlynch/Biometry2022/tree/master/_data/TwoWayANOVAdata.csv) [17]
+* `flatworms`: [link](https://github.com/hlynch/Biometry2022/tree/master/_data/flatworms.csv) [18]
+* `flies`: [link](https://github.com/hlynch/Biometry2022/tree/master/_data/flies.txt) [19]
+* `rats`: [link](https://github.com/hlynch/Biometry2022/tree/master/_data/rats.txt) [20]
+* `tobacco`: [link](https://github.com/hlynch/Biometry2022/tree/master/_data/tobacco.csv) [21]
+* `crabs`: [link](https://github.com/hlynch/Biometry2022/tree/master/_data/crabs.csv) [22]
+* `frogs`: [link](https://github.com/hlynch/Biometry2022/tree/master/_data/frogs.csv) [23]
+* `MammalLifeHistory`: [link](https://github.com/hlynch/Biometry2022/tree/master/_data/MammalLifeHistory.csv) [24]
+* `Historic-lichen_data`: [link](https://github.com/hlynch/Biometry2022/tree/master/_data/Historic-lichen-data.xls) [25]
+* `Lichen-sites-area`: [link](https://github.com/hlynch/Biometry2022/tree/master/_data/Lichen-sites-area.xls) [26]
+* `Temperature_and_isolation`: [link](https://github.com/hlynch/Biometry2022/tree/master/_data/Temperature_and_isolation.xls) [27]
+* `lovett2`: [link](https://github.com/hlynch/Biometry2022/tree/master/_data/lovett2.csv) [28]
 
 [1] Source: Chambers, Cleveland, Kleiner, and Tukey. (1983). Graphical Methods for Data Analysis. Wadsworth International Group, Belmont, CA, 351. Original Source: Simpson, Alsen, and Eden. (1975). A Bayesian analysis of a multiplicative treatment effect in weather modification. Technometrics 17, 161-166.
 
-[2] Fox, John, and Harvey Sanford Weisberg. 2011. An R Companion to Applied Regression. 2nd ed. Thousand Oaks, CA: Sage Publications.
+[2] Fox, J and Weisberg, HS (2011) An R Companion to Applied Regression. 2nd ed. Thousand Oaks, CA: Sage Publications.
 
-[3] Thomson, A. and Randall-Maciver, R. (1905) Ancient Races of the Thebaid, Oxford: Oxford University Press. Also found in: Hand, D.J., et al. (1994) A Handbook of Small Data Sets, New York: Chapman & Hall, pp. 299-301. Manly, B.F.J. (1986) Multivariate Statistical Methods, New York: Chapman & Hall.
+[3] Thomson, A and Randall-Maciver, R (1905) Ancient Races of the Thebaid, Oxford: Oxford University Press. Also found in: Hand, D.J., et al. (1994) A Handbook of Small Data Sets, New York: Chapman & Hall, pp. 299-301. Manly, B.F.J. (1986) Multivariate Statistical Methods, New York: Chapman & Hall.
 
-[4] Willems JP, Saunders JT, DE Hunt, JB Schorling: Prevalence of coronary heart disease risk factors among rural blacks: A community-based study. Southern Medical Journal 90:814-820; 1997 Schorling JB, Roach J, Siegel M, Baturka N, Hunt DE, Guterbock TM, Stewart HL: A trial of church-based smoking cessation interventions for rural African Americans. Preventive Medicine 26:92-101; 1997.
+[4] Willems JP, Saunders JT, DE Hunt, JB Schorling (1997) Prevalence of coronary heart disease risk factors among rural blacks. A community-based study. Southern Medical Journal 90:814-820; and Schorling JB, Roach J, Siegel M, Baturka N, Hunt DE, Guterbock TM, Stewart HL (1997) A trial of church-based smoking cessation interventions for rural African Americans. Preventive Medicine 26:92-101.
+
+[9] ['DAAG' R package](https://search.r-project.org/CRAN/refmans/DAAG/html/00Index.html)
+
+[10] Siddhartha, RD, Fowlkes, EB, and Hoadley, B (1989) Risk analysis of the space shuttle: Pre-Challenger prediction of failure. Journal of the American Statistical Association 84: 945-957.
+
+[11] Brogan, WR III, and Relyea, RA (2013) Mitigation of Malathion's acute toxicity by four submersed macrophyte species. Environmental toxicology and Chemistry 32(7): 1535-1543.
+
+[13] Quinn G, and Keough, M. Experimental Design & Data Analysis for Biologists. (2002) Cambridge University Press, UK.
+
+[14] Quinn G, and Keough, M. Experimental Design & Data Analysis for Biologists. (2002) Cambridge University Press, UK.
+
+[23] Hunter, D (2000) The conservation and demography of the southern corroboree frog (Pseudophryne corroboree). M.Sc. thesis, University of Canberra, Canberra.
+
+[24] Morgan Ernest SK (2003) Life history characteristics of placental non-volant mammals. Ecology 84: 3402.
+
+[25] Lynch, HJ Personal data.
+
+[26] Lynch, HJ Personal data.
+
+[27] Lynch, HJ Personal data.
+
+[28] Lovett, GM, Weathers, KC, and Sobczak, WV (2000) Nitrogen saturation and retention in forested watersheds of the Catskill Mountains, New York. Ecological Applications 10(1): 73-84.
 
 **Exams**
 
