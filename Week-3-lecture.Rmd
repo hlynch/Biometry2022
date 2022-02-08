@@ -454,7 +454,7 @@ $$ \lim_{\alpha \to \infty} Gamma(\alpha,\beta) \to N(\alpha \beta,\alpha\beta^2
 Some additional notes:
 -------------------------
 
-Please skim through the reading that has been posted "The Algebra of Expectations". Focus on the "rules".
+Please skim through the reading that has been posted ["The Algebra of Expectations"](https://github.com/hlynch/Biometry2022/tree/master/_data/The_Algebra_of_Expectations.pdf). Focus on the "rules".
 
 I want to make sure everyone is clear on the distribution of Normal random variables.
 

@@ -34,7 +34,7 @@ head(data)
 ```
 
 ```
-## [1]  0.02750899  3.08081038 -0.80520209  0.60864805  0.55588084  0.05356706
+## [1]  3.0865303 -0.9269251  1.7050152  0.5328607  0.9785024 -0.0443591
 ```
 
 Note that you could have left off the "mean" and "sd" since R knows the order of inputs, that is you could simply write 
@@ -45,7 +45,7 @@ head(rnorm(100,0,1))
 ```
 
 ```
-## [1] -1.1780224 -0.2984766  0.5526894 -0.6535281 -0.1170761 -0.6761036
+## [1]  0.31165438  0.73271642 -0.82459258  1.08147765  0.11105915 -0.04420058
 ```
 
 or even
@@ -56,7 +56,7 @@ head(rnorm(100))
 ```
 
 ```
-## [1] -1.03386700  1.11987441  0.63055847  0.02729532 -0.34931526 -0.17211880
+## [1]  0.6217941  0.3507503  1.9190316 -1.4271347 -1.1870774 -0.1057491
 ```
 
 since mean=0, sd=1 is the default. Until you are 100% comfortable with R, its better to leave all the options spelled out. 
@@ -103,16 +103,18 @@ hist(rnorm(1000,mean=0,sd=1),plot=F)
 
 ```
 ## $breaks
-##  [1] -5 -4 -3 -2 -1  0  1  2  3  4
+##  [1] -3.5 -3.0 -2.5 -2.0 -1.5 -1.0 -0.5  0.0  0.5  1.0  1.5  2.0  2.5  3.0  3.5
 ## 
 ## $counts
-## [1]   1   2  22 142 330 323 152  26   2
+##  [1]   1   5   7  35  93 135 200 213 146 103  39  18   3   2
 ## 
 ## $density
-## [1] 0.001 0.002 0.022 0.142 0.330 0.323 0.152 0.026 0.002
+##  [1] 0.002 0.010 0.014 0.070 0.186 0.270 0.400 0.426 0.292 0.206 0.078 0.036
+## [13] 0.006 0.004
 ## 
 ## $mids
-## [1] -4.5 -3.5 -2.5 -1.5 -0.5  0.5  1.5  2.5  3.5
+##  [1] -3.25 -2.75 -2.25 -1.75 -1.25 -0.75 -0.25  0.25  0.75  1.25  1.75  2.25
+## [13]  2.75  3.25
 ## 
 ## $xname
 ## [1] "rnorm(1000, mean = 0, sd = 1)"
@@ -186,7 +188,7 @@ table(count)
 ```
 ## count
 ##   0   1   2   3   4   5   6   7   8   9 
-##  27  79 114 109  89  49  23   6   3   1
+##  30  77 109 102  86  58  29   7   1   1
 ```
 
 ```r
@@ -194,7 +196,7 @@ mean(count)
 ```
 
 ```
-## [1] 2.896
+## [1] 2.95
 ```
 
 ```r
@@ -202,7 +204,7 @@ var(count)
 ```
 
 ```
-## [1] 2.738661
+## [1] 2.881263
 ```
 
 Standard deviation vs. Standard error
@@ -238,7 +240,7 @@ sd(sample1)
 ```
 
 ```
-## [1] 1.67691
+## [1] 1.739188
 ```
 
 ```r
@@ -246,7 +248,7 @@ sd(sample2)
 ```
 
 ```
-## [1] 1.734979
+## [1] 1.700128
 ```
 
 ```r
@@ -254,7 +256,7 @@ sd(sample3)
 ```
 
 ```
-## [1] 1.734875
+## [1] 1.732093
 ```
 
 Notice that the standard deviation has not appreciably changed as we have increased the sample size.
@@ -281,7 +283,7 @@ s.e.1
 ```
 
 ```
-## [1] 0.05552262
+## [1] 0.05407309
 ```
 
 ```r
@@ -289,7 +291,7 @@ s.e.2
 ```
 
 ```
-## [1] 0.05373129
+## [1] 0.05480655
 ```
 
 Note that the number of experiments I looped through (2000 in this case) is not relevant. It just has to be big enough that you get a sense of what the distribution of means looks like. Now go back and modify the code so that sample.size=10000. 
@@ -370,8 +372,8 @@ fit
 
 ```
 ##       shape         scale   
-##   20.16014692    0.99835542 
-##  ( 0.89412131) ( 0.04483252)
+##   19.16995401    1.04737557 
+##  ( 0.85010040) ( 0.04705876)
 ```
 
 (Sometimes you get a warnings message about NAs when using fitdistr. The best explanation I can find says that this means R "encountered some difficulties during fitting". I can find no difference in the fits when you get the warning and when you don't, and the same sample.pois will sometimes give a warning and sometimes not, so it appears independent of the data itself. Do not ignore warnings() in R but don't be paralized by them, especially in a context where R is searching parameter space during an optimization. Be sure to search around for an explanation and make sure you are confident that R is still giving reasonable answers.)
@@ -399,8 +401,8 @@ fit$estimate
 ```
 
 ```
-##      shape      scale 
-## 20.1601469  0.9983554
+##     shape     scale 
+## 19.169954  1.047376
 ```
 
 and notice that we can pull out the two estimates as
@@ -412,7 +414,7 @@ fit$estimate[1]
 
 ```
 ##    shape 
-## 20.16015
+## 19.16995
 ```
 
 ```r
@@ -420,8 +422,8 @@ fit$estimate[2]
 ```
 
 ```
-##     scale 
-## 0.9983554
+##    scale 
+## 1.047376
 ```
 
 Now we want to plot the data, and the best fit line:
