@@ -24,7 +24,7 @@
 <meta name="author" content="Heather Lynch" />
 
 
-<meta name="date" content="2022-02-08" />
+<meta name="date" content="2022-02-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -681,7 +681,7 @@ X \sim N(\mu,\sigma^{2})
 <p><span class="math display">\[
 \bar{X} \sim N(\mu,\sigma^{2}/n)
 \]</span>
-and</p>
+Note that this is <em>exactly</em> true if the original data come from a Normal distribution but it is also approximately true as long as the Central Limit Theorem holds (and it does for almost all distributions that you are likely to encounter in your research). Subtracting off the parameter <span class="math inline">\(\mu\)</span> from both sides we get</p>
 <p><span class="math display">\[
 \bar{X}-\mu \sim N(0,\sigma^{2}/n)
 \]</span></p>
@@ -740,12 +740,13 @@ P(\bar{X}-\sqrt{\frac{s^{2}}{n}}t_{(1-\alpha/2)[n-1]} \leq \mu \leq \bar{X}+\sqr
 <p><span class="math display">\[
 P(\bar{X}-\sqrt{\frac{s^{2}}{n}}t_{(1-\alpha/2)[dof]} \leq \mu \leq \bar{X}+\sqrt{\frac{s^{2}}{n}}t_{(1-\alpha/2)[dof]}) = 1-\alpha
 \]</span></p>
+<p>Where does the Central Limit Theorem come in here? In this case, if you are going to invoke the Central Limit Theorem (because your data are not actually Normally distributed) to get at confidence intervals for the mean of the distribution, you would need the sample size to be large anyways (because the CLT only says that the mean takes a Normal distribution in the limit of large sample sizes) and in this case <span class="math inline">\(s^{2} \rightarrow \sigma^{2}\)</span> so you can use Case 1 above.</p>
 <p><strong>Example #3: Estimating the confidence intervals for the variance <span class="math inline">\(\sigma^{2}\)</span> assuming <span class="math inline">\(\mu\)</span> is known.</strong></p>
-<p>Based on the definition of a <span class="math inline">\(\chi^{2}\)</span> distribution, we know that if we have data <span class="math inline">\(X \sim N(\mu,\sigma^{2})\)</span>, than</p>
+<p>Based on the definition of a <span class="math inline">\(\chi^{2}\)</span> distribution, we know that if we have data <span class="math inline">\(X \sim N(\mu,\sigma^{2})\)</span>, then</p>
 <p><span class="math display">\[
 \frac{1}{\sigma^{2}}\sum_{i=1}^{n}(X_{i}-\mu)^{2} \sim \chi^{2}_{n}
 \]</span></p>
-<p>here we will use the fact that if <span class="math inline">\(\mu\)</span> is <em>known</em>, than the sample variance is calculated as</p>
+<p><em>Note that this is only true if the underlying data are actually Normally distributed.</em> (In other words, the parameter <span class="math inline">\(\sigma\)</span> is a parameter of the Normal distribution, so Examples 3-5 require that the original data are Normally distributed, otherwise the concept of putting CI on the parameter <span class="math inline">\(\sigma\)</span> doesn’t make sense.) Here we will use the fact that if <span class="math inline">\(\mu\)</span> is <em>known</em>, than the sample variance is calculated as</p>
 <p><span class="math display">\[
 \frac{1}{n}\sum_{i=1}^{n}(X_{i}-\mu)^{2} = s^{2}
 \]</span>

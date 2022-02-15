@@ -333,7 +333,7 @@ From this, follows
 $$
 \bar{X} \sim N(\mu,\sigma^{2}/n)
 $$
-and
+Note that this is *exactly* true if the original data come from a Normal distribution but it is also approximately true as long as the Central Limit Theorem holds (and it does for almost all distributions that you are likely to encounter in your research). Subtracting off the parameter $\mu$ from both sides we get
 
 $$
 \bar{X}-\mu \sim N(0,\sigma^{2}/n)
@@ -418,15 +418,17 @@ $$
 P(\bar{X}-\sqrt{\frac{s^{2}}{n}}t_{(1-\alpha/2)[dof]} \leq \mu \leq \bar{X}+\sqrt{\frac{s^{2}}{n}}t_{(1-\alpha/2)[dof]}) = 1-\alpha
 $$
 
+Where does the Central Limit Theorem come in here? In this case, if you are going to invoke the Central Limit Theorem (because your data are not actually Normally distributed) to get at confidence intervals for the mean of the distribution, you would need the sample size to be large anyways (because the CLT only says that the mean takes a Normal distribution in the limit of large sample sizes) and in this case $s^{2} \rightarrow \sigma^{2}$ so you can use Case 1 above.
+
 **Example #3: Estimating the confidence intervals for the variance $\sigma^{2}$ assuming $\mu$ is known.**
 
-Based on the definition of a $\chi^{2}$ distribution, we know that if we have data $X \sim N(\mu,\sigma^{2})$, than 
+Based on the definition of a $\chi^{2}$ distribution, we know that if we have data $X \sim N(\mu,\sigma^{2})$, then 
 
 $$
 \frac{1}{\sigma^{2}}\sum_{i=1}^{n}(X_{i}-\mu)^{2} \sim \chi^{2}_{n}
 $$
 
-here we will use the fact that if $\mu$ is *known*, than the sample variance is calculated as
+*Note that this is only true if the underlying data are actually Normally distributed.* (In other words, the parameter $\sigma$ is a parameter of the Normal distribution, so Examples 3-5 require that the original data are Normally distributed, otherwise the concept of putting CI on the parameter $\sigma$ doesn't make sense.) Here we will use the fact that if $\mu$ is *known*, than the sample variance is calculated as
 
 $$
 \frac{1}{n}\sum_{i=1}^{n}(X_{i}-\mu)^{2} = s^{2}
