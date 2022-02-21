@@ -349,7 +349,7 @@ Comparing two proportions
 
 There are a number of different ways to do the proportion test, but I will only expect you to know one. I will call the true underlying proportion $\theta$. In this case, $H_{0}: \theta = \theta_{0}$, and for the two-tailed test, $H_{A}:\theta \neq \theta_{0}$.
 
-The approach we will go over is called the Wald test (see also Handout), and it uses the large sample normal approximation to the Binomial distribution.
+The approach we will go over is called the Wald test (see also 9.10), and it uses the large sample normal approximation to the Binomial distribution.
 
 Recall that
 
@@ -365,7 +365,7 @@ $$
 So under the null hypothesis that $\theta=\theta_{0}$
 
 $$
-\frac{\hat{p}-\theta_{0}}{\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}}
+\frac{\hat{p}-\theta_{0}}{\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}} \sim N(0,1)
 $$
 
 (Technically, since we estimated the s.e. using the data, this is t-distributed, but since we are already assuming $n \rightarrow \infty$, then we typically use the standard normal here.)
