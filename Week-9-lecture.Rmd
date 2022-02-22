@@ -40,6 +40,7 @@ By extension, the sample covariance of A and B (i.e. Cov(A,B)) is given by
 $$
 Cov(A,B) = \frac{1}{n-1}\sum_{i=1}^{n}(A_{i}-\bar{A})(B_{i}-\bar{B})
 $$
+Why do we only lose 1 degree of freedom when we have to estimate the mean of both the A group and the B group? So as not to distract from the main thread here, I have answered that below in the [FAQ](#W9FAQ).
 
 Why does this expression make sense? The covariance measures how much two things go up and down together. 
 
@@ -457,7 +458,7 @@ $$
 
 Try this derivation yourself and then check your work [here](http://seismo.berkeley.edu/~kirchner/eps_120/Toolkits/Toolkit_10.pdf).
 
-##But wait, couldn't we have used maximum likelihood? Yes!
+## But wait, couldn't we have used maximum likelihood? Yes!
 The explanation provided above is the standard "non-calculus" explanation for how to find the best fit OLS regression line. But we could have found the MLE for slope and intercept using the same methods as were learned before the midterm.
 
 Remember back to the Week 4 lab, the joint likelihood for $n$ i.i.d. Normally distributed data $Y \sim N(\mu,\sigma^{2})$ was given by:
@@ -485,7 +486,7 @@ The values of $\beta_{0}$ and $\beta_{1}$ that satisfy this equation are the max
 
 We will use this approach (writing down the joint likelihood and then minimizing with respect to the parameters) when we come to generalized linear models in another week.
 
-##Assumptions of regression:
+## Assumptions of regression:
 
 $$
 Y_{i} = \beta_{0}+\beta_{1}X_{i} + \epsilon_{i} \mbox{, where } \epsilon_{i} \sim N(0,\sigma^{2})
@@ -581,7 +582,7 @@ The standard deviation of an estimated parameter (here, $\hat{\beta}_1$) is equa
 
 Our model allows us to make a prediction about the response expected for any given value of X, which may be a value of X in the original dataset or it may be a value of X **not** in the original dataset. (The model is only valid for X values contained within the range of the original data; more on this later.) We will refer to a new X value as $X^{*}$ and the corresponding estimates for Y as $\hat{Y}$. Don't forget that the fitted $\hat{Y}$ values are also estimated quantities, and as such come with uncertainty (i.e. standard errors and confidence intervals). It turns out there are really two ways to express “confidence”: one of which we call a "confidence interval", the other we call a "prediction interval". 
 
-##Confidence vs. Prediction intervals
+## Confidence vs. Prediction intervals
 
 One way is to ask about variability in our predicted values is: “What are the 1-$\alpha$ confidence intervals on the **mean** value of Y given $X^{*}$”? Equivalently, confidence intervals for $\hat{Y}$ mean, "there is a 95% chance that my 95th percentile CIs include the true underlying population parameter value, which is the **mean value** of $\hat{Y}$ ($\mathrm{E}[Y|X^{*}]$)."
 
@@ -665,7 +666,7 @@ Mathematically, the squared deviation from $\bar{X}$ is greater as you move away
 </span>
 </details> 
 
-##How do we know if our model is any good?
+## How do we know if our model is any good?
 
 Earlier we determined that we fit our regression by minimizing the sum of squares error (SSE). However, SSE depends on the units of the dependent variable, so that doesn't help us decide if the model fits "well" (e.g., the model could be a best fit line, but still not very good). However, we can use the total variation, partitioned into 1) the explained variation in the regression, SSR, and 2) the unexplained residual variance, SSE, to create a useful metric of model fit.
 
@@ -750,6 +751,19 @@ Standardized major axis regression standardizes each variable by its own varianc
 When is MA and SMA used? (1) In tests of isometry, allometry, stoichiometry (is the relationship between X and Y 1? Is the ratio of C:N 1?), (2) Testing if two methods of measurement agree.
 
 
+## Week 9 FAQ {#W9FAQ}
 
+**Question: Why do we divide by n-1 in the denominator of the sample covariance?**
 
+The sample covariance is given by
 
+$$
+Cov(A,B) = \frac{1}{n-1}\sum_{i=1}^{n}(A_{i}-\bar{A})(B_{i}-\bar{B})
+$$
+The best way of thinking about this is as follows: We start with 2n degrees of freedom, n for the A data and n for the B data. Where we lose degrees of freedom may be seen by re-writing the product in the sum as follows:
+
+$$
+\sum_{i=1}^{n}(A_{i}-\bar{A})(B_{i}-\bar{B})=\sum_{i=1}^{n}A_{i}(B_{i}-\bar{B})-\sum_{i=1}^{n}\bar{A}(B_{i}-\bar{B})
+$$
+
+We have terms on the left hand side, and lose one degree of freedom for the use of $\bar{B}$ in each term (for a total of $n$ d.o.f. lost) and we lose one additional d.o.f. for the one use of ̅$\bar{B}$ in the second term. Therefore we end up with $2n-n-1=n-1$ degrees of freedom for the whole product.

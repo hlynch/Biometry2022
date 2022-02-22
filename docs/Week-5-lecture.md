@@ -271,7 +271,7 @@ but now our calculation of the $SE_{diff}$ changes because we are no longer assu
 $$
 X_{A}-X_{B} \sim N\left(\mu_{A}-\mu_{B},\sigma^{2}_{A}+\sigma^{2}_{B}-2Cov(A,B)\right)
 $$
-(Remember that $\sigma^{2}_{A}$ is just Var(A) or, put another way, the Cov(A,A). So this is the more general formula for the difference between two random Normally distributed variables, because if the two datasests are in fact independent, Cov(A,B)=0 and we end up with the simpler formula we introduced earlier.
+(Remember that $\sigma^{2}_{A}$ is just Var(A) or, put another way, the Cov(A,A). So this is the more general formula for the difference between two random Normally distributed variables, because if the two datasests are in fact independent, Cov(A,B)=0 and we end up with the simpler formula we introduced earlier. If you want more information on how to calculate the Covariance, you can jump ahead to the notes in Week 9.
 
 Working through the algebra a little
 
