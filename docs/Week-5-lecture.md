@@ -155,10 +155,10 @@ $$
 Remember that:
 
 $$
-H_{0}: \bar{X}=c
+H_{0}: \mu=c
 $$
 $$
-H_{A}: \bar{X} \neq c
+H_{A}: \mu \neq c
 $$
 Therefore, under the NULL HYPOTHESIS
 
