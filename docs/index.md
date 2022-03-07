@@ -1,7 +1,7 @@
 --- 
 title: "Biometry Lecture and Lab Notes"
 author: "Heather Lynch"
-date: "2022-02-28"
+date: "2022-03-07"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib]

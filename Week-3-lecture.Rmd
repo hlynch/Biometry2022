@@ -286,7 +286,7 @@ The probability mass function of the Binomial distribution is given by
 $$
 P(x \mid p,n) = \frac{n!}{x!(n-x)!}p^x(1-p)^{n-x} \\
 n \in \mathbb{N} \cup \{0\} \\ 
-x \in \{1,2,3,...,n\} \\
+x \in \{0,1,2,3,...,n\} \\
 p \in [0,1] 
 $$
 

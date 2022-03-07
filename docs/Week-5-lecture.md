@@ -85,7 +85,7 @@ We frame decision-making in terms of a null and an alternative hypothesis: $H_{0
 
 **Step #1**: Specify a null hypothesis $H_{0}$.
 
-**Step #2**: Specific an appropriate test statistic T. A test statistic is some summary of your data that pertains to the null hypothesis. For testing simple hypotheses, there are test statistics known to be ideal in certain situations. However, even in these simple cases, there are other test statistics that could be used. In more complex situations, YOU will have to determine the most appropriate test statistic. 
+**Step #2**: Specify an appropriate test statistic T. A test statistic is some summary of your data that pertains to the null hypothesis. For testing simple hypotheses, there are test statistics known to be ideal in certain situations. However, even in these simple cases, there are other test statistics that could be used. In more complex situations, YOU will have to determine the most appropriate test statistic. 
 
 generic=$T$=f(X)
 specific=$T^{*}$=$T(X_{1},X_{2},...,X_{n})$
