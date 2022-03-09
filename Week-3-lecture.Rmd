@@ -381,7 +381,7 @@ knitr::include_app('https://hlynch.shinyapps.io/betadistribution/', height = '10
 
 The expected value and variance of the Beta distribution is given by
 
-$$ \begin{align} E[X] &= \int_0^1x\frac{\Gamma(\alpha + \beta)}{\Gamma(\alpha) + \Gamma(\beta)}x^{\alpha-1}(1-x)^{\beta-1}dx \\
+$$ \begin{align} E[X] &= \int_0^1x\frac{\Gamma(\alpha + \beta)}{\Gamma(\alpha) \Gamma(\beta)}x^{\alpha-1}(1-x)^{\beta-1}dx \\
 &= \frac{\alpha}{\alpha + \beta}  \end{align} $$
 
 $$ Var[X] = \frac{\alpha\beta}{(\alpha+\beta)^2 \cdot(\alpha + \beta + 1)} $$
