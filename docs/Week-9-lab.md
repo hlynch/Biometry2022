@@ -256,19 +256,19 @@ summary(fit)
 ## lm(formula = value ~ X)
 ## 
 ## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -14.1579  -5.8019   0.0062   4.0739  20.5388 
+##     Min      1Q  Median      3Q     Max 
+## -24.513  -6.626  -1.907   7.805  24.579 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)  -0.6567     3.0559  -0.215    0.831    
-## X            -1.9499     0.1721 -11.328 5.73e-12 ***
+## (Intercept)  -4.5252     4.3082  -1.050    0.303    
+## X            -1.9672     0.2427  -8.106 7.96e-09 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 8.161 on 28 degrees of freedom
-## Multiple R-squared:  0.8209,	Adjusted R-squared:  0.8145 
-## F-statistic: 128.3 on 1 and 28 DF,  p-value: 5.733e-12
+## Residual standard error: 11.5 on 28 degrees of freedom
+## Multiple R-squared:  0.7012,	Adjusted R-squared:  0.6905 
+## F-statistic: 65.71 on 1 and 28 DF,  p-value: 7.957e-09
 ```
 
 Copy this script into R and r-run it several times. Notice how the estimates for slope and intercept bounce around, but they should be correct *on average* and also the scale of variation from one run to the next should make sense given the estimate of the standard error. (Their standard deviation should be the standard error.) Notice also how the residual standard error is equal (within sampling error) to the sigma that you put into the model, and that as you increase sigma, the R2 goes down because now you are increasing the variation that is *not* explained by the covariate. Try changing the number of samples drawn, either by extending the vector of the covariates or by drawing multiple times for each value (you will have to modify the code to make this latter change work). Notice how the standard errors on the intercept and slope coefficients gets smaller as the data set gets larger but the estimate for sigma does not. The parameter sigma is a property of the underlying population, not a property of the sample drawn, so it does not get smaller as you increase the number of samples in the dataset. (If this does not make sense, ask me!)
@@ -739,7 +739,7 @@ The residuals are much more similar to what we got from 'lm' when we excluded th
 Bootstrapping standard errors for robust regression
 ---------------
 
-The standard errors reported by 'rlm' rely on asymptomatic approximations that may not be particularly reliable in this case because our sample size is only 45. We will use bootstrapping to construct more appropriate standard errors.
+The standard errors reported by 'rlm' rely on asymptotic approximations that may not be particularly reliable in this case because our sample size is only 45. We will use bootstrapping to construct more appropriate standard errors.
 
 There are two ways to do bootstrapping for calculating the standard errors of regression model parameters.
 
@@ -791,8 +791,8 @@ duncan.boot
 ## 
 ## Bootstrap Statistics :
 ##      original       bias    std. error
-## t1* 6.3002197  0.219556341  4.60696958
-## t2* 0.6615263 -0.006688927  0.07638669
+## t1* 6.3002197  0.465129019  4.67835974
+## t2* 0.6615263 -0.009056595  0.07662525
 ```
 
 **<span style="color: green;">Checkpoint #5: How would we know if the bias is significant (i.e., how would we calculate the standard error of the bias)?</span>**

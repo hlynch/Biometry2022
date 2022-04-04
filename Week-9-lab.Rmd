@@ -408,7 +408,7 @@ The residuals are much more similar to what we got from 'lm' when we excluded th
 Bootstrapping standard errors for robust regression
 ---------------
 
-The standard errors reported by 'rlm' rely on asymptomatic approximations that may not be particularly reliable in this case because our sample size is only 45. We will use bootstrapping to construct more appropriate standard errors.
+The standard errors reported by 'rlm' rely on asymptotic approximations that may not be particularly reliable in this case because our sample size is only 45. We will use bootstrapping to construct more appropriate standard errors.
 
 There are two ways to do bootstrapping for calculating the standard errors of regression model parameters.
 
