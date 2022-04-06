@@ -92,13 +92,13 @@ Let's look at a few examples...
 <img src="Week-9-lecture_files/figure-html/unnamed-chunk-4-1.png" width="240" />
 
 ```
-## [1] 0.01681322
+## [1] 0.002143168
 ```
 
 <img src="Week-9-lecture_files/figure-html/unnamed-chunk-4-2.png" width="240" />
 
 ```
-## [1] 0.913689
+## [1] 0.8948251
 ```
 
 ## Hypothesis testing - Pearson's *r*
@@ -192,7 +192,7 @@ cor(df$A, df$B)
 ```
 
 ```
-## [1] 0.141736
+## [1] -0.1050972
 ```
 
 Even though *A* and *B* clearly have a strong relationship, correlation is only effective if the relationship is **linear**.
@@ -226,7 +226,7 @@ paste("The 95% confidence interval for the estimated correlation coefficient, ",
 ```
 
 ```
-## [1] "The 95% confidence interval for the estimated correlation coefficient, 0.911 is (0.876, 0.936)"
+## [1] "The 95% confidence interval for the estimated correlation coefficient, 0.86 is (0.809, 0.898)"
 ```
 </span>
 </details> 
@@ -272,7 +272,7 @@ pnorm(q = z.obs, mean = 0, sd = sqrt(1 / (100 - 3)), lower.tail = FALSE)
 ```
 
 ```
-## [1] 1.615686e-37
+## [1] 1.477283e-42
 ```
 
 ```r
@@ -282,7 +282,7 @@ pnorm(q = test.stat, lower.tail = FALSE)
 ```
 
 ```
-## [1] 1.615686e-37
+## [1] 1.477283e-42
 ```
 
 To simply the notation, let us define
@@ -403,9 +403,119 @@ $$
 Y_{i} = \beta_{0}+\beta_{1}X_{i} + \epsilon_{i} \mbox{, where } \epsilon_{i} \sim N(0,\sigma^{2})
 $$
 
-where $\beta_{0}$ is the **intercept** and $\beta_{1}$ is the **slope**. Note that each data point $Y_{i}$ is associted with its own value of the corresponding covariate predictor ($X_{i}$) and its own sample for the residual $\epsilon_{i}$. Before we get into some more math, let's just draw some data and visualize what the slope and intercept represent. Note that we are usually just interested in the line ($\beta_{0}+\beta_{1}X$) that represents the effect of the covariate on the response variable and therefore our focus is on estimating the parameters $\beta_{0}$ and $\beta_{1}$. We are often less interested in the variance associated with $\epsilon$ but keep in mind that $\sigma$ is a third parameter of this model and also must be estimated from the data.
+where $\beta_{0}$ is the **intercept** and $\beta_{1}$ is the **slope**. Note that each data point $Y_{i}$ is associated with its own value of the corresponding covariate predictor ($X_{i}$) and its own sample for the residual $\epsilon_{i}$. Before we get into some more math, let's just draw some data and visualize what the slope and intercept represent. Note that we are usually just interested in the line ($\beta_{0}+\beta_{1}X$) that represents the effect of the covariate on the response variable and therefore our focus is on estimating the parameters $\beta_{0}$ and $\beta_{1}$. We are often less interested in the variance associated with $\epsilon$ but keep in mind that $\sigma$ is a third parameter of this model and also must be estimated from the data.
 
-How do we find the line that best fits the data? It probably makes intuitive sense that the mean value of X should be associated with the mean value of Y and this is in fact true. The best fit line passes through ($\bar{X}$,$\bar{Y}$). \textcolor{red}{What are all the possible lines that could pass through this point?}
+How do we find the line that best fits the data? Maximum likelihood!
+
+## Estimating the slope and intercept in linear regression
+The traditional "no calculus" explanation for estimating regression slope and intercept is included below for completeness, but I will bypass this more convoluted approach for now in favor of using maximum likelihood, which we already know how to do. 
+
+Remember back to the Week 4 lab, the joint likelihood for $n$ i.i.d. Normally distributed data $Y \sim N(\mu,\sigma^{2})$ was given by:
+
+$$
+L(\mu,\sigma|Y_{1},Y_{2},...,Y_{n}) = \prod^{n}_{i=1}\frac{1}{\sqrt{2\pi\sigma^{2}}} \exp{\left(-\frac{1}{2}\frac{(Y_{i}-\mu)^{2}}{\sigma^{2}}\right)}
+$$
+(Before, we were calling the response variable X, but now we will switch to calling the response variable Y since we will use X for the covariates.) Here we are making one tiny change, we are replacing $\mu$ with $\beta_{0}+\beta_{1}X_{i}$ to fit the model $Y \sim N(\beta_{0}+\beta_{1}X_{i},\sigma^{2})$.
+
+$$
+L(\beta_{0},\beta_{1},\sigma|Y_{1},Y_{2},...,Y_{n}) = \prod^{n}_{i=1}\frac{1}{\sqrt{2\pi\sigma^{2}}} \exp{\left(-\frac{1}{2}\frac{(Y_{i}-(\beta_{0}+\beta_{1}X_{i}))^{2}}{\sigma^{2}}\right)}
+$$
+
+Great! Now we have a joint likelihood for the new linear regression model, and we can find the MLE for $\beta_{0}$ and $\beta_{1}$ just like we did before, by setting
+
+$$
+\frac{\partial NLL}{\partial \beta_{0}} =0
+$$
+and
+
+$$
+\frac{\partial NLL}{\partial \beta_{1}} =0
+$$
+
+The values of $\beta_{0}$ and $\beta_{1}$ that satisfy this equation are the maximum likelihood estimators for these two parameters. (Note that we will use this approach [writing down the joint likelihood and then minimizing with respect to the parameters] when we come to generalized linear models in another week.)
+
+**If** these conditions are met, then the OLS estimators we just derived are the best linear unbiased estimators (BLUE) and the sampling distributions for the slope and intercept are as follows:
+
+$$
+\hat{\beta_0} \sim \mathrm{N}\left( \beta_0, \frac{\sigma_\epsilon^2 \sum_{i = 1}^n X_i^2}{n \sum_{i = 1}^n (X_i - \bar{X})^2}\right) \text{, where } \sigma_\epsilon^2 = \mathrm{E}(\epsilon_i^2)
+$$
+$$
+\hat{\beta_1} \sim \mathrm{N}\left( \beta_1, \frac{\sigma_\epsilon^2}{\sum_{i = 1}^n (X_i - \bar{X})^2}\right) \text{, where } \sigma_\epsilon^2 = \mathrm{E}(\epsilon_i^2)
+$$
+
+*FYI:* these distributions for $\beta$ can be derived using the second derivatives of the NLL (but you don't need to be able to do this).
+
+These equations may look complex, but there are some features that should make sense. One: The expected value of $\hat{\beta_{0}}$ is $\beta_{0}$, as you would expect for an unbiased estimator. Moreover, if $\sigma_\epsilon^2$ goes to zero, the uncertainty in the estimates go to zero. In other words, if there is no variation in the data (all data points lie exactly on the regression line), than there is no uncertainty in the value of the parameters. Also, note that as $n \rightarrow \infty$, the uncertainty goes to zero as well (again, as we would expect).
+
+Because we do not know the population (true) error variance $\sigma_\epsilon^2$, we estimate it from the data using:
+
+$$
+s_\epsilon^2 = \frac{1}{n - p} \sum_{i = 1}^n (Y_i - \hat{Y_i})^2
+$$
+
+We substitute $s_\epsilon^2$ for $\sigma_\epsilon^2$. This is an unbiased and maximally efficient estimator for $\sigma_\epsilon^2$. $p$ is the number of parameters required to estimate $\sigma_\epsilon^2$. This is sometimes called **mean squared error (MSE)** (as it is in Aho).
+
+**Question: How many degrees of freedom do we have for $s_\epsilon^2$ in a simple linear regression?**
+
+<details>
+  <summary>Click for Answer</summary>
+<span style="color: blueviolet;">
+$n - p = n - 2$. This is because $\hat{Y}$ involves $\bar{Y}$ and $\bar{X}$. This will be different with multiple regression (regression with more than one covariate).
+</span>
+</details> 
+
+**Question: What is our null hypothesis for the parameter $\beta_0$? What does it mean?**
+
+<details>
+  <summary>Click for Answer</summary>
+<span style="color: blueviolet;">
+$\beta_0 | H_0 = 0$. When $X = 0$ the estimated value for $Y$ is 0.
+</span>
+</details> 
+
+**Question: What about for $\beta_1$?**
+
+<details>
+  <summary>Click for Answer</summary>
+<span style="color: blueviolet;">
+$\beta_1 | H_0 = 0$. The slope of the regression equals 0, $X$ has no linear effect on $Y$.
+</span>
+</details> 
+
+
+The test statistic and standard error for estimating $\beta_1$:
+
+$$
+T^* = \frac{\hat{\beta_1} - \beta_{1 | H_0}}{\text{SE}_{\hat{\beta_1}}} \sim t_{n - p}
+$$
+
+$$
+\text{SE}_{\hat{\beta_1}} = \sqrt{\frac{\frac{1}{n - p} \sum_{i = 1}^n (Y_i - \hat{Y_i})^2}{\sum_{i = 1}^n (X_i - \bar{X})^2}} = \sqrt{\frac{s_\epsilon^2}{\sum_{i = 1}^n (X_i - \bar{X})^2}}
+$$
+Note that usually we are interested in $\beta_{1|H_{0}}=0$.
+
+We construct confidence intervals as we always have
+
+$$
+P {\left( \hat{\beta_1 } - t_{(1 - \frac{\alpha}{2}) [n - p]} \text{SE}_{\hat{\beta_1}} \leq \beta_1 \leq \hat{\beta_1 } + t_{(1 - \frac{\alpha}{2}) [n - p]} \text{SE}_{\hat{\beta_1}} \right)} = 1 - \alpha
+$$
+
+You can use similar methods to estimate the CI for $\beta_0$. We can use bootstrapping to calculate the standard error of the regression slope as well. We demonstrate this with an example on Thursday.
+
+**Question: I've called this value $\text{SE}_{\hat{\beta_1}}$. Aho refers to it as ${\hat{\sigma}_{\hat{\beta_1}}}$. Why are these names interchangeable?**
+
+<details>
+  <summary>Click for Answer</summary>
+<span style="color: blueviolet;">
+The standard deviation of an estimated parameter (here, $\hat{\beta}_1$) is equal to the standard error of the parameter.
+</span>
+</details> 
+
+## OK, now the "other" derivation for slope and intercept
+
+Here I present an alternative method for estimating the slope and intercept values that does not require knowing about maximum likelihood. As you will see, it is a little convoluted, but it does define some key vocabulary along the way, so here goes...
+
+It probably makes intuitive sense that the mean value of X should be associated with the mean value of Y and this is in fact true. The best fit line passes through ($\bar{X}$,$\bar{Y}$). \textcolor{red}{What are all the possible lines that could pass through this point?}
 
 First, we will go over the notation for linear models (and regression specifically) we'll be using for the next couple of weeks.
 
@@ -534,34 +644,6 @@ $$
 
 Try this derivation yourself and then check your work [here](http://seismo.berkeley.edu/~kirchner/eps_120/Toolkits/Toolkit_10.pdf).
 
-## But wait, couldn't we have used maximum likelihood? Yes!
-The explanation provided above is the standard "non-calculus" explanation for how to find the best fit OLS regression line. But we could have found the MLE for slope and intercept using the same methods as were learned before the midterm.
-
-Remember back to the Week 4 lab, the joint likelihood for $n$ i.i.d. Normally distributed data $Y \sim N(\mu,\sigma^{2})$ was given by:
-
-$$
-L(\mu,\sigma|Y_{1},Y_{2},...,Y_{n}) = \prod^{n}_{i=1}\frac{1}{\sqrt{2\pi\sigma^{2}}} \exp{\left(-\frac{1}{2}\frac{(Y_{i}-\mu)^{2}}{\sigma^{2}}\right)}
-$$
-(Before, we were calling the response variable X, but now we will switch to calling the response variable Y since we will use X for the covariates.) Here we are making one tiny change, we are replacing $\mu$ with $\beta_{0}+\beta_{1}X_{i}$ to fit the model $Y \sim N(\beta_{0}+\beta_{1}X_{i},\sigma^{2})$.
-
-$$
-L(\beta_{0},\beta_{1},\sigma|Y_{1},Y_{2},...,Y_{n}) = \prod^{n}_{i=1}\frac{1}{\sqrt{2\pi\sigma^{2}}} \exp{\left(-\frac{1}{2}\frac{(Y_{i}-(\beta_{0}+\beta_{1}X_{i}))^{2}}{\sigma^{2}}\right)}
-$$
-
-Great! Now we have a joint likelihood for the new linear regression model, and we can find the MLE for $\beta_{0}$ and $\beta_{1}$ just like we did before, by setting
-
-$$
-\frac{\partial NLL}{\partial \beta_{0}} =0
-$$
-and
-
-$$
-\frac{\partial NLL}{\partial \beta_{1}} =0
-$$
-The values of $\beta_{0}$ and $\beta_{1}$ that satisfy this equation are the maximum likelihood estimators for these two parameters.
-
-We will use this approach (writing down the joint likelihood and then minimizing with respect to the parameters) when we come to generalized linear models in another week.
-
 ## Assumptions of regression:
 
 $$
@@ -581,80 +663,6 @@ $E[(\epsilon_{i})(\epsilon_{j})]=0 \mbox{, where } i \neq j$
 3.	Variances are constant along the regression line.  (Non-constant variances are an example of heteroskedacity. More on this in a second.)
 4.	An implicit assumption is that the regression fit is only valid over the range of X represented in the original data. It is very dangerous to extrapolate outside the range over which the regression line was originally fit.
 
-**If** these conditions are met, then the OLS estimators we just derived are the best linear unbiased estimators (BLUE) and the sampling distributions for the slope and intercept are as follows:
-
-$$
-\hat{\beta_0} \sim \mathrm{N}\left( \beta_0, \frac{\sigma_\epsilon^2 \sum_{i = 1}^n X_i^2}{n \sum_{i = 1}^n (X_i - \bar{X})^2}\right) \text{, where } \sigma_\epsilon^2 = \mathrm{E}(\epsilon_i^2)
-$$
-$$
-\hat{\beta_1} \sim \mathrm{N}\left( \beta_1, \frac{\sigma_\epsilon^2}{\sum_{i = 1}^n (X_i - \bar{X})^2}\right) \text{, where } \sigma_\epsilon^2 = \mathrm{E}(\epsilon_i^2)
-$$
-*FYI:* these distributions for $\beta$ can be derived using the second derivatives of the NLL (but you don't need to be able to do this).
-
-These equations may look complex, but there are some features that should make sense. One: The expected value of $\hat{\beta_{0}}$ is $\beta_{0}$, as you would expect for an unbiased estimator. Moreover, if $\sigma_\epsilon^2$ goes to zero, the uncertainty in the estimates go to zero. In other words, if there is no variation in the data (all data points lie exactly on the regression line), than there is no uncertainty in the value of the parameters. Also, note that as $n \rightarrow \infty$, the uncertainty goes to zero as well (again, as we would expect).
-
-Because we do not know the population (true) error variance $\sigma_\epsilon^2$, we estimate it from the data using:
-
-$$
-s_\epsilon^2 = \frac{1}{n - p} \sum_{i = 1}^n (Y_i - \hat{Y_i})^2
-$$
-We substitute $s_\epsilon^2$ for $\sigma_\epsilon^2$. This is an unbiased and maximally efficient estimator for $\sigma_\epsilon^2$. $p$ is the number of parameters required to estimate $\sigma_\epsilon^2$. This is sometimes called **mean squared error (MSE)** (as it is in Aho).
-
-**Question: How many degrees of freedom do we have for $s_\epsilon^2$ in a simple linear regression?**
-
-<details>
-  <summary>Click for Answer</summary>
-<span style="color: blueviolet;">
-$n - p = n - 2$. This is because $\hat{Y}$ involves $\bar{Y}$ and $\bar{X}$. This will be different with multiple regression (regression with more than one covariate).
-</span>
-</details> 
-
-**Question: What is our null hypothesis for the parameter $\beta_0$? What does it mean?**
-
-<details>
-  <summary>Click for Answer</summary>
-<span style="color: blueviolet;">
-$\beta_0 | H_0 = 0$. When $X = 0$ the estimated value for $Y$ is 0.
-</span>
-</details> 
-
-**Question: What about for $\beta_1$?**
-
-<details>
-  <summary>Click for Answer</summary>
-<span style="color: blueviolet;">
-$\beta_1 | H_0 = 0$. The slope of the regression equals 0, $X$ has no linear effect on $Y$.
-</span>
-</details> 
-
-
-The test statistic and standard error for estimating $\beta_1$:
-
-$$
-T^* = \frac{\hat{\beta_1} - \beta_{1 | H_0}}{\text{SE}_{\hat{\beta_1}}} \sim t_{n - p}
-$$
-
-$$
-\text{SE}_{\hat{\beta_1}} = \sqrt{\frac{\frac{1}{n - p} \sum_{i = 1}^n (Y_i - \hat{Y_i})^2}{\sum_{i = 1}^n (X_i - \bar{X})^2}} = \sqrt{\frac{s_\epsilon^2}{\sum_{i = 1}^n (X_i - \bar{X})^2}}
-$$
-Note that usually we are interested in $\beta_{1|H_{0}}=0$.
-
-We construct confidence intervals as we always have
-
-$$
-P {\left( \hat{\beta_1 } - t_{(1 - \frac{\alpha}{2}) [n - p]} \text{SE}_{\hat{\beta_1}} \leq \beta_1 \leq \hat{\beta_1 } + t_{(1 - \frac{\alpha}{2}) [n - p]} \text{SE}_{\hat{\beta_1}} \right)} = 1 - \alpha
-$$
-
-You can use similar methods to estimate the CI for $\beta_0$. We can use bootstrapping to calculate the standard error of the regression slope as well. We demonstrate this with an example on Thursday.
-
-**Question: I've called this value $\text{SE}_{\hat{\beta_1}}$. Aho refers to it as ${\hat{\sigma}_{\hat{\beta_1}}}$. Why are these names interchangeable?**
-
-<details>
-  <summary>Click for Answer</summary>
-<span style="color: blueviolet;">
-The standard deviation of an estimated parameter (here, $\hat{\beta}_1$) is equal to the standard error of the parameter.
-</span>
-</details> 
 
 Our model allows us to make a prediction about the response expected for any given value of X, which may be a value of X in the original dataset or it may be a value of X **not** in the original dataset. (The model is only valid for X values contained within the range of the original data; more on this later.) We will refer to a new X value as $X^{*}$ and the corresponding estimates for Y as $\hat{Y}$. Don't forget that the fitted $\hat{Y}$ values are also estimated quantities, and as such come with uncertainty (i.e. standard errors and confidence intervals). It turns out there are really two ways to express “confidence”: one of which we call a "confidence interval", the other we call a "prediction interval". 
 
