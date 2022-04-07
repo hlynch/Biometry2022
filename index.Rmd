@@ -12,7 +12,7 @@ link-citations: yes
 #description: "Everything you need (and nothing more) to start a bookdown book."
 ---
 
-# Preface {-}
+# Preface, data sets, and past exams {-}
 
 This eBook contains all of the lecture notes and lab exercises that we will do this semester in Biometry. While I have made every effort to cite sources where I've used "found" material, this eBook reflects my own personal notes drawn up over nearly a decade of work and some material may not properly identify the original sources used in drawing up my initial lecture notes. As I have moved this material into an online eBook, I have tried to better document material inspired by or drawn from other sources. If you find anything in these notes that is not properly cited or sourced, please let me know so it can be amended. Any mistakes are mine and mine alone.
 
@@ -42,7 +42,6 @@ clouds <- read_csv("https://raw.githubusercontent.com/hlynch/Biometry2021/master
 * `Week-9-Data`: [link](https://github.com/hlynch/Biometry2022/tree/master/_data/Week-9-Data.txt) [8]
 * `bomregions2012`: [link](https://github.com/hlynch/Biometry2022/tree/master/_data/bomregions2012.csv) [9]
 * `Challenger_data`: [link](https://github.com/hlynch/Biometry2022/tree/master/_data/Challenger_data.csv) [10]
-* `Challenger_data_fieldandnozzle`: [link](https://github.com/hlynch/Biometry2022/tree/master/_data/Challenger_data_fieldandnozzle.csv) [10]
 * `Brogan_et_al_2013_Fig1Data`: [link](https://github.com/hlynch/Biometry2022/tree/master/_data/Brogan_et_al_2013_Fig1Data.xlsx) [11]
 * `fruit_flies`: [link](https://github.com/hlynch/Biometry2022/tree/master/_data/fruit_flies.csv) [12]
 * `medley`: [link](https://github.com/hlynch/Biometry2022/tree/master/_data/medley.csv) [13]

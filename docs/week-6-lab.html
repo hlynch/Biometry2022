@@ -24,7 +24,7 @@
 <meta name="author" content="Heather Lynch" />
 
 
-<meta name="date" content="2022-04-06" />
+<meta name="date" content="2022-04-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -134,7 +134,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Biometry Lecture and Lab Notes</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface, data sets, and past exams</a></li>
 <li class="chapter" data-level="1" data-path="week-1-lecture.html"><a href="week-1-lecture.html"><i class="fa fa-check"></i><b>1</b> Week 1 Lecture</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="week-1-lecture.html"><a href="week-1-lecture.html#week-1-readings"><i class="fa fa-check"></i><b>1.1</b> Week 1 Readings</a></li>
@@ -285,7 +285,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="16.5" data-path="week-9-lecture.html"><a href="week-9-lecture.html#regression"><i class="fa fa-check"></i><b>16.5</b> Regression</a></li>
 <li class="chapter" data-level="16.6" data-path="week-9-lecture.html"><a href="week-9-lecture.html#estimating-the-slope-and-intercept-in-linear-regression"><i class="fa fa-check"></i><b>16.6</b> Estimating the slope and intercept in linear regression</a></li>
 <li class="chapter" data-level="16.7" data-path="week-9-lecture.html"><a href="week-9-lecture.html#ok-now-the-other-derivation-for-slope-and-intercept"><i class="fa fa-check"></i><b>16.7</b> OK, now the “other” derivation for slope and intercept</a></li>
-<li class="chapter" data-level="16.8" data-path="week-9-lecture.html"><a href="week-9-lecture.html#assumptions-of-regression"><i class="fa fa-check"></i><b>16.8</b> Assumptions of regression:</a></li>
+<li class="chapter" data-level="16.8" data-path="week-9-lecture.html"><a href="week-9-lecture.html#assumptions-of-regression"><i class="fa fa-check"></i><b>16.8</b> Assumptions of regression</a></li>
 <li class="chapter" data-level="16.9" data-path="week-9-lecture.html"><a href="week-9-lecture.html#confidence-vs.-prediction-intervals"><i class="fa fa-check"></i><b>16.9</b> Confidence vs. Prediction intervals</a></li>
 <li class="chapter" data-level="16.10" data-path="week-9-lecture.html"><a href="week-9-lecture.html#how-do-we-know-if-our-model-is-any-good"><i class="fa fa-check"></i><b>16.10</b> How do we know if our model is any good?</a></li>
 <li class="chapter" data-level="16.11" data-path="week-9-lecture.html"><a href="week-9-lecture.html#type-i-and-type-ii-regression"><i class="fa fa-check"></i><b>16.11</b> Type I and Type II Regression</a></li>
@@ -483,32 +483,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb333-7"><a href="week-6-lab.html#cb333-7" aria-hidden="true" tabindex="-1"></a>      }</span>
 <span id="cb333-8"><a href="week-6-lab.html#cb333-8" aria-hidden="true" tabindex="-1"></a>  }</span>
 <span id="cb333-9"><a href="week-6-lab.html#cb333-9" aria-hidden="true" tabindex="-1"></a>p.values</span></code></pre></div>
-<pre><code>##       [,1]      [,2]      [,3]      [,4]      [,5]      [,6]      [,7]
-##  [1,]   NA 0.8087932 0.7886043 0.8349518 0.7805654 0.7082295 0.4965386
-##  [2,]   NA        NA 0.6174916 0.9825824 0.9547558 0.9074692 0.6311697
-##  [3,]   NA        NA        NA 0.6467089 0.6037112 0.5255544 0.3753931
-##  [4,]   NA        NA        NA        NA 0.9409153 0.8952551 0.6343198
-##  [5,]   NA        NA        NA        NA        NA 0.9659451 0.6933045
-##  [6,]   NA        NA        NA        NA        NA        NA 0.6731361
-##  [7,]   NA        NA        NA        NA        NA        NA        NA
-##  [8,]   NA        NA        NA        NA        NA        NA        NA
-##  [9,]   NA        NA        NA        NA        NA        NA        NA
-## [10,]   NA        NA        NA        NA        NA        NA        NA
-##            [,8]      [,9]     [,10]
-##  [1,] 0.3801300 0.9774349 0.5153792
-##  [2,] 0.5054647 0.7944356 0.6581142
-##  [3,] 0.2816876 0.8160320 0.3878113
-##  [4,] 0.5211405 0.8196446 0.6606738
-##  [5,] 0.5875250 0.7677882 0.7223319
-##  [6,] 0.5244811 0.6996152 0.7041119
-##  [7,] 0.9293632 0.4961544 0.9582162
-##  [8,]        NA 0.3886726 0.8775173
-##  [9,]        NA        NA 0.5148357
-## [10,]        NA        NA        NA</code></pre>
+<pre><code>##       [,1]      [,2]      [,3]      [,4]       [,5]      [,6]      [,7]
+##  [1,]   NA 0.5588106 0.4416096 0.7145331 0.31935031 0.9277335 0.3235480
+##  [2,]   NA        NA 0.2584293 0.4048200 0.86358407 0.6653817 0.8918198
+##  [3,]   NA        NA        NA 0.7361248 0.08566531 0.4962083 0.0806072
+##  [4,]   NA        NA        NA        NA 0.20489109 0.7047160 0.2052988
+##  [5,]   NA        NA        NA        NA         NA 0.4840075 0.9576583
+##  [6,]   NA        NA        NA        NA         NA        NA 0.4986922
+##  [7,]   NA        NA        NA        NA         NA        NA        NA
+##  [8,]   NA        NA        NA        NA         NA        NA        NA
+##  [9,]   NA        NA        NA        NA         NA        NA        NA
+## [10,]   NA        NA        NA        NA         NA        NA        NA
+##              [,8]       [,9]      [,10]
+##  [1,] 0.020154882 0.26308548 0.93946856
+##  [2,] 0.021467172 0.16280497 0.64722535
+##  [3,] 0.069345728 0.52014274 0.49038217
+##  [4,] 0.052653149 0.40239106 0.70769801
+##  [5,] 0.003197517 0.08361400 0.45734371
+##  [6,] 0.044517702 0.28943437 0.98775382
+##  [7,] 0.002833830 0.08450171 0.47086538
+##  [8,]          NA 0.46312898 0.03977853
+##  [9,]          NA         NA 0.28546151
+## [10,]          NA         NA         NA</code></pre>
 <p>Now we can see how many of these p.values are “significant.” We know these are false positives, because all the data were generated from the same distribution.</p>
 <div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb335-1"><a href="week-6-lab.html#cb335-1" aria-hidden="true" tabindex="-1"></a>false.positives<span class="ot">&lt;-</span><span class="fu">sum</span>(p.values<span class="sc">&lt;</span><span class="fl">0.05</span>,<span class="at">na.rm=</span>T)</span>
 <span id="cb335-2"><a href="week-6-lab.html#cb335-2" aria-hidden="true" tabindex="-1"></a>false.positives</span></code></pre></div>
-<pre><code>## [1] 0</code></pre>
+<pre><code>## [1] 6</code></pre>
 <p>We could correct this using the Bonferonni method:</p>
 <div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb337-1"><a href="week-6-lab.html#cb337-1" aria-hidden="true" tabindex="-1"></a>k<span class="ot">&lt;-</span><span class="dv">45</span></span>
 <span id="cb337-2"><a href="week-6-lab.html#cb337-2" aria-hidden="true" tabindex="-1"></a>new.threshold.B<span class="ot">&lt;-</span><span class="fl">0.05</span><span class="sc">/</span>k</span>
@@ -549,7 +549,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb345-21"><a href="week-6-lab.html#cb345-21" aria-hidden="true" tabindex="-1"></a>new.threshold.R<span class="ot">&lt;-</span><span class="fu">quantile</span>(min.p.values.all,<span class="at">probs=</span><span class="fu">c</span>(<span class="fl">0.05</span>))</span>
 <span id="cb345-22"><a href="week-6-lab.html#cb345-22" aria-hidden="true" tabindex="-1"></a>new.threshold.R</span></code></pre></div>
 <pre><code>##          5% 
-## 0.001877407</code></pre>
+## 0.001882165</code></pre>
 <div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb347-1"><a href="week-6-lab.html#cb347-1" aria-hidden="true" tabindex="-1"></a>false.positives.R<span class="ot">&lt;-</span><span class="fu">sum</span>(p.values<span class="sc">&lt;</span>new.threshold.R,<span class="at">na.rm=</span>T)</span>
 <span id="cb347-2"><a href="week-6-lab.html#cb347-2" aria-hidden="true" tabindex="-1"></a>false.positives.R</span></code></pre></div>
 <pre><code>## [1] 0</code></pre>

@@ -24,7 +24,7 @@
 <meta name="author" content="Heather Lynch" />
 
 
-<meta name="date" content="2022-04-06" />
+<meta name="date" content="2022-04-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -134,7 +134,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Biometry Lecture and Lab Notes</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface, data sets, and past exams</a></li>
 <li class="chapter" data-level="1" data-path="week-1-lecture.html"><a href="week-1-lecture.html"><i class="fa fa-check"></i><b>1</b> Week 1 Lecture</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="week-1-lecture.html"><a href="week-1-lecture.html#week-1-readings"><i class="fa fa-check"></i><b>1.1</b> Week 1 Readings</a></li>
@@ -285,7 +285,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="16.5" data-path="week-9-lecture.html"><a href="week-9-lecture.html#regression"><i class="fa fa-check"></i><b>16.5</b> Regression</a></li>
 <li class="chapter" data-level="16.6" data-path="week-9-lecture.html"><a href="week-9-lecture.html#estimating-the-slope-and-intercept-in-linear-regression"><i class="fa fa-check"></i><b>16.6</b> Estimating the slope and intercept in linear regression</a></li>
 <li class="chapter" data-level="16.7" data-path="week-9-lecture.html"><a href="week-9-lecture.html#ok-now-the-other-derivation-for-slope-and-intercept"><i class="fa fa-check"></i><b>16.7</b> OK, now the “other” derivation for slope and intercept</a></li>
-<li class="chapter" data-level="16.8" data-path="week-9-lecture.html"><a href="week-9-lecture.html#assumptions-of-regression"><i class="fa fa-check"></i><b>16.8</b> Assumptions of regression:</a></li>
+<li class="chapter" data-level="16.8" data-path="week-9-lecture.html"><a href="week-9-lecture.html#assumptions-of-regression"><i class="fa fa-check"></i><b>16.8</b> Assumptions of regression</a></li>
 <li class="chapter" data-level="16.9" data-path="week-9-lecture.html"><a href="week-9-lecture.html#confidence-vs.-prediction-intervals"><i class="fa fa-check"></i><b>16.9</b> Confidence vs. Prediction intervals</a></li>
 <li class="chapter" data-level="16.10" data-path="week-9-lecture.html"><a href="week-9-lecture.html#how-do-we-know-if-our-model-is-any-good"><i class="fa fa-check"></i><b>16.10</b> How do we know if our model is any good?</a></li>
 <li class="chapter" data-level="16.11" data-path="week-9-lecture.html"><a href="week-9-lecture.html#type-i-and-type-ii-regression"><i class="fa fa-check"></i><b>16.11</b> Type I and Type II Regression</a></li>
@@ -512,9 +512,9 @@ r = \frac{Cov(A,B)}{\sqrt{Var(A) \times Var(B)}}
 Pearson’s product moment correlation is bounded between -1 and 1. Correlation coefficients of 1 or -1 occur when you set deviations in sample <span class="math inline">\(B\)</span> to be exactly matched in sample <span class="math inline">\(A\)</span>. These measures are unitless.</p>
 <p>Let’s look at a few examples…</p>
 <p><img src="Week-9-lecture_files/figure-html/unnamed-chunk-4-1.png" width="240" /></p>
-<pre><code>## [1] 0.002143168</code></pre>
+<pre><code>## [1] -0.07396997</code></pre>
 <p><img src="Week-9-lecture_files/figure-html/unnamed-chunk-4-2.png" width="240" /></p>
-<pre><code>## [1] 0.8948251</code></pre>
+<pre><code>## [1] 0.9421804</code></pre>
 </div>
 <div id="hypothesis-testing---pearsons-r" class="section level2" number="16.3">
 <h2><span class="header-section-number">16.3</span> Hypothesis testing - Pearson’s <em>r</em></h2>
@@ -582,7 +582,7 @@ To estimate <em>r</em>, we calculated the mean of sample A and sample B
 <span id="cb480-5"><a href="week-9-lecture.html#cb480-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="fu">aes</span>(<span class="at">x =</span> A, <span class="at">y =</span> B)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">theme_classic</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> text.size))</span></code></pre></div>
 <p><img src="Week-9-lecture_files/figure-html/unnamed-chunk-5-1.png" width="288" /></p>
 <div class="sourceCode" id="cb481"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb481-1"><a href="week-9-lecture.html#cb481-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(df<span class="sc">$</span>A, df<span class="sc">$</span>B)</span></code></pre></div>
-<pre><code>## [1] -0.1050972</code></pre>
+<pre><code>## [1] -0.1966706</code></pre>
 <p>Even though <em>A</em> and <em>B</em> clearly have a strong relationship, correlation is only effective if the relationship is <strong>linear</strong>.</p>
 <p>Other considerations:</p>
 <p>What if the data are not bivariate normal? If sample size is large, you’re probably okay.</p>
@@ -605,7 +605,7 @@ Click for Answer
 <span id="cb483-10"><a href="week-9-lecture.html#cb483-10" aria-hidden="true" tabindex="-1"></a>  cor.boot[i] <span class="ot">&lt;-</span> <span class="fu">cor</span>(<span class="at">x =</span> dat.boot<span class="sc">$</span>A, <span class="at">y =</span> dat.boot<span class="sc">$</span>B)</span>
 <span id="cb483-11"><a href="week-9-lecture.html#cb483-11" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb483-12"><a href="week-9-lecture.html#cb483-12" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(<span class="st">&quot;The 95% confidence interval for the estimated correlation coefficient, &quot;</span>, <span class="fu">round</span>(cor.obs, <span class="at">digits =</span> <span class="dv">3</span>), <span class="st">&quot; is (&quot;</span>, <span class="fu">round</span>(<span class="fu">quantile</span>(cor.boot, <span class="fl">0.025</span>), <span class="at">digits =</span> <span class="dv">3</span>), <span class="st">&quot;, &quot;</span>, <span class="fu">round</span>(<span class="fu">quantile</span>(cor.boot, <span class="fl">0.975</span>), <span class="at">digits =</span> <span class="dv">3</span>), <span class="st">&quot;)&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
-<pre><code>## [1] &quot;The 95% confidence interval for the estimated correlation coefficient, 0.86 is (0.809, 0.898)&quot;</code></pre>
+<pre><code>## [1] &quot;The 95% confidence interval for the estimated correlation coefficient, 0.853 is (0.78, 0.905)&quot;</code></pre>
 </span>
 </details>
 <p><strong>Question: How would we conduct a permutation test for the correlation coefficient (with <span class="math inline">\(H_0: \rho = 0\)</span>)?</strong></p>
@@ -639,11 +639,11 @@ T^* = \frac{z - 0.5 \ln \left( \frac{1 + \rho_0}{1 - \rho_0} \right)}{\sqrt{1 / 
 <span id="cb485-4"><a href="week-9-lecture.html#cb485-4" aria-hidden="true" tabindex="-1"></a><span class="co"># using z as test statistic</span></span>
 <span id="cb485-5"><a href="week-9-lecture.html#cb485-5" aria-hidden="true" tabindex="-1"></a>z.obs <span class="ot">&lt;-</span> <span class="fl">0.5</span> <span class="sc">*</span> <span class="fu">log</span>((<span class="dv">1</span> <span class="sc">+</span> r.obs) <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">-</span> r.obs)) <span class="co"># note that z under the null distribution is 0</span></span>
 <span id="cb485-6"><a href="week-9-lecture.html#cb485-6" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="at">q =</span> z.obs, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="fu">sqrt</span>(<span class="dv">1</span> <span class="sc">/</span> (<span class="dv">100</span> <span class="sc">-</span> <span class="dv">3</span>)), <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
-<pre><code>## [1] 1.477283e-42</code></pre>
+<pre><code>## [1] 1.201447e-46</code></pre>
 <div class="sourceCode" id="cb487"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb487-1"><a href="week-9-lecture.html#cb487-1" aria-hidden="true" tabindex="-1"></a><span class="co"># using transformed test statistic, T*</span></span>
 <span id="cb487-2"><a href="week-9-lecture.html#cb487-2" aria-hidden="true" tabindex="-1"></a>test.stat <span class="ot">&lt;-</span> z.obs <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="dv">1</span> <span class="sc">/</span> (<span class="dv">100</span> <span class="sc">-</span> <span class="dv">3</span>))</span>
 <span id="cb487-3"><a href="week-9-lecture.html#cb487-3" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="at">q =</span> test.stat, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
-<pre><code>## [1] 1.477283e-42</code></pre>
+<pre><code>## [1] 1.201447e-46</code></pre>
 <p>To simply the notation, let us define</p>
 <p><span class="math display">\[
 \zeta_{0} = \frac{1}{2}ln\left(\frac{1+\rho_{0}}{1-\rho_{0}}\right)
@@ -916,7 +916,7 @@ Let’s start from the beginning with this dataset of the relative length of spi
 <p>Try this derivation yourself and then check your work <a href="http://seismo.berkeley.edu/~kirchner/eps_120/Toolkits/Toolkit_10.pdf">here</a>.</p>
 </div>
 <div id="assumptions-of-regression" class="section level2" number="16.8">
-<h2><span class="header-section-number">16.8</span> Assumptions of regression:</h2>
+<h2><span class="header-section-number">16.8</span> Assumptions of regression</h2>
 <p><span class="math display">\[
 Y_{i} = \beta_{0}+\beta_{1}X_{i} + \epsilon_{i} \mbox{, where } \epsilon_{i} \sim N(0,\sigma^{2})
 \]</span></p>
@@ -1034,7 +1034,12 @@ Because we square the residuals, points that are far off the regression line hav
 \sum_{i = 1}^n f(Y_i - \hat{Y_i})
 \]</span>
 Visualizing M-estimation (these are four functions, <span class="math inline">\(\rho\)</span>, that can be used to model the error, <span class="math inline">\(x\)</span>):</p>
-<p>&lt;img src=“<a href="https://upload.wikimedia.org/wikipedia/commons/c/c1/RhoFunctions.png" class="uri">https://upload.wikimedia.org/wikipedia/commons/c/c1/RhoFunctions.png</a>”; style=“max-width:500px;”&gt;</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-18"></span>
+<img src="RhoFunctions.png" alt="Possible shapes for the weighting function in robust regression. Source: Wikimedia Commons" width="50%" />
+<p class="caption">
+Figure 16.1: Possible shapes for the weighting function in robust regression. Source: Wikimedia Commons
+</p>
+</div>
 <p>We won’t get into the mathematics, because they are complex (another benefit of least squares is simpler math) but it’s an avenue you may use in the future and is good to know about.</p>
 <p>##Robust regression
 Sometimes the relationship between X and Y is not linear and cannot be made linear using a transformation of the variables. In this case, you can carry out a non-parametric test for regression. Here we will discuss Kendall’s robust line fitting method.</p>

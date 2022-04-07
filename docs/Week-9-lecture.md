@@ -92,13 +92,13 @@ Let's look at a few examples...
 <img src="Week-9-lecture_files/figure-html/unnamed-chunk-4-1.png" width="240" />
 
 ```
-## [1] 0.002143168
+## [1] -0.07396997
 ```
 
 <img src="Week-9-lecture_files/figure-html/unnamed-chunk-4-2.png" width="240" />
 
 ```
-## [1] 0.8948251
+## [1] 0.9421804
 ```
 
 ## Hypothesis testing - Pearson's *r*
@@ -192,7 +192,7 @@ cor(df$A, df$B)
 ```
 
 ```
-## [1] -0.1050972
+## [1] -0.1966706
 ```
 
 Even though *A* and *B* clearly have a strong relationship, correlation is only effective if the relationship is **linear**.
@@ -226,7 +226,7 @@ paste("The 95% confidence interval for the estimated correlation coefficient, ",
 ```
 
 ```
-## [1] "The 95% confidence interval for the estimated correlation coefficient, 0.86 is (0.809, 0.898)"
+## [1] "The 95% confidence interval for the estimated correlation coefficient, 0.853 is (0.78, 0.905)"
 ```
 </span>
 </details> 
@@ -272,7 +272,7 @@ pnorm(q = z.obs, mean = 0, sd = sqrt(1 / (100 - 3)), lower.tail = FALSE)
 ```
 
 ```
-## [1] 1.477283e-42
+## [1] 1.201447e-46
 ```
 
 ```r
@@ -282,7 +282,7 @@ pnorm(q = test.stat, lower.tail = FALSE)
 ```
 
 ```
-## [1] 1.477283e-42
+## [1] 1.201447e-46
 ```
 
 To simply the notation, let us define
@@ -644,7 +644,7 @@ $$
 
 Try this derivation yourself and then check your work [here](http://seismo.berkeley.edu/~kirchner/eps_120/Toolkits/Toolkit_10.pdf).
 
-## Assumptions of regression:
+## Assumptions of regression
 
 $$
 Y_{i} = \beta_{0}+\beta_{1}X_{i} + \epsilon_{i} \mbox{, where } \epsilon_{i} \sim N(0,\sigma^{2})
@@ -799,7 +799,10 @@ $$
 $$
 Visualizing M-estimation (these are four functions, $\rho$, that can be used to model the error, $x$):
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/RhoFunctions.png"; style="max-width:500px;">
+<div class="figure" style="text-align: center">
+<img src="RhoFunctions.png" alt="Possible shapes for the weighting function in robust regression. Source: Wikimedia Commons" width="50%" />
+<p class="caption">(\#fig:unnamed-chunk-18)Possible shapes for the weighting function in robust regression. Source: Wikimedia Commons</p>
+</div>
 
 We won't get into the mathematics, because they are complex (another benefit of least squares is simpler math) but it's an avenue you may use in the future and is good to know about.
 

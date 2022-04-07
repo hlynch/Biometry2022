@@ -568,7 +568,7 @@ $$
 
 Try this derivation yourself and then check your work [here](http://seismo.berkeley.edu/~kirchner/eps_120/Toolkits/Toolkit_10.pdf).
 
-## Assumptions of regression:
+## Assumptions of regression
 
 $$
 Y_{i} = \beta_{0}+\beta_{1}X_{i} + \epsilon_{i} \mbox{, where } \epsilon_{i} \sim N(0,\sigma^{2})
@@ -717,7 +717,9 @@ $$
 $$
 Visualizing M-estimation (these are four functions, $\rho$, that can be used to model the error, $x$):
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/RhoFunctions.png"; style="max-width:500px;">
+```{r echo=FALSE, fig.align='center', fig.cap='Possible shapes for the weighting function in robust regression. Source: Wikimedia Commons', out.width='50%'}
+knitr::include_graphics('RhoFunctions.png')
+```
 
 We won't get into the mathematics, because they are complex (another benefit of least squares is simpler math) but it's an avenue you may use in the future and is good to know about.
 
