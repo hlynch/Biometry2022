@@ -23,7 +23,7 @@ Since I prefer to think of ANOVA as just another linear model, I will show you h
 Single-factor ANOVA
 ------------
 
-Let's review the model referrred to as a single-factor ANOVA
+Let's review the model referred to as a single-factor ANOVA
 
 $$
 Y_{ij}=\mu + A_{i} + \epsilon_{ij}
@@ -165,7 +165,59 @@ This is better, but the intercept is still a little mysterious.
 
 Question: How do we interpret the intercept and the other estimates?
 
-Answer: Intercept = No degree mean / Other estimates = DIFFERENCE between the "No degree" and the other levels
+Answer: Intercept = No degree mean vs. Other estimates = DIFFERENCE between the "No degree" and the other levels
+
+Notice that the standard error of the intercept is different from the standard error of the other estimates. The estimate of the standard error for each group's mean is calculated as the estimated standard deviation ($\sigma$) divided by the square root of the sample size. This is the same formula as we learned much earlier in the course. However, here, we can get a *better* estimate of the standard deviation by pooling the data across all groups. So instead of just using the data in the No degree category to calculate the uncertainty of the No degree mean, we are using *all* the data to help us estimate our uncertainty about the No degree mean.
+
+What does this look like in practice? We just average the variances across all groups as follows:
+
+
+```r
+var.masters<-var(salaries[salaries$Education=="Masters",]$Salary)
+var.PhD<-var(salaries[salaries$Education=="PhD",]$Salary)
+var.NoDegree<-var(salaries[salaries$Education=="No degree",]$Salary)
+sigma.ave<-sqrt(mean(c(var.masters,var.PhD,var.NoDegree))) #take the mean variance, and then apply the square root
+sigma.ave
+```
+
+```
+## [1] 2.508068
+```
+
+```r
+No.degree.uncertainty<-sigma.ave/sqrt(length(salaries[salaries$Education=="No degree",]$Salary))
+No.degree.uncertainty
+```
+
+```
+## [1] 0.7240168
+```
+
+OK, so now we know how they calculated the standard error for the intercept. Why are the other standard errors larger? The reason is that when you are comparing the intercept against the number 0, then the only source of uncertainty is from the estimate of the intercept. But the other quantities represent *differences*, so the uncertainty in the *difference* arises from both quantities. Remember that variances for independent quantities add, 
+
+
+<div class="figure" style="text-align: center">
+<img src="AlgebraOfExpectations_Rule8.png" alt="Variances of independent variables add. Source: Hays, W. (1994) Statistics" width="75%" />
+<p class="caption">(\#fig:unnamed-chunk-6)Variances of independent variables add. Source: Hays, W. (1994) Statistics</p>
+</div>
+
+
+so the variance of the difference between the mean of "Masters" and the mean of "No degree" is the *sum* of the variances.
+
+
+```r
+No.degree.uncertainty<-sigma.ave/sqrt(length(salaries[salaries$Education=="No degree",]$Salary))
+No.degree.variance<-No.degree.uncertainty^2
+Masters.uncertainty<-sigma.ave/sqrt(length(salaries[salaries$Education=="Masters",]$Salary))
+Masters.variance<-Masters.uncertainty^2
+variance.of.difference<-No.degree.variance+Masters.variance
+sd.of.difference<-sqrt(variance.of.difference)
+sd.of.difference
+```
+
+```
+## [1] 1.023914
+```
 
 **<span style="color: green;">Checkpoint #1: Does this make sense?</span>**
 
@@ -215,18 +267,16 @@ summary(lm.fit2)
 
 The main results (the group means and their differences) haven't fundamentally changed, but they are now displayed in a way that makes the most sense. Note that the metrics of model fit (R2, F-statistic, and p-value for the model) have changed, and in the opposite direction as we might expect. We ran into this earlier in the semester when comparing the fit of a regression model with an intercept and the same model without an intercept. 
 
-Now the estimates represent the group means, which is easier to interpret. How do we calculate the standard errors, and why are all the standard errors the same? Recalling our discussion from Week #8, we remember that we want to use the residual variation divided by the square-root of the sample size:
+Now the estimates represent the group means, which is easier to interpret. How do we calculate the standard errors, and why are all the standard errors the same? Recalling our discussion from Week #8, we remember that we want to use the residual variation (which we can extract by using the sigma() function) divided by the square-root of the sample size:
 
 
 ```r
-2.508/sqrt(length(salaries$Salary[salaries$Education=="Masters"]))
+sigma(lm.fit2)/sqrt(length(salaries$Salary[salaries$Education=="Masters"]))
 ```
 
 ```
-## [1] 0.7239972
+## [1] 0.7240168
 ```
-
-(Side note: If anyone figures out how to extract the residual standard error directly from the object lm.fit2, let me know.)
 
 Since we have a balanced design, there are the same number of samples from each educational level, and so each educational coefficient estimate has the same standard error. In other words, when calculating the estimate standard errors, we used the mean squared residuals, which is equivalent to a pooled variance estimator, where we have pooled with within group variance from all the groups.
 
@@ -352,7 +402,7 @@ for (i in 1:1000)
 hist(q)
 ```
 
-<img src="Week-11-lab_files/figure-html/unnamed-chunk-12-1.png" width="672" />
+<img src="Week-11-lab_files/figure-html/unnamed-chunk-15-1.png" width="672" />
 
 This is a histogram of the studentized range distribution. While R does not provide a function to sample randomly from this distribution, R does provide functions for calculating the cumulative distribution, and so we can check that our simulation works by plotting the empirical distribution against that which is output by 'ptukey'.
 
@@ -362,7 +412,7 @@ plot(ecdf(q))
 lines(seq(0,5,0.01),ptukey(seq(0,5,0.01),3,33),col="red")
 ```
 
-<img src="Week-11-lab_files/figure-html/unnamed-chunk-13-1.png" width="672" />
+<img src="Week-11-lab_files/figure-html/unnamed-chunk-16-1.png" width="672" />
 
 Yeah! Our simulation correctly samples from the studentized range distribution. Now we can use this to reconstruct what R's function TukeyHSD produces.
 
@@ -505,7 +555,7 @@ Step 3: Assess normality/homogeneity of variance using a boxplot of species dive
 boxplot(DIVERSITY~ZINC, medley)
 ```
 
-<img src="Week-11-lab_files/figure-html/unnamed-chunk-19-1.png" width="672" />
+<img src="Week-11-lab_files/figure-html/unnamed-chunk-22-1.png" width="672" />
 
 Conclusions? No obvious violations of normality or homogeneity of variance (boxplots are not asymmetrical and do not vary greatly in size).
 
@@ -516,7 +566,7 @@ Step 4: Assess homogeneity of variance assumption with a table and/or plot of me
 plot(tapply(medley$DIVERSITY, medley$ZINC, mean), tapply(medley$DIVERSITY, medley$ZINC, var),pch=16,cex=2)
 ```
 
-<img src="Week-11-lab_files/figure-html/unnamed-chunk-20-1.png" width="672" />
+<img src="Week-11-lab_files/figure-html/unnamed-chunk-23-1.png" width="672" />
 
 Conclusions? No obvious relationship between mean and variance.
 
@@ -528,7 +578,7 @@ medley.aov<-aov(DIVERSITY~ZINC, medley)
 plot(medley.aov)
 ```
 
-<img src="Week-11-lab_files/figure-html/unnamed-chunk-21-1.png" width="672" /><img src="Week-11-lab_files/figure-html/unnamed-chunk-21-2.png" width="672" /><img src="Week-11-lab_files/figure-html/unnamed-chunk-21-3.png" width="672" /><img src="Week-11-lab_files/figure-html/unnamed-chunk-21-4.png" width="672" />
+<img src="Week-11-lab_files/figure-html/unnamed-chunk-24-1.png" width="672" /><img src="Week-11-lab_files/figure-html/unnamed-chunk-24-2.png" width="672" /><img src="Week-11-lab_files/figure-html/unnamed-chunk-24-3.png" width="672" /><img src="Week-11-lab_files/figure-html/unnamed-chunk-24-4.png" width="672" />
 
 Conclusions? We won't discuss this much until we get to model diagnostics, but there are no obvious violations of normality of homogeneity among the residuals (no obvious wedge shape in the residuals, Q-Q plot against a normal is approximately linear). Note that Cook's D values are meaningless in ANOVA.
 
@@ -616,7 +666,7 @@ Step 1: The data is already loaded, but we need to assess normality/homogeneity 
 boxplot(DIVERSITY ~ STREAM, medley)
 ```
 
-<img src="Week-11-lab_files/figure-html/unnamed-chunk-25-1.png" width="672" />
+<img src="Week-11-lab_files/figure-html/unnamed-chunk-28-1.png" width="672" />
 
 Step 2: We fit the ANOVA just like we already know how to do for fixed effects; this is a Model I ANOVA
 

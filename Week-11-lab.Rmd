@@ -23,7 +23,7 @@ Since I prefer to think of ANOVA as just another linear model, I will show you h
 Single-factor ANOVA
 ------------
 
-Let's review the model referrred to as a single-factor ANOVA
+Let's review the model referred to as a single-factor ANOVA
 
 $$
 Y_{ij}=\mu + A_{i} + \epsilon_{ij}
@@ -102,7 +102,41 @@ This is better, but the intercept is still a little mysterious.
 
 Question: How do we interpret the intercept and the other estimates?
 
-Answer: Intercept = No degree mean / Other estimates = DIFFERENCE between the "No degree" and the other levels
+Answer: Intercept = No degree mean vs. Other estimates = DIFFERENCE between the "No degree" and the other levels
+
+Notice that the standard error of the intercept is different from the standard error of the other estimates. The estimate of the standard error for each group's mean is calculated as the estimated standard deviation ($\sigma$) divided by the square root of the sample size. This is the same formula as we learned much earlier in the course. However, here, we can get a *better* estimate of the standard deviation by pooling the data across all groups. So instead of just using the data in the No degree category to calculate the uncertainty of the No degree mean, we are using *all* the data to help us estimate our uncertainty about the No degree mean.
+
+What does this look like in practice? We just average the variances across all groups as follows:
+
+```{r}
+var.masters<-var(salaries[salaries$Education=="Masters",]$Salary)
+var.PhD<-var(salaries[salaries$Education=="PhD",]$Salary)
+var.NoDegree<-var(salaries[salaries$Education=="No degree",]$Salary)
+sigma.ave<-sqrt(mean(c(var.masters,var.PhD,var.NoDegree))) #take the mean variance, and then apply the square root
+sigma.ave
+No.degree.uncertainty<-sigma.ave/sqrt(length(salaries[salaries$Education=="No degree",]$Salary))
+No.degree.uncertainty
+```
+
+OK, so now we know how they calculated the standard error for the intercept. Why are the other standard errors larger? The reason is that when you are comparing the intercept against the number 0, then the only source of uncertainty is from the estimate of the intercept. But the other quantities represent *differences*, so the uncertainty in the *difference* arises from both quantities. Remember that variances for independent quantities add, 
+
+
+```{r echo=FALSE, fig.align='center', fig.cap='Variances of independent variables add. Source: Hays, W. (1994) Statistics', out.width='75%'}
+knitr::include_graphics('AlgebraOfExpectations_Rule8.png')
+```
+
+
+so the variance of the difference between the mean of "Masters" and the mean of "No degree" is the *sum* of the variances.
+
+```{r}
+No.degree.uncertainty<-sigma.ave/sqrt(length(salaries[salaries$Education=="No degree",]$Salary))
+No.degree.variance<-No.degree.uncertainty^2
+Masters.uncertainty<-sigma.ave/sqrt(length(salaries[salaries$Education=="Masters",]$Salary))
+Masters.variance<-Masters.uncertainty^2
+variance.of.difference<-No.degree.variance+Masters.variance
+sd.of.difference<-sqrt(variance.of.difference)
+sd.of.difference
+```
 
 **<span style="color: green;">Checkpoint #1: Does this make sense?</span>**
 
@@ -129,13 +163,11 @@ summary(lm.fit2)
 
 The main results (the group means and their differences) haven't fundamentally changed, but they are now displayed in a way that makes the most sense. Note that the metrics of model fit (R2, F-statistic, and p-value for the model) have changed, and in the opposite direction as we might expect. We ran into this earlier in the semester when comparing the fit of a regression model with an intercept and the same model without an intercept. 
 
-Now the estimates represent the group means, which is easier to interpret. How do we calculate the standard errors, and why are all the standard errors the same? Recalling our discussion from Week #8, we remember that we want to use the residual variation divided by the square-root of the sample size:
+Now the estimates represent the group means, which is easier to interpret. How do we calculate the standard errors, and why are all the standard errors the same? Recalling our discussion from Week #8, we remember that we want to use the residual variation (which we can extract by using the sigma() function) divided by the square-root of the sample size:
 
 ```{r}
-2.508/sqrt(length(salaries$Salary[salaries$Education=="Masters"]))
+sigma(lm.fit2)/sqrt(length(salaries$Salary[salaries$Education=="Masters"]))
 ```
-
-(Side note: If anyone figures out how to extract the residual standard error directly from the object lm.fit2, let me know.)
 
 Since we have a balanced design, there are the same number of samples from each educational level, and so each educational coefficient estimate has the same standard error. In other words, when calculating the estimate standard errors, we used the mean squared residuals, which is equivalent to a pooled variance estimator, where we have pooled with within group variance from all the groups.
 
