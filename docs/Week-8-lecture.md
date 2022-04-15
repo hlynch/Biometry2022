@@ -340,18 +340,18 @@ model.matrix( ~ -1 + iris.sub$Species)
 
 ```
 ##    iris.sub$Speciessetosa iris.sub$Speciesversicolor iris.sub$Speciesvirginica
-## 1                       1                          0                         0
-## 2                       1                          0                         0
+## 1                       0                          0                         1
+## 2                       0                          0                         1
 ## 3                       0                          1                         0
-## 4                       0                          0                         1
-## 5                       1                          0                         0
-## 6                       0                          0                         1
+## 4                       0                          1                         0
+## 5                       0                          0                         1
+## 6                       0                          1                         0
 ## 7                       1                          0                         0
 ## 8                       0                          0                         1
-## 9                       1                          0                         0
+## 9                       0                          0                         1
 ## 10                      1                          0                         0
-## 11                      0                          0                         1
-## 12                      1                          0                         0
+## 11                      0                          1                         0
+## 12                      0                          1                         0
 ## attr(,"assign")
 ## [1] 1 1 1
 ## attr(,"contrasts")
@@ -371,9 +371,9 @@ dummy$coefficients
 
 ```
 ##                            Estimate Std. Error  t value     Pr(>|t|)
-## iris.sub$Speciessetosa        5.200 0.08614311 60.36467 4.736338e-13
-## iris.sub$Speciesversicolor    5.000 0.22791324 21.93817 4.010013e-09
-## iris.sub$Speciesvirginica     6.375 0.11395662 55.94234 9.377845e-13
+## iris.sub$Speciessetosa         5.35  0.3947573 13.55263 2.714184e-07
+## iris.sub$Speciesversicolor     6.00  0.2496664 24.03206 1.787621e-09
+## iris.sub$Speciesvirginica      6.50  0.2496664 26.03474 8.779193e-10
 ```
 
 ```r
@@ -652,18 +652,18 @@ model.matrix(~ iris.sub$Species)
 
 ```
 ##    (Intercept) iris.sub$Speciesversicolor iris.sub$Speciesvirginica
-## 1            1                          0                         0
-## 2            1                          0                         0
+## 1            1                          0                         1
+## 2            1                          0                         1
 ## 3            1                          1                         0
-## 4            1                          0                         1
-## 5            1                          0                         0
-## 6            1                          0                         1
+## 4            1                          1                         0
+## 5            1                          0                         1
+## 6            1                          1                         0
 ## 7            1                          0                         0
 ## 8            1                          0                         1
-## 9            1                          0                         0
+## 9            1                          0                         1
 ## 10           1                          0                         0
-## 11           1                          0                         1
-## 12           1                          0                         0
+## 11           1                          1                         0
+## 12           1                          1                         0
 ## attr(,"assign")
 ## [1] 0 1 1
 ## attr(,"contrasts")
@@ -678,10 +678,10 @@ treatment$coefficients
 ```
 
 ```
-##                            Estimate Std. Error    t value     Pr(>|t|)
-## (Intercept)                   5.200 0.08614311 60.3646672 4.736338e-13
-## iris.sub$Speciesversicolor   -0.200 0.24364950 -0.8208513 4.329346e-01
-## iris.sub$Speciesvirginica     1.175 0.14285218  8.2252856 1.771833e-05
+##                            Estimate Std. Error   t value     Pr(>|t|)
+## (Intercept)                    5.35  0.3947573 13.552631 2.714184e-07
+## iris.sub$Speciesversicolor     0.65  0.4670831  1.391615 1.974714e-01
+## iris.sub$Speciesvirginica      1.15  0.4670831  2.462088 3.603497e-02
 ```
 
 In this case, you can see that the model is estimating the mean of the first group (setosa) and then the difference between the second and first group and the difference between the third and first groups. This allows you to test hypotheses about the differences, which is often more meaningful than testing hypotheses about the group means themselves.
@@ -738,18 +738,18 @@ model.matrix(~ iris.sub$Species)
 
 ```
 ##    (Intercept) iris.sub$Species1 iris.sub$Species2
-## 1            1                -1                -1
-## 2            1                -1                -1
+## 1            1                 0                 2
+## 2            1                 0                 2
 ## 3            1                 1                -1
-## 4            1                 0                 2
-## 5            1                -1                -1
-## 6            1                 0                 2
+## 4            1                 1                -1
+## 5            1                 0                 2
+## 6            1                 1                -1
 ## 7            1                -1                -1
 ## 8            1                 0                 2
-## 9            1                -1                -1
+## 9            1                 0                 2
 ## 10           1                -1                -1
-## 11           1                 0                 2
-## 12           1                -1                -1
+## 11           1                 1                -1
+## 12           1                 1                -1
 ## attr(,"assign")
 ## [1] 0 1 1
 ## attr(,"contrasts")
@@ -764,10 +764,10 @@ helmert$coefficients
 ```
 
 ```
-##                   Estimate Std. Error    t value     Pr(>|t|)
-## (Intercept)          5.525 0.08966059 61.6212773 3.936303e-13
-## iris.sub$Species1   -0.100 0.12182475 -0.8208513 4.329346e-01
-## iris.sub$Species2    0.425 0.05560514  7.6431788 3.181060e-05
+##                   Estimate Std. Error   t value     Pr(>|t|)
+## (Intercept)          5.950  0.1765408 33.703250 8.786232e-11
+## iris.sub$Species1    0.325  0.2335416  1.391615 1.974714e-01
+## iris.sub$Species2    0.275  0.1139566  2.413199 3.904367e-02
 ```
 
 Sum-to-zero contrasts
@@ -825,18 +825,18 @@ model.matrix(~ iris.sub$Species)
 
 ```
 ##    (Intercept) iris.sub$Species1 iris.sub$Species2
-## 1            1                 1                 0
-## 2            1                 1                 0
+## 1            1                -1                -1
+## 2            1                -1                -1
 ## 3            1                 0                 1
-## 4            1                -1                -1
-## 5            1                 1                 0
-## 6            1                -1                -1
+## 4            1                 0                 1
+## 5            1                -1                -1
+## 6            1                 0                 1
 ## 7            1                 1                 0
 ## 8            1                -1                -1
-## 9            1                 1                 0
+## 9            1                -1                -1
 ## 10           1                 1                 0
-## 11           1                -1                -1
-## 12           1                 1                 0
+## 11           1                 0                 1
+## 12           1                 0                 1
 ## attr(,"assign")
 ## [1] 0 1 1
 ## attr(,"contrasts")
@@ -851,10 +851,10 @@ sumtozero$coefficients
 ```
 
 ```
-##                   Estimate Std. Error   t value     Pr(>|t|)
-## (Intercept)          5.525 0.08966059 61.621277 3.936303e-13
-## iris.sub$Species1   -0.325 0.10253081 -3.169779 1.137002e-02
-## iris.sub$Species2   -0.525 0.15922888 -3.297141 9.272102e-03
+##                   Estimate Std. Error    t value     Pr(>|t|)
+## (Intercept)           5.95  0.1765408 33.7032505 8.786232e-11
+## iris.sub$Species1    -0.60  0.2882900 -2.0812378 6.713035e-02
+## iris.sub$Species2     0.05  0.2279132  0.2193817 8.312474e-01
 ```
 
 There is one final "off-the-shelf" contrast that we will learn, and that is polynomial contrasts.

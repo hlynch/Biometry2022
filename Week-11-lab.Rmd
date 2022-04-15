@@ -121,7 +121,7 @@ No.degree.uncertainty
 OK, so now we know how they calculated the standard error for the intercept. Why are the other standard errors larger? The reason is that when you are comparing the intercept against the number 0, then the only source of uncertainty is from the estimate of the intercept. But the other quantities represent *differences*, so the uncertainty in the *difference* arises from both quantities. Remember that variances for independent quantities add, 
 
 
-```{r echo=FALSE, fig.align='center', fig.cap='Variances of independent variables add. Source: Hays, W. (1994) Statistics', out.width='75%'}
+```{r echo=FALSE, fig.align='center', fig.cap='Variances of independent variables add. Source: Hays, W. (1994) Statistics', out.width='100%'}
 knitr::include_graphics('AlgebraOfExpectations_Rule8.png')
 ```
 
@@ -137,6 +137,8 @@ variance.of.difference<-No.degree.variance+Masters.variance
 sd.of.difference<-sqrt(variance.of.difference)
 sd.of.difference
 ```
+
+So this is the same as what the summary of the regression fit has provided for the uncertainty of the *difference* between the two groups.
 
 **<span style="color: green;">Checkpoint #1: Does this make sense?</span>**
 

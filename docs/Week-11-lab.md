@@ -197,7 +197,7 @@ OK, so now we know how they calculated the standard error for the intercept. Why
 
 
 <div class="figure" style="text-align: center">
-<img src="AlgebraOfExpectations_Rule8.png" alt="Variances of independent variables add. Source: Hays, W. (1994) Statistics" width="75%" />
+<img src="AlgebraOfExpectations_Rule8.png" alt="Variances of independent variables add. Source: Hays, W. (1994) Statistics" width="100%" />
 <p class="caption">(\#fig:unnamed-chunk-6)Variances of independent variables add. Source: Hays, W. (1994) Statistics</p>
 </div>
 
@@ -218,6 +218,8 @@ sd.of.difference
 ```
 ## [1] 1.023914
 ```
+
+So this is the same as what the summary of the regression fit has provided for the uncertainty of the *difference* between the two groups.
 
 **<span style="color: green;">Checkpoint #1: Does this make sense?</span>**
 
