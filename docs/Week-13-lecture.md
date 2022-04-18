@@ -158,7 +158,7 @@ durbinWatsonTest(web.fit)
 
 ```
 ##  lag Autocorrelation D-W Statistic p-value
-##    1     -0.03369874      2.059546    0.94
+##    1     -0.03369874      2.059546    0.93
 ##  Alternative hypothesis: rho != 0
 ```
 

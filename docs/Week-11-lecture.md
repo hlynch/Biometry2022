@@ -374,7 +374,7 @@ $$
 <details>
   <summary>Click for Answer</summary>
 <span style="color: blueviolet;">
-We estimated the group means ("uses up" $a$ degrees of freedom).  We have $a \times n$ data points. So, for $\text{SS}_{\text{within groups}}$ we have $(a \times n) - a$ degrees of freedom.
+We estimated the group means ("uses up" $a$ degrees of freedom).  We have $a \times n$ data points. So, for $\text{SS}_{\text{within groups}}$ we have $(a \times n) - a$ degrees of freedom. Importantly, though, note that if the groups have different numbers of data points, you need to add up the numbers of degrees of freedom within each group. In other words, if you have three groups (a=3) that have different numbers in each group, the degrees of freedom "within groups" is $(n_{1}-1)+(n_{2}-1)+(n_{3}-1)$, which does not simplify to $a*n$ since the n's are all different. We will discuss such unbalanced designs in more depth next week.
 </span>
 </details> 
 

@@ -52,11 +52,11 @@ SS_{total} = \sum^{a}_{i=1}\sum^{n}_{j=1}(Y_{ij}-\bar{Y})^{2}
 $$
 
 $$
-SS_{among groups} = \sum^{a}_{i=1}\sum^{n}_{j=1}(\bar{Y}_{i}-\bar{Y})^{2}
+SS_{\text{among groups}} = \sum^{a}_{i=1}\sum^{n}_{j=1}(\bar{Y}_{i}-\bar{Y})^{2}
 $$
 
 $$
-SS_{within groups} = \sum^{a}_{i=1}\sum^{n}_{j=1}(Y_{ij}-\bar{Y}_{i})^{2}
+SS_{\text{within groups}} = \sum^{a}_{i=1}\sum^{n}_{j=1}(Y_{ij}-\bar{Y}_{i})^{2}
 $$
 
 We will start by doing a simple one-way ANOVA. You should already have downloaded some data from the web relating "Salary" to three different kinds of "Education" and "Gender". These data relate to starting salaries for those leaving college with an English degree.
