@@ -5,7 +5,7 @@ Week 13 Lecture
 
 ## Week 13 Readings
 
-The topic covered this week is huge, and here I provide a number of readings that might be helpful to your understanding: [Aho et al. (2014)](https://github.com/hlynch/Biometry2022/tree/master/_data/Aho_etal_2014.pdf), [Burnham et al. (2011)](https://github.com/hlynch/Biometry2022/tree/master/_data/Burnham_etal_2014.pdf), [Fox (2002)](https://github.com/hlynch/Biometry2022/tree/master/_data/Fox_Chapter6.pdf), [Grueber et al. (2011)](https://github.com/hlynch/Biometry2022/tree/master/_data/Grueber_etal_2011.pdf), [Hutto (2012)](https://github.com/hlynch/Biometry2022/tree/master/_data/Hutto_2012.pdf), [Johnson and Omland (2004)](https://github.com/hlynch/Biometry2022/tree/master/_data/Johnson_Omland_2004.pdf), [Nakagawa and Cuthill (2007)](https://github.com/hlynch/Biometry2022/tree/master/_data/Nakagawa_Cuthill_2007.pdf), [Tong (2019)](https://github.com/hlynch/Biometry2022/tree/master/_data/Tong_2019.pdf), and [Zuur et al. (2010)](https://github.com/hlynch/Biometry2022/tree/master/_data/Zuur_etal_2010.pdf).
+The topic covered this week is huge, and here I provide a number of readings that might be helpful to your understanding: [Aho et al. (2014)](https://github.com/hlynch/Biometry2022/tree/master/_data/Aho_etal_2014.pdf), [Burnham et al. (2011)](https://github.com/hlynch/Biometry2022/tree/master/_data/Burnham_etal_2011.pdf), [Fox (2002)](https://github.com/hlynch/Biometry2022/tree/master/_data/Fox_Chapter6.pdf), [Grueber et al. (2011)](https://github.com/hlynch/Biometry2022/tree/master/_data/Grueber_etal_2011.pdf), [Hutto (2012)](https://github.com/hlynch/Biometry2022/tree/master/_data/Hutto_2012.pdf), [Johnson and Omland (2004)](https://github.com/hlynch/Biometry2022/tree/master/_data/Johnson_Omland_2004.pdf), [Nakagawa and Cuthill (2007)](https://github.com/hlynch/Biometry2022/tree/master/_data/Nakagawa_Cuthill_2007.pdf), [Tong (2019)](https://github.com/hlynch/Biometry2022/tree/master/_data/Tong_2019.pdf), and [Zuur et al. (2010)](https://github.com/hlynch/Biometry2022/tree/master/_data/Zuur_etal_2010.pdf).
 
 ## Model criticism
 
@@ -158,7 +158,7 @@ durbinWatsonTest(web.fit)
 
 ```
 ##  lag Autocorrelation D-W Statistic p-value
-##    1     -0.03369874      2.059546    0.93
+##    1     -0.03369874      2.059546   0.954
 ##  Alternative hypothesis: rho != 0
 ```
 
