@@ -9,10 +9,12 @@ In lab we'll go through
 
 2. Model criticism
 
+We will need a series of packages for today's lab, some of which we have not used before: MASS, lmtest, MuMIn, car, and gvlma.
+
 Part 1: Model selection / model comparison
 ------------------------
 
-There is a frog dataset on the distribution of the Southern Corroboree frog that we are going to attach. 
+There is a frog dataset on the distribution of the Southern Corroboree frog that we are going to attach. More information on the definition of the covariates in this dataset can be found [here](https://www.key2stats.com/data-set/view/235).
 
 
 ```r
