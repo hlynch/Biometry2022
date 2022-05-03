@@ -59,9 +59,11 @@ Omnibus tests are very useful to keep familywise error rates down while testing 
 
 So, our null and alternative hypothesis are:
 
-$H_0$: The groups come from the same population
+$H_0$: The groups have the same mean value
 
-$H_A$: At least one of the groups comes from a different population
+$H_A$: At least one of the groups comes from a population with a different mean
+
+Note that often the null and alternative hypotheses of ANOVA are stated in terms of groups coming from the same or different populations. However, I have carefully worded the null and alternative hypotheses so as to emphasize that ANOVA is a test of means. Because ANOVA assumes that the distributions within each group are Gaussian and have the same variance, if they have the same mean, they must come from the same population (remember: the Gaussian has only two parameters, mean and variance). However, if your data do not exactly meet the assumptions, ANOVA may not flag the groups as coming from different populations if the means are the same. In other words, groups that have the same mean but different variances (a violation of the ANOVA assumptions) may not yield a statistically significant result.
 
 An ANOVA with one categorical predictor with two levels is identical to a two sample *t*-test.
 
