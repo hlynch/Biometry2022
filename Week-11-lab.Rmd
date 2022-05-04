@@ -20,7 +20,7 @@ Option #2: The 'anova' command takes as input the result of the 'lm' function, a
 
 Since I prefer to think of ANOVA as just another linear model, I will show you how to use the 'anova' command following model fit by 'lm'. There is no reason to think 'lm' is only used for regression and 'aov' for ANOVA. Both are linear models and should be fit using 'lm'. The 'anova' command simply outputs the results of the model fit in the format of an ANOVA table.
 
-Single-factor ANOVA
+Single-factor ANOVA in R
 ------------
 
 Let's review the model referred to as a single-factor ANOVA

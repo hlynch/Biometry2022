@@ -138,7 +138,8 @@ Linear modeling in R occurs primarily through two functions 'lm' and 'glm'. The 
 Before working with real data, let's play around with a simulated dataset, so you can see how the values used to simulate the data are reflected in the parameter estimates themselves.
 
 ```{r}
-X<-seq(1,30) #a stand in for some covariate
+n<-30
+X<-seq(1,n) #a stand in for some covariate
 value<-c()
 intercept<-0.15
 slope<--2.2
@@ -151,7 +152,43 @@ fit<-lm(value~X)
 summary(fit)
 ```
 
-Copy this script into R and r-run it several times. Notice how the estimates for slope and intercept bounce around, but they should be correct *on average* and also the scale of variation from one run to the next should make sense given the estimate of the standard error. (Their standard deviation should be the standard error.) Notice also how the residual standard error is equal (within sampling error) to the sigma that you put into the model, and that as you increase sigma, the R2 goes down because now you are increasing the variation that is *not* explained by the covariate. Try changing the number of samples drawn, either by extending the vector of the covariates or by drawing multiple times for each value (you will have to modify the code to make this latter change work). Notice how the standard errors on the intercept and slope coefficients gets smaller as the data set gets larger but the estimate for sigma does not. The parameter sigma is a property of the underlying population, not a property of the sample drawn, so it does not get smaller as you increase the number of samples in the dataset. (If this does not make sense, ask me!)
+Copy this script into R and r-run it several times. Notice how the estimates for slope and intercept bounce around, but they should be correct *on average* and also the scale of variation from one run to the next should make sense given the estimate of the standard error. (Their standard deviation should be the standard error.) Notice also that as you increase sigma, the R2 goes down because now you are increasing the variation that is *not* explained by the covariate. Try changing the number of samples drawn, either by extending the vector of the covariates or by drawing multiple times for each value (you will have to modify the code to make this latter change work). Notice how the standard errors on the intercept and slope coefficients gets smaller as the data set gets larger but the estimate for sigma does not. The parameter sigma is a property of the underlying population, not a property of the sample drawn, so it does not get smaller as you increase the number of samples in the dataset. (If this does not make sense, ask me!)
+
+We can use this simple model to define some common (and often confusing) terms used in regression (and later, ANOVA), which will require using the function "residuals" to pull out the difference between each point and the best-fit line.
+
+The *mean squared error* is 
+
+```{r}
+mean(residuals(fit)^2)
+```
+
+while the *root mean squared error* is
+
+```{r}
+sqrt(mean(residuals(fit)^2))
+```
+
+which is just the square-root of the mean squared error above.
+
+The *residual sum of squares* is
+
+```{r}
+sum(residuals(fit)^2)
+```
+
+and the *residual standard error* is
+
+```{r}
+sqrt(sum(residuals(fit)^2)/(n-2))
+```
+
+This last term is the most confusing at first, but the residual standard error is taking the data you have as a sample from the larger population and trying to estimate the standard error from the larger population. So it takes the residual sum of squares, divides that by the degrees of freedom (we have 30 data points, we lost 2 degrees of freedom, so we are left with 28 degrees of freedom for the estimation of the residual standard error) and then takes the square root. We can think of the mean squared error as being the total variance divided by the sample size but this underestimates the population variance (for the same reason that when calculating tghe sample variance we have to divide by n-1), so in this case
+
+```{r}
+mean(residuals(fit)^2)*(n/(n-2))
+```
+
+is our estimate of what the true variance is, which should come very close to what we used to generate the data ($\sigma=10$ so $\sigma^{2}=100$).
 
 **Fitting real data**
 
