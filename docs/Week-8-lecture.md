@@ -186,7 +186,7 @@ and then we would use MLE (or other methods) to estimate the two parameters of t
 $$
 Y = \mu + \epsilon \mbox{ where } \epsilon \sim N(0,\sigma^{2}) 
 $$
-Note that the equation on the left has an equal sign, since Y is strictly equal to the sum of $\mu$ and $\epsilon$ and it is $\epsilon$ that is drawn from a statistical distribution. In essence, we have decomposed Y into a component that is fixed ($\mu$) and a component that is stochastic ($\epsilon$). We read this equation as "Y is modeled as having a mean $\mu$ and a random error that is Normally distributed".
+Note that the equation on the left has an equal sign, since Y is strictly equal to the sum of $\mu$ and $\epsilon$ and it is $\epsilon$ that is drawn from a statistical distribution. As the semester proceeds, we will spend a lot of time thinking about the $\epsilon$, which is the *residual* representing the difference between the actual response value and what is predicted by the model ($\mu$ in this case). In essence, we have decomposed Y into a component that is fixed ($\mu$) and a component that is stochastic ($\epsilon$). We read this equation as "Y is modeled as having a mean $\mu$ and a random error that is Normally distributed".
 
 This illustrates nicely the general format of a linear model:
 
@@ -222,7 +222,57 @@ When the covariates are continuous (the first case), we call this regression. Wh
 
 In this class, we are not defining linear models as models that can be described by a line. Instead, we define linear models as models in which the parameters can be arranged in a linear combination, and no parameter is a multiplier, divisor, or exponent to any other parameter. For example, $Y = \beta_0 + \beta_1X + \beta_2X^2 + \epsilon \text{, } \epsilon \sim N(0, \sigma^2)$, is a linear model because we can create a new variable $Z=X^{2}$, which makes it more obvious that Y is a linear function of X and this new variable Z. $Y = \beta_0 + \beta_1 X + \beta_1^2 X$ is also a linear model. An example of a nonlinearizable model is $Y = \frac{\beta_1 + \beta_2 X}{\beta_3 + \beta_4 X}$.
 
-Linear models can be represented as a matrix equation, which we will illustrate first with an example of a linear model with a single continuous covariate.
+In this class, we will cover a suite of different linear models. Here I introduce them all briefly as a roadmap for the rest of the semester. 
+
+Variables that are best described as coming from a Gaussian distribution can be modelled by a model of the type introduced just above. Here I just re-use the simple example above where the mean $\mu$ is a function of a covariate called $Age$.
+
+$$
+Y \sim N(\mu,\sigma^{2}) \\
+\mu = \beta_{0}+\beta_{1}Age
+$$
+
+However, let's say $Y$ follows a different distribution, such as a Binomial. In that case the model would look like
+
+$$
+Y \sim Binom(n,p) \\
+logit(p) = \beta_{0}+\beta_{1}Age
+$$
+In this case, the parameter influenced by $Age$ is the probability $p$ and here we have to transform the parameter using a function called the logit() function that we will be introduced to formally in Week 10. But mathematically, all we care about now is that some function of the parameter has a linear relationship to $Age$, just like before.
+
+What if $Y$ is best modelled as a Poisson distributed variable? In that case, we have
+
+$$
+Y \sim Pois(\lambda) \\
+log(\lambda) = \beta_{0}+\beta_{1}Age
+$$
+
+where it is the parameter $\lambda$ (actually, the log of $\lambda$, stay tuned for more details in Week 10) that is linearly related to the covariate.
+
+We can, in fact, write down any number of models like this, for example maybe the data are Beta distributed and we want $Age$ to control the $\alpha$ parameter.
+
+$$
+Y \sim Beta(\alpha,\beta) \\
+f(\alpha) = \beta_{0}+\beta_{1}Age
+$$
+where f() is some mathematical function. Maybe we think the $\beta$ parameter is control by some other covariate, say Weight
+
+$$
+Y \sim Beta(\alpha,\beta) \\
+f(\alpha) = \beta_{0}+\beta_{1}Age \\
+g(\beta) = \beta_{2}+\beta_{3}Weight
+$$
+where f() and g() are some functions that transform the parameter so it is linearly related to the covariates.
+
+The point is that all linear modelling takes this general form. You decide on the best distribution to describe the data, and then you build detail into the model by finding covariates that you think describe variation in the parameters. These covariates allow each response to be modelled by a distribution that is tailored for it, accounting for whatever covariates you think describe why some data points $Y$ are larger than other data points.
+
+Linear regression and all flavors of ANOVA deal with the model of the basic type introduced first:
+
+$$
+Y \sim N(\mu,\sigma^{2}) \\
+\mu = \mbox{covariates added together linearly}
+$$
+All the other models get lumped into "Generalized Linear Models" and we will discuss that in Week 10.
+
 
 Linear models | example with continuous covariate
 ---------------
@@ -340,18 +390,18 @@ model.matrix( ~ -1 + iris.sub$Species)
 
 ```
 ##    iris.sub$Speciessetosa iris.sub$Speciesversicolor iris.sub$Speciesvirginica
-## 1                       1                          0                         0
-## 2                       0                          0                         1
-## 3                       0                          1                         0
-## 4                       1                          0                         0
+## 1                       0                          0                         1
+## 2                       0                          1                         0
+## 3                       0                          0                         1
+## 4                       0                          1                         0
 ## 5                       0                          1                         0
 ## 6                       0                          1                         0
-## 7                       0                          1                         0
+## 7                       0                          0                         1
 ## 8                       1                          0                         0
 ## 9                       1                          0                         0
-## 10                      0                          1                         0
+## 10                      1                          0                         0
 ## 11                      0                          1                         0
-## 12                      1                          0                         0
+## 12                      0                          0                         1
 ## attr(,"assign")
 ## [1] 1 1 1
 ## attr(,"contrasts")
@@ -371,9 +421,9 @@ dummy$coefficients
 
 ```
 ##                            Estimate Std. Error  t value     Pr(>|t|)
-## iris.sub$Speciessetosa     4.960000  0.2022283 24.52673 1.491856e-09
-## iris.sub$Speciesversicolor 5.916667  0.1846084 32.04983 1.377017e-10
-## iris.sub$Speciesvirginica  7.700000  0.4521963 17.02800 3.733167e-08
+## iris.sub$Speciessetosa     4.866667  0.2868841 16.96388 3.858507e-08
+## iris.sub$Speciesversicolor 6.120000  0.2222194 27.54034 5.323376e-10
+## iris.sub$Speciesvirginica  6.625000  0.2484489 26.66544 7.095495e-10
 ```
 
 ```r
@@ -652,18 +702,18 @@ model.matrix(~ iris.sub$Species)
 
 ```
 ##    (Intercept) iris.sub$Speciesversicolor iris.sub$Speciesvirginica
-## 1            1                          0                         0
-## 2            1                          0                         1
-## 3            1                          1                         0
-## 4            1                          0                         0
+## 1            1                          0                         1
+## 2            1                          1                         0
+## 3            1                          0                         1
+## 4            1                          1                         0
 ## 5            1                          1                         0
 ## 6            1                          1                         0
-## 7            1                          1                         0
+## 7            1                          0                         1
 ## 8            1                          0                         0
 ## 9            1                          0                         0
-## 10           1                          1                         0
+## 10           1                          0                         0
 ## 11           1                          1                         0
-## 12           1                          0                         0
+## 12           1                          0                         1
 ## attr(,"assign")
 ## [1] 0 1 1
 ## attr(,"contrasts")
@@ -678,10 +728,10 @@ treatment$coefficients
 ```
 
 ```
-##                             Estimate Std. Error   t value     Pr(>|t|)
-## (Intercept)                4.9600000  0.2022283 24.526732 1.491856e-09
-## iris.sub$Speciesversicolor 0.9566667  0.2738184  3.493799 6.789432e-03
-## iris.sub$Speciesvirginica  2.7400000  0.4953562  5.531373 3.650862e-04
+##                            Estimate Std. Error   t value     Pr(>|t|)
+## (Intercept)                4.866667  0.2868841 16.963879 3.858507e-08
+## iris.sub$Speciesversicolor 1.253333  0.3628828  3.453824 7.230937e-03
+## iris.sub$Speciesvirginica  1.758333  0.3795120  4.633144 1.231172e-03
 ```
 
 In this case, you can see that the model is estimating the mean of the first group (setosa) and then the difference between the second and first group and the difference between the third and first groups. This allows you to test hypotheses about the differences, which is often more meaningful than testing hypotheses about the group means themselves.
@@ -738,18 +788,18 @@ model.matrix(~ iris.sub$Species)
 
 ```
 ##    (Intercept) iris.sub$Species1 iris.sub$Species2
-## 1            1                -1                -1
-## 2            1                 0                 2
-## 3            1                 1                -1
-## 4            1                -1                -1
+## 1            1                 0                 2
+## 2            1                 1                -1
+## 3            1                 0                 2
+## 4            1                 1                -1
 ## 5            1                 1                -1
 ## 6            1                 1                -1
-## 7            1                 1                -1
+## 7            1                 0                 2
 ## 8            1                -1                -1
 ## 9            1                -1                -1
-## 10           1                 1                -1
+## 10           1                -1                -1
 ## 11           1                 1                -1
-## 12           1                -1                -1
+## 12           1                 0                 2
 ## attr(,"assign")
 ## [1] 0 1 1
 ## attr(,"contrasts")
@@ -765,9 +815,9 @@ helmert$coefficients
 
 ```
 ##                    Estimate Std. Error   t value     Pr(>|t|)
-## (Intercept)       6.1922222  0.1762126 35.140626 6.048991e-11
-## iris.sub$Species1 0.4783333  0.1369092  3.493799 6.789432e-03
-## iris.sub$Species2 0.7538889  0.1574892  4.786925 9.916413e-04
+## (Intercept)       5.8705556  0.1465950 40.046088 1.878827e-11
+## iris.sub$Species1 0.6266667  0.1814414  3.453824 7.230937e-03
+## iris.sub$Species2 0.3772222  0.1025496  3.678436 5.087801e-03
 ```
 
 Sum-to-zero contrasts
@@ -825,18 +875,18 @@ model.matrix(~ iris.sub$Species)
 
 ```
 ##    (Intercept) iris.sub$Species1 iris.sub$Species2
-## 1            1                 1                 0
-## 2            1                -1                -1
-## 3            1                 0                 1
-## 4            1                 1                 0
+## 1            1                -1                -1
+## 2            1                 0                 1
+## 3            1                -1                -1
+## 4            1                 0                 1
 ## 5            1                 0                 1
 ## 6            1                 0                 1
-## 7            1                 0                 1
+## 7            1                -1                -1
 ## 8            1                 1                 0
 ## 9            1                 1                 0
-## 10           1                 0                 1
+## 10           1                 1                 0
 ## 11           1                 0                 1
-## 12           1                 1                 0
+## 12           1                -1                -1
 ## attr(,"assign")
 ## [1] 0 1 1
 ## attr(,"contrasts")
@@ -852,9 +902,9 @@ sumtozero$coefficients
 
 ```
 ##                     Estimate Std. Error   t value     Pr(>|t|)
-## (Intercept)        6.1922222  0.1762126 35.140626 6.048991e-11
-## iris.sub$Species1 -1.2322222  0.2113835 -5.829320 2.501298e-04
-## iris.sub$Species2 -0.2755556  0.2059392 -1.338043 2.137045e-01
+## (Intercept)        5.8705556  0.1465950 40.046088 1.878827e-11
+## iris.sub$Species1 -1.0038889  0.2211883 -4.538617 1.408700e-03
+## iris.sub$Species2  0.2494444  0.1948091  1.280456 2.323986e-01
 ```
 
 There is one final "off-the-shelf" contrast that we will learn, and that is polynomial contrasts.

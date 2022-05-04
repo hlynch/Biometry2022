@@ -621,7 +621,7 @@ and then we would use MLE (or other methods) to estimate the two parameters of t
 <p><span class="math display">\[
 Y = \mu + \epsilon \mbox{ where } \epsilon \sim N(0,\sigma^{2}) 
 \]</span>
-Note that the equation on the left has an equal sign, since Y is strictly equal to the sum of <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\epsilon\)</span> and it is <span class="math inline">\(\epsilon\)</span> that is drawn from a statistical distribution. In essence, we have decomposed Y into a component that is fixed (<span class="math inline">\(\mu\)</span>) and a component that is stochastic (<span class="math inline">\(\epsilon\)</span>). We read this equation as “Y is modeled as having a mean <span class="math inline">\(\mu\)</span> and a random error that is Normally distributed.”</p>
+Note that the equation on the left has an equal sign, since Y is strictly equal to the sum of <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\epsilon\)</span> and it is <span class="math inline">\(\epsilon\)</span> that is drawn from a statistical distribution. As the semester proceeds, we will spend a lot of time thinking about the <span class="math inline">\(\epsilon\)</span>, which is the <em>residual</em> representing the difference between the actual response value and what is predicted by the model (<span class="math inline">\(\mu\)</span> in this case). In essence, we have decomposed Y into a component that is fixed (<span class="math inline">\(\mu\)</span>) and a component that is stochastic (<span class="math inline">\(\epsilon\)</span>). We read this equation as “Y is modeled as having a mean <span class="math inline">\(\mu\)</span> and a random error that is Normally distributed.”</p>
 <p>This illustrates nicely the general format of a linear model:</p>
 <p>Response = Deterministic function + Stochastic function</p>
 <p>Some authors will write this as:</p>
@@ -643,7 +643,43 @@ Y = \mu_{i} + \epsilon \mbox{ where } \epsilon \sim N(0,\sigma^{2})
 where each group has its own <span class="math inline">\(\mu\)</span>:<span class="math inline">\(\mu_{1}\)</span>,<span class="math inline">\(\mu_{2}\)</span>,…,<span class="math inline">\(\mu_{n}\)</span>.</p>
 <p>When the covariates are continuous (the first case), we call this regression. When the covariates represent discrete groups or categories (the second case), we call this ANOVA. But both of these are simply different examples of linear modeling, which is it itself just a special case of fitting distributions, which is what we have been doing all along.</p>
 <p>In this class, we are not defining linear models as models that can be described by a line. Instead, we define linear models as models in which the parameters can be arranged in a linear combination, and no parameter is a multiplier, divisor, or exponent to any other parameter. For example, <span class="math inline">\(Y = \beta_0 + \beta_1X + \beta_2X^2 + \epsilon \text{, } \epsilon \sim N(0, \sigma^2)\)</span>, is a linear model because we can create a new variable <span class="math inline">\(Z=X^{2}\)</span>, which makes it more obvious that Y is a linear function of X and this new variable Z. <span class="math inline">\(Y = \beta_0 + \beta_1 X + \beta_1^2 X\)</span> is also a linear model. An example of a nonlinearizable model is <span class="math inline">\(Y = \frac{\beta_1 + \beta_2 X}{\beta_3 + \beta_4 X}\)</span>.</p>
-<p>Linear models can be represented as a matrix equation, which we will illustrate first with an example of a linear model with a single continuous covariate.</p>
+<p>In this class, we will cover a suite of different linear models. Here I introduce them all briefly as a roadmap for the rest of the semester.</p>
+<p>Variables that are best described as coming from a Gaussian distribution can be modelled by a model of the type introduced just above. Here I just re-use the simple example above where the mean <span class="math inline">\(\mu\)</span> is a function of a covariate called <span class="math inline">\(Age\)</span>.</p>
+<p><span class="math display">\[
+Y \sim N(\mu,\sigma^{2}) \\
+\mu = \beta_{0}+\beta_{1}Age
+\]</span></p>
+<p>However, let’s say <span class="math inline">\(Y\)</span> follows a different distribution, such as a Binomial. In that case the model would look like</p>
+<p><span class="math display">\[
+Y \sim Binom(n,p) \\
+logit(p) = \beta_{0}+\beta_{1}Age
+\]</span>
+In this case, the parameter influenced by <span class="math inline">\(Age\)</span> is the probability <span class="math inline">\(p\)</span> and here we have to transform the parameter using a function called the logit() function that we will be introduced to formally in Week 10. But mathematically, all we care about now is that some function of the parameter has a linear relationship to <span class="math inline">\(Age\)</span>, just like before.</p>
+<p>What if <span class="math inline">\(Y\)</span> is best modelled as a Poisson distributed variable? In that case, we have</p>
+<p><span class="math display">\[
+Y \sim Pois(\lambda) \\
+log(\lambda) = \beta_{0}+\beta_{1}Age
+\]</span></p>
+<p>where it is the parameter <span class="math inline">\(\lambda\)</span> (actually, the log of <span class="math inline">\(\lambda\)</span>, stay tuned for more details in Week 10) that is linearly related to the covariate.</p>
+<p>We can, in fact, write down any number of models like this, for example maybe the data are Beta distributed and we want <span class="math inline">\(Age\)</span> to control the <span class="math inline">\(\alpha\)</span> parameter.</p>
+<p><span class="math display">\[
+Y \sim Beta(\alpha,\beta) \\
+f(\alpha) = \beta_{0}+\beta_{1}Age
+\]</span>
+where f() is some mathematical function. Maybe we think the <span class="math inline">\(\beta\)</span> parameter is control by some other covariate, say Weight</p>
+<p><span class="math display">\[
+Y \sim Beta(\alpha,\beta) \\
+f(\alpha) = \beta_{0}+\beta_{1}Age \\
+g(\beta) = \beta_{2}+\beta_{3}Weight
+\]</span>
+where f() and g() are some functions that transform the parameter so it is linearly related to the covariates.</p>
+<p>The point is that all linear modelling takes this general form. You decide on the best distribution to describe the data, and then you build detail into the model by finding covariates that you think describe variation in the parameters. These covariates allow each response to be modelled by a distribution that is tailored for it, accounting for whatever covariates you think describe why some data points <span class="math inline">\(Y\)</span> are larger than other data points.</p>
+<p>Linear regression and all flavors of ANOVA deal with the model of the basic type introduced first:</p>
+<p><span class="math display">\[
+Y \sim N(\mu,\sigma^{2}) \\
+\mu = \mbox{covariates added together linearly}
+\]</span>
+All the other models get lumped into “Generalized Linear Models” and we will discuss that in Week 10.</p>
 </div>
 <div id="linear-models-example-with-continuous-covariate" class="section level2" number="14.5">
 <h2><span class="header-section-number">14.5</span> Linear models | example with continuous covariate</h2>
@@ -727,18 +763,18 @@ Y_5 = \alpha_{2(5)} + \epsilon_5 \text{, where } \epsilon_5 \sim N(0, \sigma^2)
 <div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb389-1"><a href="week-8-lecture.html#cb389-1" aria-hidden="true" tabindex="-1"></a>iris.sub <span class="ot">&lt;-</span> iris[<span class="fu">sample</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(iris), <span class="at">size =</span> <span class="dv">12</span>), ]</span>
 <span id="cb389-2"><a href="week-8-lecture.html#cb389-2" aria-hidden="true" tabindex="-1"></a><span class="fu">model.matrix</span>( <span class="sc">~</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">+</span> iris.sub<span class="sc">$</span>Species)</span></code></pre></div>
 <pre><code>##    iris.sub$Speciessetosa iris.sub$Speciesversicolor iris.sub$Speciesvirginica
-## 1                       1                          0                         0
-## 2                       0                          0                         1
-## 3                       0                          1                         0
-## 4                       1                          0                         0
+## 1                       0                          0                         1
+## 2                       0                          1                         0
+## 3                       0                          0                         1
+## 4                       0                          1                         0
 ## 5                       0                          1                         0
 ## 6                       0                          1                         0
-## 7                       0                          1                         0
+## 7                       0                          0                         1
 ## 8                       1                          0                         0
 ## 9                       1                          0                         0
-## 10                      0                          1                         0
+## 10                      1                          0                         0
 ## 11                      0                          1                         0
-## 12                      1                          0                         0
+## 12                      0                          0                         1
 ## attr(,&quot;assign&quot;)
 ## [1] 1 1 1
 ## attr(,&quot;contrasts&quot;)
@@ -748,9 +784,9 @@ Y_5 = \alpha_{2(5)} + \epsilon_5 \text{, where } \epsilon_5 \sim N(0, \sigma^2)
 <div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb392-1"><a href="week-8-lecture.html#cb392-1" aria-hidden="true" tabindex="-1"></a>dummy <span class="ot">&lt;-</span> <span class="fu">summary</span>(<span class="fu">lm</span>(iris.sub<span class="sc">$</span>Sepal.Length <span class="sc">~</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">+</span> iris.sub<span class="sc">$</span>Species))</span>
 <span id="cb392-2"><a href="week-8-lecture.html#cb392-2" aria-hidden="true" tabindex="-1"></a>dummy<span class="sc">$</span>coefficients</span></code></pre></div>
 <pre><code>##                            Estimate Std. Error  t value     Pr(&gt;|t|)
-## iris.sub$Speciessetosa     4.960000  0.2022283 24.52673 1.491856e-09
-## iris.sub$Speciesversicolor 5.916667  0.1846084 32.04983 1.377017e-10
-## iris.sub$Speciesvirginica  7.700000  0.4521963 17.02800 3.733167e-08</code></pre>
+## iris.sub$Speciessetosa     4.866667  0.2868841 16.96388 3.858507e-08
+## iris.sub$Speciesversicolor 6.120000  0.2222194 27.54034 5.323376e-10
+## iris.sub$Speciesvirginica  6.625000  0.2484489 26.66544 7.095495e-10</code></pre>
 <div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb394-1"><a href="week-8-lecture.html#cb394-1" aria-hidden="true" tabindex="-1"></a>iris.fig <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(iris.sub, <span class="fu">aes</span>(<span class="at">x =</span> Species, <span class="at">y =</span> Sepal.Length)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb394-2"><a href="week-8-lecture.html#cb394-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> iris.means, <span class="fu">aes</span>(<span class="at">x =</span> Species, <span class="at">y =</span> Sepal.Length, <span class="at">col =</span> Species), <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
 <span id="cb394-3"><a href="week-8-lecture.html#cb394-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Sepal length&quot;</span>) <span class="sc">+</span> <span class="fu">theme_classic</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> font.size))</span>
@@ -1156,18 +1192,18 @@ Y_i = \alpha_{\text{control}} + \alpha_{j(i)} + \epsilon_i \text{, where } \epsi
 <div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb395-1"><a href="week-8-lecture.html#cb395-1" aria-hidden="true" tabindex="-1"></a><span class="fu">contrasts</span>(iris.sub<span class="sc">$</span>Species) <span class="ot">&lt;-</span> <span class="st">&quot;contr.treatment&quot;</span></span>
 <span id="cb395-2"><a href="week-8-lecture.html#cb395-2" aria-hidden="true" tabindex="-1"></a><span class="fu">model.matrix</span>(<span class="sc">~</span> iris.sub<span class="sc">$</span>Species)</span></code></pre></div>
 <pre><code>##    (Intercept) iris.sub$Speciesversicolor iris.sub$Speciesvirginica
-## 1            1                          0                         0
-## 2            1                          0                         1
-## 3            1                          1                         0
-## 4            1                          0                         0
+## 1            1                          0                         1
+## 2            1                          1                         0
+## 3            1                          0                         1
+## 4            1                          1                         0
 ## 5            1                          1                         0
 ## 6            1                          1                         0
-## 7            1                          1                         0
+## 7            1                          0                         1
 ## 8            1                          0                         0
 ## 9            1                          0                         0
-## 10           1                          1                         0
+## 10           1                          0                         0
 ## 11           1                          1                         0
-## 12           1                          0                         0
+## 12           1                          0                         1
 ## attr(,&quot;assign&quot;)
 ## [1] 0 1 1
 ## attr(,&quot;contrasts&quot;)
@@ -1175,10 +1211,10 @@ Y_i = \alpha_{\text{control}} + \alpha_{j(i)} + \epsilon_i \text{, where } \epsi
 ## [1] &quot;contr.treatment&quot;</code></pre>
 <div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb397-1"><a href="week-8-lecture.html#cb397-1" aria-hidden="true" tabindex="-1"></a>treatment <span class="ot">&lt;-</span> <span class="fu">summary</span>(<span class="fu">lm</span>(iris.sub<span class="sc">$</span>Sepal.Length <span class="sc">~</span> iris.sub<span class="sc">$</span>Species))</span>
 <span id="cb397-2"><a href="week-8-lecture.html#cb397-2" aria-hidden="true" tabindex="-1"></a>treatment<span class="sc">$</span>coefficients</span></code></pre></div>
-<pre><code>##                             Estimate Std. Error   t value     Pr(&gt;|t|)
-## (Intercept)                4.9600000  0.2022283 24.526732 1.491856e-09
-## iris.sub$Speciesversicolor 0.9566667  0.2738184  3.493799 6.789432e-03
-## iris.sub$Speciesvirginica  2.7400000  0.4953562  5.531373 3.650862e-04</code></pre>
+<pre><code>##                            Estimate Std. Error   t value     Pr(&gt;|t|)
+## (Intercept)                4.866667  0.2868841 16.963879 3.858507e-08
+## iris.sub$Speciesversicolor 1.253333  0.3628828  3.453824 7.230937e-03
+## iris.sub$Speciesvirginica  1.758333  0.3795120  4.633144 1.231172e-03</code></pre>
 <p>In this case, you can see that the model is estimating the mean of the first group (setosa) and then the difference between the second and first group and the difference between the third and first groups. This allows you to test hypotheses about the differences, which is often more meaningful than testing hypotheses about the group means themselves.</p>
 </div>
 <div id="helmert-contrasts" class="section level2" number="14.8">
@@ -1247,18 +1283,18 @@ where <span class="math inline">\(\alpha_{mean}\)</span> is the mean treatment e
 <div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb399-1"><a href="week-8-lecture.html#cb399-1" aria-hidden="true" tabindex="-1"></a><span class="fu">contrasts</span>(iris.sub<span class="sc">$</span>Species) <span class="ot">&lt;-</span> <span class="st">&quot;contr.helmert&quot;</span></span>
 <span id="cb399-2"><a href="week-8-lecture.html#cb399-2" aria-hidden="true" tabindex="-1"></a><span class="fu">model.matrix</span>(<span class="sc">~</span> iris.sub<span class="sc">$</span>Species)</span></code></pre></div>
 <pre><code>##    (Intercept) iris.sub$Species1 iris.sub$Species2
-## 1            1                -1                -1
-## 2            1                 0                 2
-## 3            1                 1                -1
-## 4            1                -1                -1
+## 1            1                 0                 2
+## 2            1                 1                -1
+## 3            1                 0                 2
+## 4            1                 1                -1
 ## 5            1                 1                -1
 ## 6            1                 1                -1
-## 7            1                 1                -1
+## 7            1                 0                 2
 ## 8            1                -1                -1
 ## 9            1                -1                -1
-## 10           1                 1                -1
+## 10           1                -1                -1
 ## 11           1                 1                -1
-## 12           1                -1                -1
+## 12           1                 0                 2
 ## attr(,&quot;assign&quot;)
 ## [1] 0 1 1
 ## attr(,&quot;contrasts&quot;)
@@ -1267,9 +1303,9 @@ where <span class="math inline">\(\alpha_{mean}\)</span> is the mean treatment e
 <div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb401-1"><a href="week-8-lecture.html#cb401-1" aria-hidden="true" tabindex="-1"></a>helmert <span class="ot">&lt;-</span> <span class="fu">summary</span>(<span class="fu">lm</span>(iris.sub<span class="sc">$</span>Sepal.Length <span class="sc">~</span> iris.sub<span class="sc">$</span>Species))</span>
 <span id="cb401-2"><a href="week-8-lecture.html#cb401-2" aria-hidden="true" tabindex="-1"></a>helmert<span class="sc">$</span>coefficients</span></code></pre></div>
 <pre><code>##                    Estimate Std. Error   t value     Pr(&gt;|t|)
-## (Intercept)       6.1922222  0.1762126 35.140626 6.048991e-11
-## iris.sub$Species1 0.4783333  0.1369092  3.493799 6.789432e-03
-## iris.sub$Species2 0.7538889  0.1574892  4.786925 9.916413e-04</code></pre>
+## (Intercept)       5.8705556  0.1465950 40.046088 1.878827e-11
+## iris.sub$Species1 0.6266667  0.1814414  3.453824 7.230937e-03
+## iris.sub$Species2 0.3772222  0.1025496  3.678436 5.087801e-03</code></pre>
 </div>
 <div id="sum-to-zero-contrasts" class="section level2" number="14.9">
 <h2><span class="header-section-number">14.9</span> Sum-to-zero contrasts</h2>
@@ -1338,18 +1374,18 @@ Y_i = \bar{\alpha} + \alpha_{j(i)} + \epsilon_i \text{, where } \epsilon_i \sim 
 <div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb403-1"><a href="week-8-lecture.html#cb403-1" aria-hidden="true" tabindex="-1"></a><span class="fu">contrasts</span>(iris.sub<span class="sc">$</span>Species) <span class="ot">&lt;-</span> <span class="st">&quot;contr.sum&quot;</span></span>
 <span id="cb403-2"><a href="week-8-lecture.html#cb403-2" aria-hidden="true" tabindex="-1"></a><span class="fu">model.matrix</span>(<span class="sc">~</span> iris.sub<span class="sc">$</span>Species)</span></code></pre></div>
 <pre><code>##    (Intercept) iris.sub$Species1 iris.sub$Species2
-## 1            1                 1                 0
-## 2            1                -1                -1
-## 3            1                 0                 1
-## 4            1                 1                 0
+## 1            1                -1                -1
+## 2            1                 0                 1
+## 3            1                -1                -1
+## 4            1                 0                 1
 ## 5            1                 0                 1
 ## 6            1                 0                 1
-## 7            1                 0                 1
+## 7            1                -1                -1
 ## 8            1                 1                 0
 ## 9            1                 1                 0
-## 10           1                 0                 1
+## 10           1                 1                 0
 ## 11           1                 0                 1
-## 12           1                 1                 0
+## 12           1                -1                -1
 ## attr(,&quot;assign&quot;)
 ## [1] 0 1 1
 ## attr(,&quot;contrasts&quot;)
@@ -1358,9 +1394,9 @@ Y_i = \bar{\alpha} + \alpha_{j(i)} + \epsilon_i \text{, where } \epsilon_i \sim 
 <div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb405-1"><a href="week-8-lecture.html#cb405-1" aria-hidden="true" tabindex="-1"></a>sumtozero <span class="ot">&lt;-</span> <span class="fu">summary</span>(<span class="fu">lm</span>(iris.sub<span class="sc">$</span>Sepal.Length <span class="sc">~</span> iris.sub<span class="sc">$</span>Species))</span>
 <span id="cb405-2"><a href="week-8-lecture.html#cb405-2" aria-hidden="true" tabindex="-1"></a>sumtozero<span class="sc">$</span>coefficients</span></code></pre></div>
 <pre><code>##                     Estimate Std. Error   t value     Pr(&gt;|t|)
-## (Intercept)        6.1922222  0.1762126 35.140626 6.048991e-11
-## iris.sub$Species1 -1.2322222  0.2113835 -5.829320 2.501298e-04
-## iris.sub$Species2 -0.2755556  0.2059392 -1.338043 2.137045e-01</code></pre>
+## (Intercept)        5.8705556  0.1465950 40.046088 1.878827e-11
+## iris.sub$Species1 -1.0038889  0.2211883 -4.538617 1.408700e-03
+## iris.sub$Species2  0.2494444  0.1948091  1.280456 2.323986e-01</code></pre>
 <p>There is one final “off-the-shelf” contrast that we will learn, and that is polynomial contrasts.</p>
 </div>
 <div id="polynomial-contrasts" class="section level2" number="14.10">

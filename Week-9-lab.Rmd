@@ -188,7 +188,7 @@ This last term is the most confusing at first, but the residual standard error i
 mean(residuals(fit)^2)*(n/(n-2))
 ```
 
-is our estimate of what the true variance is, which should come very close to what we used to generate the data ($\sigma=10$ so $\sigma^{2}=100$).
+is our estimate of what the true variance is, which should come close to what we used to generate the data ($\sigma=10$ so $\sigma^{2}=100$). (If you go back and change the code to use a larger number of data points, the estimate will be closer.)
 
 **Fitting real data**
 
