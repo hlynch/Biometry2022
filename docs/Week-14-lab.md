@@ -12,16 +12,16 @@ There are a number of functions you could use in R to do principal components an
 
 
 ```r
-readings<-read.csv("~/Dropbox/Biometry/Week 14 Multivariate analyses and Review/Week 14 Lab/Readings 2021.csv",header=T)
+readings<-read.csv("~/Dropbox/Biometry/Week 14 Multivariate analyses and Review/Week 14 Lab/Readings 2022.csv",header=T)
 
-missing<-which(is.na(readings$Useful)|is.na(readings$Difficult)|is.na(readings$Interesting))
-Useful<-aggregate(readings$Useful[-missing], by=list(Index=readings$Index[-missing]),FUN=mean)$x
+missing<-is.na(readings$Useful)|is.na(readings$Difficult)|is.na(readings$Interesting)
+Useful<-aggregate(readings$Useful[!missing], by=list(Index=readings$Index[!missing]),FUN=mean)$x
 
-Difficult<-aggregate(readings$Difficult[-missing], by=list(Index=readings$Index[-missing]),FUN=mean)$x
+Difficult<-aggregate(readings$Difficult[!missing], by=list(Index=readings$Index[!missing]),FUN=mean)$x
 
-Interesting<-aggregate(readings$Interesting[-missing], by=list(Index=readings$Index[-missing]),FUN=mean)$x
+Interesting<-aggregate(readings$Interesting[!missing], by=list(Index=readings$Index[!missing]),FUN=mean)$x
 
-Length.means.readings<-aggregate(readings$Length[-missing], by=list(Index=readings$Index[-missing]),FUN=mean)$x
+#Length.means.readings<-aggregate(readings$Length[!missing], by=list(Index=readings$Index[!missing]),FUN=mean)$x
 
 pca.result<-prcomp(~Useful+Interesting+Difficult,retx=T)
 ```
@@ -38,12 +38,12 @@ summary(pca.result)
 ```
 ## Importance of components:
 ##                           PC1    PC2    PC3
-## Standard deviation     0.9084 0.5395 0.3891
-## Proportion of Variance 0.6510 0.2296 0.1194
-## Cumulative Proportion  0.6510 0.8806 1.0000
+## Standard deviation     0.9508 0.7149 0.4025
+## Proportion of Variance 0.5732 0.3240 0.1027
+## Cumulative Proportion  0.5732 0.8973 1.0000
 ```
 
-We see that PCA1 is associated with over 65% of the variation in responses. So, what is PCA1?
+We see that PCA1 is associated with over 57% of the variation in responses. So, what is PCA1?
 
 
 ```r
@@ -51,13 +51,13 @@ pca.result$rotation
 ```
 
 ```
-##                    PC1       PC2        PC3
-## Useful      -0.1571361 0.7179282  0.6781500
-## Interesting -0.6425818 0.4471147 -0.6222356
-## Difficult    0.7499312 0.5335425 -0.3910697
+##                     PC1       PC2        PC3
+## Useful       0.08589313 0.4406129  0.8935785
+## Interesting  0.56793537 0.7152477 -0.4072716
+## Difficult   -0.81857913 0.5424767 -0.1888048
 ```
 
-PCA1 is an axis which describes papers that are Less Interesting and More Difficult, with a very small weight towards papers that are Less Useful. In other words, a large positive PCA1 score would be associated with an boring paper that was difficult to read. Note that the principal components denote an axis, but the direction is arbitrary. Since no direction is implied by the sign, we do not interpret this as saying that most papers were boring and difficult. Instead we would say that the papers largely fall along a common axis in which Interesting/Easy/Useful papers are at one end, and Boring/Difficult/Useless papers are at the other end. 
+PCA1 is an axis which describes papers that are more Interesting and less Difficult, with a very small weight towards papers that are Useful. In other words, a large positive PCA1 score would be associated with an interesting paper that was easy to read. Note that the principal components denote an axis, but the direction is arbitrary. Since no direction is implied by the sign, we do not interpret this as saying that most papers were interesting and easy. Instead we would say that the papers largely fall along a common axis in which Interesting/Easy to read papers are at one end, and Boring/Difficult to read papers are at the other end. (For now I am ignoring the small influence of Useful on PCA1.)
 
 We can visualize this using the function 'biplot'
 
@@ -68,24 +68,43 @@ biplot(pca.result)
 
 <img src="Week-14-lab_files/figure-html/unnamed-chunk-4-1.png" width="672" />
 
-Biplots take some getting used to, and when they have many more dimensions, they become increasingly difficult to interpret. However, papers low on PC1 are generally Interesting and Easy and paper high on PC1 are generally Boring and Difficult. Papers low on PC2 are generally Boring and Easy and Useless and papers high on PC2 are generally Interesting and Difficult and Useful.
+Biplots take some getting used to, and when they have many more dimensions, they become increasingly difficult to interpret. However, papers high on PC1 are generally Interesting and Easy to read and papers low on PC1 are generally Boring and more Difficult to read. Papers high on PC2 are generally more Interesting and Difficult and Useful and papers low on PC2 are generally less Interesting but Easy to read and less Useful.
 
-So which papers came out as highly positive on the PC2 axis? Remember, these are considered Useful and Interesting but also Difficult to read.
+Which papers were highly positive on PC2? These are papers that were both Useful and Interesting.
 
 
 ```r
-readings[readings$Index==14,1][1]
+readings[readings$Index==15,1][1]
 ```
 
 ```
-## [1] "Shmueli (2010) To explain or predict? Statistical Science 25(3): 289-310."
+## [1] "Siddhartha, R. D., E. B. Fowlkes, and B. Hoadley. 1989. Risk analysis of the space shuttle: Pre-challenger prediction of failure. Journal of the American Statistical Association 84(408): 945-957."
 ```
 
-Perhaps not surprising! 
+```r
+readings[readings$Index==25,1][1]
+```
+
+```
+## [1] "Johnson, J.B., and K.S. Omland. 2004. Model selection in ecology and evolution. TRENDS in Ecology and Evolution 19(2): 101-108."
+```
+
+I totally agree on the Siddhartha paper!
 
 You can play around with this yourself and see why I added the [1] at the end. When I pull out the rows with the Index identified by the PCA, I get the list of all entries (since we had >1 team rating the papers) and so I only print the first one.
 
-Which papers were highly positive on PC1? (Difficult and Boring)
+Which paper fell out along the Difficult axis?
+
+
+```r
+readings[readings$Index==18,1][1]
+```
+
+```
+## [1] "Hurlbert, S. H. 1984. Pseudoreplication and the design of ecological field experiments. Ecological Monographs 54(2): 187-211."
+```
+
+Indeed, Hurlbert has a lot of information. Also, 
 
 
 ```r
@@ -96,9 +115,9 @@ readings[readings$Index==2,1][1]
 ## [1] "Bolker Chapter 6 (Posted on Bb)"
 ```
 
-Alas, poor Bolker! Bolker is often rated as boring and difficult. I keep him around because his thinking is so "spot on" and perhaps his style is an aquired taste.
+Alas, poor Bolker! Bolker is often rated as difficult. I keep this chapter around because his thinking is so "spot on" and the material in his book will serve you well if you continue on doing quantitative modelling.
 
-These two papers are the only two stand outs this year. The other readings cluster together.
+These papers are the only stand outs this year. The other readings cluster together.
 
 One thing to keep in mind is that a PCA identifies *variation* in the dataset. It's worth putting these numbers in context of the overall means.
 
@@ -108,7 +127,7 @@ mean(Useful)
 ```
 
 ```
-## [1] 3.288542
+## [1] 3.992857
 ```
 
 ```r
@@ -116,7 +135,7 @@ mean(Difficult)
 ```
 
 ```
-## [1] 2.421354
+## [1] 2.5
 ```
 
 ```r
@@ -124,23 +143,31 @@ mean(Interesting)
 ```
 
 ```
-## [1] 3.223438
+## [1] 3.632143
 ```
 
 So the average reading scored pretty high for being Useful and Interesting and was rated of medium Difficulty.
+
+You might be interested in how these ratings have changed over time (I was!):
+
+<div class="figure" style="text-align: center">
+<img src="Readings time series.png" alt="Readings ratings through the years" width="100%" />
+<p class="caption">(\#fig:unnamed-chunk-9)Readings ratings through the years</p>
+</div>
 
 We can do the same for the problem sets:
 
 
 ```r
-PS<-read.csv("~/Dropbox/Biometry/Week 14 Multivariate analyses and Review/Week 14 Lab/ProblemSets 2021.csv",header=T)
+PS<-read.csv("~/Dropbox/Biometry/Week 14 Multivariate analyses and Review/Week 14 Lab/ProblemSets 2022.csv",header=T)
 
-# In this case there were no missing data
-Useful.means.PS<-aggregate(PS$Useful, by=list(Index=PS$Week),FUN=mean)$x
+missing<-is.na(PS$Useful)|is.na(PS$Difficult)|is.na(PS$Interesting)
 
-Difficult.means.PS<-aggregate(PS$Difficult, by=list(Week=PS$Week),FUN=mean)$x
+Useful.means.PS<-aggregate(PS$Useful[!missing], by=list(Index=PS$Week[!missing]),FUN=mean)$x
 
-Interesting.means.PS<-aggregate(PS$Interesting, by=list(Week=PS$Week),FUN=mean)$x
+Difficult.means.PS<-aggregate(PS$Difficult[!missing], by=list(Week=PS$Week[!missing]),FUN=mean)$x
+
+Interesting.means.PS<-aggregate(PS$Interesting[!missing], by=list(Week=PS$Week[!missing]),FUN=mean)$x
 
 pca.result<-prcomp(~Useful.means.PS+Interesting.means.PS+Difficult.means.PS,data=PS,retx=T)
 ```
@@ -156,13 +183,13 @@ summary(pca.result)
 
 ```
 ## Importance of components:
-##                           PC1    PC2     PC3
-## Standard deviation     0.8288 0.7171 0.33638
-## Proportion of Variance 0.5226 0.3913 0.08609
-## Cumulative Proportion  0.5226 0.9139 1.00000
+##                           PC1    PC2    PC3
+## Standard deviation     0.8474 0.6995 0.2560
+## Proportion of Variance 0.5641 0.3844 0.0515
+## Cumulative Proportion  0.5641 0.9485 1.0000
 ```
 
-We see that for the problem sets, PC1 is even more dominant (83% of the variation). So, what is PCA1?
+We see that for the problem sets, PC1 is even more dominant (85% of the variation). So, what is PCA1?
 
 
 ```r
@@ -171,21 +198,21 @@ pca.result$rotation
 
 ```
 ##                             PC1        PC2        PC3
-## Useful.means.PS      -0.5926091 -0.1695284  0.7874482
-## Interesting.means.PS -0.5122508 -0.6751269 -0.5308510
-## Difficult.means.PS    0.6216217 -0.7179581  0.3132453
+## Useful.means.PS      -0.7894404 -0.1122903 -0.6034689
+## Interesting.means.PS -0.4937346 -0.4679620  0.7329650
+## Difficult.means.PS    0.3647054 -0.8765857 -0.3139865
 ```
 
-PC1 almost evenly combines all three factors, and the axis divides problem sets judged Useless/Boring/Difficult and those that are Useful/Interesting/Easy. (Reminder: the signs of the PCs is arbitrary, so the signs on the rotation could have all be flipped.) Looking across all the PC axes, we want papers that are low (negative) on PC1, low (negative) on PC2, and probably high (positive) on PC3.
+PC1 almost evenly combines all three factors, and the axis divides problem sets judged Useless/Boring/Difficult and those that are Useful/Interesting/Easy. (Reminder: the signs of the PCs is arbitrary, so the signs on the rotation could have all be flipped.) Looking across all the PC axes, we want papers that are low (negative) on PC1 and low (negative) on PC2. PC3 is a toss up, because that axis represents a trade-off between Useful and Interesting.
 
 
 ```r
 biplot(pca.result)
 ```
 
-<img src="Week-14-lab_files/figure-html/unnamed-chunk-11-1.png" width="672" />
+<img src="Week-14-lab_files/figure-html/unnamed-chunk-13-1.png" width="672" />
 
-Most of this is a scatter, but the problem set for Week 1 stands out in the upper right. Looking at the data, this is largely because the Week 1 problem set was the least interesting of all the problem sets.
+We can see that problem set 6 is the one that is really driving variation here! If we were to eliminate week 6, the others are all varying primarily on PC2.
 
 Again, looking at the means:
 
@@ -195,7 +222,7 @@ mean(Useful.means.PS)
 ```
 
 ```
-## [1] 3.827273
+## [1] 4.348485
 ```
 
 ```r
@@ -203,7 +230,7 @@ mean(Difficult.means.PS)
 ```
 
 ```
-## [1] 3.118182
+## [1] 3.643939
 ```
 
 ```r
@@ -211,15 +238,38 @@ mean(Interesting.means.PS)
 ```
 
 ```
-## [1] 3.263636
+## [1] 4.155303
 ```
 
-The problem sets overall rated as being Useful, and Interesting, and Difficult. 
+The problem sets overall rated as being very Useful and Interesting but also sort of Difficult. 
+
+The changes through time show a significant trend (not shown) in Interesting, but generally problem sets are becoming more interesting over time and are becoming slightly more Useful but also a hair more Difficult as well.
+
+<div class="figure" style="text-align: center">
+<img src="Problem set time series.png" alt="Problem set ratings through the years" width="100%" />
+<p class="caption">(\#fig:unnamed-chunk-15)Problem set ratings through the years</p>
+</div>
+
 
 Missing at random - practice with GLMs
 --------------------------------------
 
-There were missing data for some of the readings. One could ask the question, are these data missing at random? In the problem set for Week #13, we completed the dataset using random imputation. In other words, we assumed that data were missing at random and we drew with replacement from the other values to replace missing datapoints. However, in this case, it seems likely that data are not missing at random. I suspect that papers were not evaluated because no one read them, and that something about the papers may predict whether the papers were read or not. We can answer this question by constructing a model for "missingness" which assumes that the probability of being evaluated is distributed as Binom(n,p) where p is the probability of being evaluated (and presumably, of having been read in the first place).
+This year, we had no missing data! Usually, there are missing data for some of the readings, so for the purposes of the rest of the lab, I will use last year's data. 
+
+
+```r
+readings<-read.csv("~/Dropbox/Biometry/Week 14 Multivariate analyses and Review/Week 14 Lab/Readings 2021.csv",header=T)
+missing<-is.na(readings$Useful)|is.na(readings$Difficult)|is.na(readings$Interesting)
+Useful<-aggregate(readings$Useful[!missing], by=list(Index=readings$Index[!missing]),FUN=mean)$x
+
+Difficult<-aggregate(readings$Difficult[!missing], by=list(Index=readings$Index[!missing]),FUN=mean)$x
+
+Interesting<-aggregate(readings$Interesting[!missing], by=list(Index=readings$Index[!missing]),FUN=mean)$x
+
+Length.means.readings<-aggregate(readings$Length[!missing], by=list(Index=readings$Index[!missing]),FUN=mean)$x
+```
+
+One could ask the question, are these data missing at random? In the problem set for Week #13, we completed the dataset using random imputation. In other words, we assumed that data were missing at random and we drew with replacement from the other values to replace missing datapoints. However, in this case, it seems likely that data are not missing at random. I suspect that papers were not evaluated because no one read them, and that something about the papers may predict whether the papers were read or not. We can answer this question by constructing a model for "missingness" which assumes that the probability of being evaluated is distributed as Binom(n,p) where p is the probability of being evaluated (and presumably, of having been read in the first place).
 
 First, I need to go through the data and figure out how many times a paper was evaluated. 
 
@@ -278,7 +328,7 @@ None of the covariates are significant, which isn't a surprise. Because I (accid
 
 We might suspect a high degree of multicollinearity among the predictors. We can use PCA to create new orthogonal covariates which (more efficiently) capture the variability in the survey results. 
 
-I will rerun the PCA for the readings.
+I will rerun the PCA for the readings. (Keep in mind that we are now looking at last year's data.)
 
 
 ```r
