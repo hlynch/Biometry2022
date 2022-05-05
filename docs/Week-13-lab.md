@@ -388,15 +388,11 @@ As a group, find a small set (3-5) of candidate models, calculate the AIC for ea
 Model selection via step-wise regression
 --------------------
 
-Let's start with an Information Theoretic approach:
-
-We could calculate the AIC for every possible model, but this is probably not necessary. We can narrow down the set of candidate models just thinking about the biology.
-
-Now compare this to what you would get from
+Ideally, we can narrow down the set of candidate covariates based on biology alone. Another approach that is common in the literature, but which has been criticized, is stepwise regression. The default of the step() function is to use both forward and backward steps. If the function step is given the full model, it will begin with the full model, no matter which direction it is working.
 
 
 ```r
-step(frogs.glm0)
+step(frogs.glm0) #same as step(frogs.glm0,direction="both")
 ```
 
 ```
@@ -464,32 +460,8 @@ step(frogs.glm0)
 ## Residual Deviance: 197.7 	AIC: 207.7
 ```
 
-```r
-step(frogs.glm0,direction="forward")
-```
+Now compare this to what you would get from
 
-```
-## Start:  AIC=213.62
-## pres.abs ~ altitude + log(distance) + log(NoOfPools) + NoOfSites + 
-##     avrain + meanmin + meanmax
-```
-
-```
-## 
-## Call:  glm(formula = pres.abs ~ altitude + log(distance) + log(NoOfPools) + 
-##     NoOfSites + avrain + meanmin + meanmax, family = binomial, 
-##     data = frogs, na.action = na.fail)
-## 
-## Coefficients:
-##    (Intercept)        altitude   log(distance)  log(NoOfPools)       NoOfSites  
-##     40.8988354      -0.0066477      -0.7593044       0.5727269      -0.0008979  
-##         avrain         meanmin         meanmax  
-##     -0.0067930       5.3047879      -3.1729589  
-## 
-## Degrees of Freedom: 211 Total (i.e. Null);  204 Residual
-## Null Deviance:	    280 
-## Residual Deviance: 197.6 	AIC: 213.6
-```
 
 ```r
 step(frogs.glm0,direction="backward")
@@ -560,13 +532,190 @@ step(frogs.glm0,direction="backward")
 ## Residual Deviance: 197.7 	AIC: 207.7
 ```
 
-Why does the forward process give you more parameters? Probably because forward selection is like a ratchet - once variables get added, they never get removed, even if something is added that explains that portion of the variance better.
+The output can be interpreted as follows: the full model has an AIC of 213.62, but if NoOfSites were removed the subsequent model would have an AIC of 211.62, if avrain were removed 211.64, etc, including $<none>$, which represents removing no variables. The covariates are listed in order of lowest AIC if they were to be removed, to highest AIC. Since removing NoOfSites would result in the lowest AIC, including being lower than the current model, $<none>$, NoOfSites is removed for the next step and the process is repeated over again. This continues until $<none>$ has the lowest AIC, meaning no variables can be removed to decrease the AIC from the current model. In this case, this occurred when log(NoOfPools), log(distance), meanmax, and meanmin were in the model. At this point, the process ends and the model from that step is reported as the output.
 
-Note that we can also do stepwise regression using stepAIC
+**However, if we attempt to use forward stepwise selection starting with the full model, the process does not work.** The function begins with the full model, sees that there are no variables it could add to decrease the AIC because we haven't given it any more variables, then reports the full model as the outcome.
 
 
 ```r
-stepAIC(frogs.glm0)
+step(frogs.glm0,direction="forward")
+```
+
+```
+## Start:  AIC=213.62
+## pres.abs ~ altitude + log(distance) + log(NoOfPools) + NoOfSites + 
+##     avrain + meanmin + meanmax
+```
+
+```
+## 
+## Call:  glm(formula = pres.abs ~ altitude + log(distance) + log(NoOfPools) + 
+##     NoOfSites + avrain + meanmin + meanmax, family = binomial, 
+##     data = frogs, na.action = na.fail)
+## 
+## Coefficients:
+##    (Intercept)        altitude   log(distance)  log(NoOfPools)       NoOfSites  
+##     40.8988354      -0.0066477      -0.7593044       0.5727269      -0.0008979  
+##         avrain         meanmin         meanmax  
+##     -0.0067930       5.3047879      -3.1729589  
+## 
+## Degrees of Freedom: 211 Total (i.e. Null);  204 Residual
+## Null Deviance:	    280 
+## Residual Deviance: 197.6 	AIC: 213.6
+```
+
+This is clearly not the result that we want, because there are many insignificant variables in the model.
+
+
+```r
+summary(frogs.glm0)
+```
+
+```
+## 
+## Call:
+## glm(formula = pres.abs ~ altitude + log(distance) + log(NoOfPools) + 
+##     NoOfSites + avrain + meanmin + meanmax, family = binomial, 
+##     data = frogs, na.action = na.fail)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -1.9795  -0.7193  -0.2785   0.7964   2.5658  
+## 
+## Coefficients:
+##                  Estimate Std. Error z value Pr(>|z|)    
+## (Intercept)     4.090e+01  1.327e+02   0.308 0.757845    
+## altitude       -6.648e-03  3.866e-02  -0.172 0.863466    
+## log(distance)  -7.593e-01  2.554e-01  -2.973 0.002945 ** 
+## log(NoOfPools)  5.727e-01  2.162e-01   2.649 0.008083 ** 
+## NoOfSites      -8.979e-04  1.074e-01  -0.008 0.993330    
+## avrain         -6.793e-03  5.999e-02  -0.113 0.909848    
+## meanmin         5.305e+00  1.543e+00   3.439 0.000584 ***
+## meanmax        -3.173e+00  4.839e+00  -0.656 0.512048    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 279.99  on 211  degrees of freedom
+## Residual deviance: 197.62  on 204  degrees of freedom
+## AIC: 213.62
+## 
+## Number of Fisher Scoring iterations: 5
+```
+
+**We need to give the function the model that we want it to start with, in this case, the "empty model."** The empty model predicts the number of species at a site using no covariates, only an intercept, and is denoted as pres.abs ~ 1 in R.
+
+
+```r
+frogs.glm.empty <- glm(pres.abs~1, frogs, family="binomial")
+summary(frogs.glm.empty)
+```
+
+```
+## 
+## Call:
+## glm(formula = pres.abs ~ 1, family = "binomial", data = frogs)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -0.9657  -0.9657  -0.9657   1.4051   1.4051  
+## 
+## Coefficients:
+##             Estimate Std. Error z value Pr(>|z|)    
+## (Intercept)  -0.5209     0.1420  -3.667 0.000245 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 279.99  on 211  degrees of freedom
+## Residual deviance: 279.99  on 211  degrees of freedom
+## AIC: 281.99
+## 
+## Number of Fisher Scoring iterations: 4
+```
+
+We also need to give the step function all of the possible covariates that it can add to find the best model. This is done using the scope= ~ command in step. 
+
+
+```r
+step(frogs.glm.empty, scope= ~log(distance)+log(NoOfPools)+NoOfSites+avrain+meanmin+meanmax, data=frogs, direction="forward")
+```
+
+```
+## Start:  AIC=281.99
+## pres.abs ~ 1
+## 
+##                  Df Deviance    AIC
+## + log(distance)   1   229.15 233.15
+## + meanmin         1   254.40 258.40
+## + meanmax         1   269.52 273.52
+## + log(NoOfPools)  1   273.59 277.59
+## + NoOfSites       1   274.51 278.51
+## <none>                279.99 281.99
+## + avrain          1   279.95 283.95
+## 
+## Step:  AIC=233.15
+## pres.abs ~ log(distance)
+## 
+##                  Df Deviance    AIC
+## + meanmin         1   220.90 226.90
+## + meanmax         1   226.55 232.55
+## <none>                229.15 233.15
+## + log(NoOfPools)  1   227.44 233.44
+## + NoOfSites       1   228.28 234.28
+## + avrain          1   229.07 235.07
+## 
+## Step:  AIC=226.9
+## pres.abs ~ log(distance) + meanmin
+## 
+##                  Df Deviance    AIC
+## + meanmax         1   205.34 213.34
+## + avrain          1   210.12 218.12
+## + log(NoOfPools)  1   214.18 222.18
+## <none>                220.90 226.90
+## + NoOfSites       1   220.26 228.26
+## 
+## Step:  AIC=213.34
+## pres.abs ~ log(distance) + meanmin + meanmax
+## 
+##                  Df Deviance    AIC
+## + log(NoOfPools)  1   197.66 207.66
+## <none>                205.34 213.34
+## + avrain          1   205.33 215.33
+## + NoOfSites       1   205.34 215.34
+## 
+## Step:  AIC=207.66
+## pres.abs ~ log(distance) + meanmin + meanmax + log(NoOfPools)
+## 
+##             Df Deviance    AIC
+## <none>           197.66 207.66
+## + NoOfSites  1   197.66 209.66
+## + avrain     1   197.66 209.66
+```
+
+```
+## 
+## Call:  glm(formula = pres.abs ~ log(distance) + meanmin + meanmax + 
+##     log(NoOfPools), family = "binomial", data = frogs)
+## 
+## Coefficients:
+##    (Intercept)   log(distance)         meanmin         meanmax  log(NoOfPools)  
+##        18.5268         -0.7547          5.3791         -2.3821          0.5707  
+## 
+## Degrees of Freedom: 211 Total (i.e. Null);  207 Residual
+## Null Deviance:	    280 
+## Residual Deviance: 197.7 	AIC: 207.7
+```
+
+The function now does what we want it to do! It begins with the empty model and reports an AIC of 281.99, and lists the AIC for each variable if it were to be added to the empty model (log(distance) = 229.15, meanmin = 258.40, etc.). Since adding log(distance) results in the lowest AIC, it adds log(distance), then repeats the process. It continues this process until $<none>$ is at the top of the list, meaning there are no variables that can be added that will decrease the AIC. It then reports that model, in this case pres.abs ~ log(distance) + log(NoOfPools) + meanmin + meanmax, as the best model.
+
+Starting with the full model works fine for direction = "both". It takes the full model, takes away the least useful covariate, then has the option to add that covariate back in, or take away another. It repeats this until neither adding nor subtracting variables decreases the AIC of the model.
+
+
+```r
+step(frogs.glm0, direction="both")
 ```
 
 ```
@@ -593,6 +742,7 @@ stepAIC(frogs.glm0)
 ## - altitude        1   197.66 209.66
 ## - meanmax         1   198.06 210.06
 ## <none>                197.62 211.62
+## + NoOfSites       1   197.62 213.62
 ## - log(NoOfPools)  1   205.31 217.31
 ## - log(distance)   1   209.80 221.80
 ## - meanmin         1   211.31 223.31
@@ -605,6 +755,8 @@ stepAIC(frogs.glm0)
 ## - altitude        1   197.66 207.66
 ## - meanmax         1   198.74 208.74
 ## <none>                197.64 209.64
+## + avrain          1   197.62 211.62
+## + NoOfSites       1   197.64 211.64
 ## - log(NoOfPools)  1   205.31 215.31
 ## - log(distance)   1   209.88 219.88
 ## - meanmin         1   213.32 223.32
@@ -614,6 +766,9 @@ stepAIC(frogs.glm0)
 ## 
 ##                  Df Deviance    AIC
 ## <none>                197.66 207.66
+## + altitude        1   197.64 209.64
+## + NoOfSites       1   197.66 209.66
+## + avrain          1   197.66 209.66
 ## - log(NoOfPools)  1   205.34 213.34
 ## - log(distance)   1   209.91 217.91
 ## - meanmax         1   214.18 222.18
@@ -634,7 +789,88 @@ stepAIC(frogs.glm0)
 ## Residual Deviance: 197.7 	AIC: 207.7
 ```
 
-but this is a bit like putting lipstick on a pig, so its not often used.
+However, it can also be done starting with the empty model, where its first step is to add a covariate to the empty model, then proceed from there.
+
+
+```r
+step(frogs.glm.empty, scope= ~log(distance)+log(NoOfPools)+NoOfSites+avrain+meanmin+meanmax, direction="both")
+```
+
+```
+## Start:  AIC=281.99
+## pres.abs ~ 1
+## 
+##                  Df Deviance    AIC
+## + log(distance)   1   229.15 233.15
+## + meanmin         1   254.40 258.40
+## + meanmax         1   269.52 273.52
+## + log(NoOfPools)  1   273.59 277.59
+## + NoOfSites       1   274.51 278.51
+## <none>                279.99 281.99
+## + avrain          1   279.95 283.95
+## 
+## Step:  AIC=233.15
+## pres.abs ~ log(distance)
+## 
+##                  Df Deviance    AIC
+## + meanmin         1   220.90 226.90
+## + meanmax         1   226.55 232.55
+## <none>                229.15 233.15
+## + log(NoOfPools)  1   227.44 233.44
+## + NoOfSites       1   228.28 234.28
+## + avrain          1   229.07 235.07
+## - log(distance)   1   279.99 281.99
+## 
+## Step:  AIC=226.9
+## pres.abs ~ log(distance) + meanmin
+## 
+##                  Df Deviance    AIC
+## + meanmax         1   205.34 213.34
+## + avrain          1   210.12 218.12
+## + log(NoOfPools)  1   214.18 222.18
+## <none>                220.90 226.90
+## + NoOfSites       1   220.26 228.26
+## - meanmin         1   229.15 233.15
+## - log(distance)   1   254.40 258.40
+## 
+## Step:  AIC=213.34
+## pres.abs ~ log(distance) + meanmin + meanmax
+## 
+##                  Df Deviance    AIC
+## + log(NoOfPools)  1   197.66 207.66
+## <none>                205.34 213.34
+## + avrain          1   205.33 215.33
+## + NoOfSites       1   205.34 215.34
+## - meanmax         1   220.90 226.90
+## - log(distance)   1   225.85 231.85
+## - meanmin         1   226.55 232.55
+## 
+## Step:  AIC=207.66
+## pres.abs ~ log(distance) + meanmin + meanmax + log(NoOfPools)
+## 
+##                  Df Deviance    AIC
+## <none>                197.66 207.66
+## + NoOfSites       1   197.66 209.66
+## + avrain          1   197.66 209.66
+## - log(NoOfPools)  1   205.34 213.34
+## - log(distance)   1   209.91 217.91
+## - meanmax         1   214.18 222.18
+## - meanmin         1   222.40 230.40
+```
+
+```
+## 
+## Call:  glm(formula = pres.abs ~ log(distance) + meanmin + meanmax + 
+##     log(NoOfPools), family = "binomial", data = frogs)
+## 
+## Coefficients:
+##    (Intercept)   log(distance)         meanmin         meanmax  log(NoOfPools)  
+##        18.5268         -0.7547          5.3791         -2.3821          0.5707  
+## 
+## Degrees of Freedom: 211 Total (i.e. Null);  207 Residual
+## Null Deviance:	    280 
+## Residual Deviance: 197.7 	AIC: 207.7
+```
 
 The real magic comes when we use a package like 'MuMIn' (Multimodel Inference)
 
@@ -1032,37 +1268,37 @@ Before fitting any models, let's just look at each potential covariate vs. maxim
 boxplot(MaxLifespan~Order)
 ```
 
-<img src="Week-13-lab_files/figure-html/unnamed-chunk-22-1.png" width="672" />
+<img src="Week-13-lab_files/figure-html/unnamed-chunk-28-1.png" width="672" />
 
 ```r
 boxplot(MaxLifespan~Family)
 ```
 
-<img src="Week-13-lab_files/figure-html/unnamed-chunk-22-2.png" width="672" />
+<img src="Week-13-lab_files/figure-html/unnamed-chunk-28-2.png" width="672" />
 
 ```r
 boxplot(MaxLifespan~Genus)
 ```
 
-<img src="Week-13-lab_files/figure-html/unnamed-chunk-22-3.png" width="672" />
+<img src="Week-13-lab_files/figure-html/unnamed-chunk-28-3.png" width="672" />
 
 ```r
 boxplot(MaxLifespan~Species)
 ```
 
-<img src="Week-13-lab_files/figure-html/unnamed-chunk-22-4.png" width="672" />
+<img src="Week-13-lab_files/figure-html/unnamed-chunk-28-4.png" width="672" />
 
 ```r
 plot(MaxLifespan~Mass)
 ```
 
-<img src="Week-13-lab_files/figure-html/unnamed-chunk-22-5.png" width="672" />
+<img src="Week-13-lab_files/figure-html/unnamed-chunk-28-5.png" width="672" />
 
 ```r
 plot(MaxLifespan~Gestation)
 ```
 
-<img src="Week-13-lab_files/figure-html/unnamed-chunk-22-6.png" width="672" />
+<img src="Week-13-lab_files/figure-html/unnamed-chunk-28-6.png" width="672" />
 
 Note that most of the covariates need to be transformed to linearize the relationship. The easiest transformation to try is the log() - the covariates that should probably be transformed relate to mass and time periods: Mass, Gestation, Newborn, Weaning, WeanMass, AFR, LittersPerYear (possible, not clear what the best transmation is for this). In other words, look at:
 
@@ -1071,13 +1307,13 @@ Note that most of the covariates need to be transformed to linearize the relatio
 plot(MaxLifespan~log10(Mass))
 ```
 
-<img src="Week-13-lab_files/figure-html/unnamed-chunk-23-1.png" width="672" />
+<img src="Week-13-lab_files/figure-html/unnamed-chunk-29-1.png" width="672" />
 
 ```r
 plot(MaxLifespan~log10(Gestation))
 ```
 
-<img src="Week-13-lab_files/figure-html/unnamed-chunk-23-2.png" width="672" />
+<img src="Week-13-lab_files/figure-html/unnamed-chunk-29-2.png" width="672" />
 
 etc.
 
@@ -1126,7 +1362,7 @@ Let's look at the residuals as a function of the fitted values:
 plot(fitted(fit),residuals(fit))
 ```
 
-<img src="Week-13-lab_files/figure-html/unnamed-chunk-25-1.png" width="672" />
+<img src="Week-13-lab_files/figure-html/unnamed-chunk-31-1.png" width="672" />
 
 Let's look at the residuals using the 'car' package function 'residualPlots'. This command produces scatterplots of the residuals versus each of the predictors and versus the final fitted value. Note that what we did manually above is reproduced as the final panel here.
 
@@ -1135,7 +1371,7 @@ Let's look at the residuals using the 'car' package function 'residualPlots'. Th
 residualPlots(fit)
 ```
 
-<img src="Week-13-lab_files/figure-html/unnamed-chunk-26-1.png" width="672" />
+<img src="Week-13-lab_files/figure-html/unnamed-chunk-32-1.png" width="672" />
 
 ```
 ##             Test stat Pr(>|Test stat|)    
@@ -1158,7 +1394,7 @@ yfit<-dnorm(xfit)
 lines(xfit,yfit)
 ```
 
-<img src="Week-13-lab_files/figure-html/unnamed-chunk-27-1.png" width="672" />
+<img src="Week-13-lab_files/figure-html/unnamed-chunk-33-1.png" width="672" />
 
 A variation on the basic residual plot is the marginal model plot.
 
@@ -1167,7 +1403,7 @@ A variation on the basic residual plot is the marginal model plot.
 marginalModelPlots(fit)
 ```
 
-<img src="Week-13-lab_files/figure-html/unnamed-chunk-28-1.png" width="672" />
+<img src="Week-13-lab_files/figure-html/unnamed-chunk-34-1.png" width="672" />
 
 Note that loess smoothers have been added showing the non-parametric regression between the actual data (solid line) and the model prediction (dashed line) against each of the predictor variables. If these two lines are close together, that is an indication of good model fit.
 
@@ -1293,7 +1529,7 @@ avPlots(fit,id.n=2)
 ## parameter
 ```
 
-<img src="Week-13-lab_files/figure-html/unnamed-chunk-29-1.png" width="672" />
+<img src="Week-13-lab_files/figure-html/unnamed-chunk-35-1.png" width="672" />
 
 The id.n option will cause the plot to identify the two points that are furthest from the mean on the x axis and the two with the largest absolute residuals.
 
@@ -1306,7 +1542,7 @@ We can also look at leverage by using the command 'leveragePlots'
 leveragePlots(fit)
 ```
 
-<img src="Week-13-lab_files/figure-html/unnamed-chunk-30-1.png" width="672" />
+<img src="Week-13-lab_files/figure-html/unnamed-chunk-36-1.png" width="672" />
 
 For covariates with only a single degree of freedom (i.e. not different levels of a factor), this will simply be a rescaled version of the added-variable plots.
 
@@ -1334,7 +1570,7 @@ Plot the qqplot for the studentized residuals using the 'car' package function q
 qqPlot(fit)
 ```
 
-<img src="Week-13-lab_files/figure-html/unnamed-chunk-32-1.png" width="672" />
+<img src="Week-13-lab_files/figure-html/unnamed-chunk-38-1.png" width="672" />
 
 ```
 ## [1] 1439 1440
@@ -1524,7 +1760,7 @@ cutoff<-4/((nrow(data)-length(fit$coefficients)-2))
 plot(fit,which=4,cook.levels=cutoff)
 ```
 
-<img src="Week-13-lab_files/figure-html/unnamed-chunk-34-1.png" width="672" />
+<img src="Week-13-lab_files/figure-html/unnamed-chunk-40-1.png" width="672" />
 
 Another useful plot is created by 'influencePlot' which creates a "bubble" plot of studentized residuals by hat values, with the areas of the circles representing the observations proportional to Cook's distances. Vertical reference lines are drawn at twice and three times the average hat value, horizontal reference lines at -2,0,2 on the studentized-residual scale.
 
@@ -1562,7 +1798,7 @@ influencePlot(fit,id.method="identify")
 ## graphical parameter
 ```
 
-<img src="Week-13-lab_files/figure-html/unnamed-chunk-35-1.png" width="672" />
+<img src="Week-13-lab_files/figure-html/unnamed-chunk-41-1.png" width="672" />
 
 ```
 ##         StudRes        Hat       CookD
@@ -1599,7 +1835,7 @@ spreadLevelPlot(fit)
 ## 47 negative fitted values removed
 ```
 
-<img src="Week-13-lab_files/figure-html/unnamed-chunk-37-1.png" width="672" />
+<img src="Week-13-lab_files/figure-html/unnamed-chunk-43-1.png" width="672" />
 
 ```
 ## 

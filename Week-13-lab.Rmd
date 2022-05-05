@@ -175,27 +175,58 @@ As a group, find a small set (3-5) of candidate models, calculate the AIC for ea
 Model selection via step-wise regression
 --------------------
 
-Let's start with an Information Theoretic approach:
+Ideally, we can narrow down the set of candidate covariates based on biology alone. Another approach that is common in the literature, but which has been criticized, is stepwise regression. The default of the step() function is to use both forward and backward steps. If the function step is given the full model, it will begin with the full model, no matter which direction it is working.
 
-We could calculate the AIC for every possible model, but this is probably not necessary. We can narrow down the set of candidate models just thinking about the biology.
+```{r}
+step(frogs.glm0) #same as step(frogs.glm0,direction="both")
+```
 
 Now compare this to what you would get from
 
 ```{r}
-step(frogs.glm0)
-step(frogs.glm0,direction="forward")
 step(frogs.glm0,direction="backward")
 ```
 
-Why does the forward process give you more parameters? Probably because forward selection is like a ratchet - once variables get added, they never get removed, even if something is added that explains that portion of the variance better.
+The output can be interpreted as follows: the full model has an AIC of 213.62, but if NoOfSites were removed the subsequent model would have an AIC of 211.62, if avrain were removed 211.64, etc, including $<none>$, which represents removing no variables. The covariates are listed in order of lowest AIC if they were to be removed, to highest AIC. Since removing NoOfSites would result in the lowest AIC, including being lower than the current model, $<none>$, NoOfSites is removed for the next step and the process is repeated over again. This continues until $<none>$ has the lowest AIC, meaning no variables can be removed to decrease the AIC from the current model. In this case, this occurred when log(NoOfPools), log(distance), meanmax, and meanmin were in the model. At this point, the process ends and the model from that step is reported as the output.
 
-Note that we can also do stepwise regression using stepAIC
+**However, if we attempt to use forward stepwise selection starting with the full model, the process does not work.** The function begins with the full model, sees that there are no variables it could add to decrease the AIC because we haven't given it any more variables, then reports the full model as the outcome.
 
 ```{r}
-stepAIC(frogs.glm0)
+step(frogs.glm0,direction="forward")
 ```
 
-but this is a bit like putting lipstick on a pig, so its not often used.
+This is clearly not the result that we want, because there are many insignificant variables in the model.
+
+```{r}
+summary(frogs.glm0)
+```
+
+**We need to give the function the model that we want it to start with, in this case, the "empty model."** The empty model predicts the number of species at a site using no covariates, only an intercept, and is denoted as pres.abs ~ 1 in R.
+
+```{r}
+frogs.glm.empty <- glm(pres.abs~1, frogs, family="binomial")
+summary(frogs.glm.empty)
+```
+
+We also need to give the step function all of the possible covariates that it can add to find the best model. This is done using the scope= ~ command in step. 
+
+```{r}
+step(frogs.glm.empty, scope= ~log(distance)+log(NoOfPools)+NoOfSites+avrain+meanmin+meanmax, data=frogs, direction="forward")
+```
+
+The function now does what we want it to do! It begins with the empty model and reports an AIC of 281.99, and lists the AIC for each variable if it were to be added to the empty model (log(distance) = 229.15, meanmin = 258.40, etc.). Since adding log(distance) results in the lowest AIC, it adds log(distance), then repeats the process. It continues this process until $<none>$ is at the top of the list, meaning there are no variables that can be added that will decrease the AIC. It then reports that model, in this case pres.abs ~ log(distance) + log(NoOfPools) + meanmin + meanmax, as the best model.
+
+Starting with the full model works fine for direction = "both". It takes the full model, takes away the least useful covariate, then has the option to add that covariate back in, or take away another. It repeats this until neither adding nor subtracting variables decreases the AIC of the model.
+
+```{r}
+step(frogs.glm0, direction="both")
+```
+
+However, it can also be done starting with the empty model, where its first step is to add a covariate to the empty model, then proceed from there.
+
+```{r}
+step(frogs.glm.empty, scope= ~log(distance)+log(NoOfPools)+NoOfSites+avrain+meanmin+meanmax, direction="both")
+```
 
 The real magic comes when we use a package like 'MuMIn' (Multimodel Inference)
 
