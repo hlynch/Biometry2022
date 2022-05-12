@@ -18,7 +18,7 @@ Which of these is the best model? Why?
 The aims of modelling -- A discussion of Shmueli (2010)
 ------------------
 
-Before we launch into the technical details of building linear models, let’s discuss the Shmueli (2010) paper. Shmeuli makes the distinction between three kinds of models
+Before we launch into the technical details of building linear models, let’s discuss the Shmueli (2010) paper. Shmueli makes the distinction between three kinds of models
 
 1.	Explanatory models 
 2.	Predictive models
@@ -43,9 +43,9 @@ Example: We can think back to our discussion of population statistics and sample
 </span>
 </details> 
 
-As noted by Shmeuli, prediction and explanation are conflated in the hypothetical-deductive paradigm of null hypothesis significance testing, because we are saying in essence "If it predicts the data, then it explains the data". Does everyone see why this is the case?
+As noted by Shmueli, prediction and explanation are conflated in the hypothetical-deductive paradigm of null hypothesis significance testing, because we are saying in essence "If it predicts the data, then it explains the data". Does everyone see why this is the case?
 
-The critical distinction between explanation and prediction can be seen by looking at the Expected Prediction Error (Shmeuli 2010; page 293), which we will discuss in more detail below.
+The critical distinction between explanation and prediction can be seen by looking at the Expected Prediction Error (Shmueli 2010; page 293), which we will discuss in more detail below.
 
 This distinction is at the core of model selection because, when faced with a number of competing models, we must decide whether we prefer the most accurate model (in terms of capturing the underlying mechanism) or the one that will yield the best predictions. It is also important to note that predictive models are restricted to variables which can actually be measured ahead of time. For example, a model to predict wine quality at the time of harvest cannot depend on the type of cask because the type of cask hasn’t been measured at the time the model is to be run. Likewise, the cost of running an aircraft may depend on the cost of fuel on the day of the flight, but fuel costs on the day of flight cannot be used in a predictive model because it is not possible to know what the cost of fuel will be on that day.
 
@@ -73,7 +73,7 @@ While the goal of predictive modeling is to minimize EPE, the goal of explanator
 </span>
 </details> 
 
-**Question: Shmeuli makes the case that predictive modeling requires a larger sample size than explanatory modeling. Why?**
+**Question: Shmueli makes the case that predictive modeling requires a larger sample size than explanatory modeling. Why?**
 
 <details>
   <summary>Click for Answer</summary>
@@ -100,7 +100,7 @@ Sometimes we want to combine a number of related predictors into a smaller set o
 </span>
 </details> 
 
-**Question: Shmeuli discusses “algorithmic modeling”. What is it?**
+**Question: Shmueli discusses “algorithmic modeling”. What is it?**
 
 <details>
   <summary>Click for Answer</summary>
@@ -137,7 +137,7 @@ Overfitting is when models are fit to the noise in the data as well as the under
   
 Model selection depends on a clear idea of purpose – i.e. whether the model is explanatory or predictive. In explanatory models, predictors that have a theoretical justification may be left in the model even if they are not statistically significant because they are thought to be part of the true underlying model F. On the other hand, predictive models may drop predictors even if they are statistically significant, if their effect size is so small than leaving them out of the model actually increases predictive accuracy.
 
-Shmeuli illustrates these ideas with two examples:
+Shmueli illustrates these ideas with two examples:
 
 Example #1: The Netflix prize
 
@@ -390,17 +390,17 @@ model.matrix( ~ -1 + iris.sub$Species)
 
 ```
 ##    iris.sub$Speciessetosa iris.sub$Speciesversicolor iris.sub$Speciesvirginica
-## 1                       0                          0                         1
-## 2                       0                          0                         1
-## 3                       0                          0                         1
-## 4                       0                          0                         1
-## 5                       0                          1                         0
-## 6                       1                          0                         0
-## 7                       1                          0                         0
-## 8                       0                          1                         0
-## 9                       1                          0                         0
-## 10                      1                          0                         0
-## 11                      0                          1                         0
+## 1                       1                          0                         0
+## 2                       0                          1                         0
+## 3                       1                          0                         0
+## 4                       1                          0                         0
+## 5                       0                          0                         1
+## 6                       0                          1                         0
+## 7                       0                          0                         1
+## 8                       1                          0                         0
+## 9                       0                          0                         1
+## 10                      0                          1                         0
+## 11                      1                          0                         0
 ## 12                      0                          0                         1
 ## attr(,"assign")
 ## [1] 1 1 1
@@ -421,9 +421,9 @@ dummy$coefficients
 
 ```
 ##                            Estimate Std. Error  t value     Pr(>|t|)
-## iris.sub$Speciessetosa        5.075  0.2038177 24.89970 1.304717e-09
-## iris.sub$Speciesversicolor    6.300  0.2353484 26.76882 6.855361e-10
-## iris.sub$Speciesvirginica     6.380  0.1823001 34.99723 6.274213e-11
+## iris.sub$Speciessetosa     5.140000  0.1690606 30.40330 2.204795e-10
+## iris.sub$Speciesversicolor 6.266667  0.2182563 28.71242 3.672401e-10
+## iris.sub$Speciesvirginica  7.125000  0.1890155 37.69533 3.228980e-11
 ```
 
 ```r
@@ -702,17 +702,17 @@ model.matrix(~ iris.sub$Species)
 
 ```
 ##    (Intercept) iris.sub$Speciesversicolor iris.sub$Speciesvirginica
-## 1            1                          0                         1
-## 2            1                          0                         1
-## 3            1                          0                         1
-## 4            1                          0                         1
-## 5            1                          1                         0
-## 6            1                          0                         0
-## 7            1                          0                         0
-## 8            1                          1                         0
-## 9            1                          0                         0
-## 10           1                          0                         0
-## 11           1                          1                         0
+## 1            1                          0                         0
+## 2            1                          1                         0
+## 3            1                          0                         0
+## 4            1                          0                         0
+## 5            1                          0                         1
+## 6            1                          1                         0
+## 7            1                          0                         1
+## 8            1                          0                         0
+## 9            1                          0                         1
+## 10           1                          1                         0
+## 11           1                          0                         0
 ## 12           1                          0                         1
 ## attr(,"assign")
 ## [1] 0 1 1
@@ -729,9 +729,9 @@ treatment$coefficients
 
 ```
 ##                            Estimate Std. Error   t value     Pr(>|t|)
-## (Intercept)                   5.075  0.2038177 24.899698 1.304717e-09
-## iris.sub$Speciesversicolor    1.225  0.3113367  3.934647 3.433739e-03
-## iris.sub$Speciesvirginica     1.305  0.2734502  4.772350 1.012036e-03
+## (Intercept)                5.140000  0.1690606 30.403302 2.204795e-10
+## iris.sub$Speciesversicolor 1.126667  0.2760748  4.081020 2.753803e-03
+## iris.sub$Speciesvirginica  1.985000  0.2535909  7.827569 2.633269e-05
 ```
 
 In this case, you can see that the model is estimating the mean of the first group (setosa) and then the difference between the second and first group and the difference between the third and first groups. This allows you to test hypotheses about the differences, which is often more meaningful than testing hypotheses about the group means themselves.
@@ -788,17 +788,17 @@ model.matrix(~ iris.sub$Species)
 
 ```
 ##    (Intercept) iris.sub$Species1 iris.sub$Species2
-## 1            1                 0                 2
-## 2            1                 0                 2
-## 3            1                 0                 2
-## 4            1                 0                 2
-## 5            1                 1                -1
-## 6            1                -1                -1
-## 7            1                -1                -1
-## 8            1                 1                -1
-## 9            1                -1                -1
-## 10           1                -1                -1
-## 11           1                 1                -1
+## 1            1                -1                -1
+## 2            1                 1                -1
+## 3            1                -1                -1
+## 4            1                -1                -1
+## 5            1                 0                 2
+## 6            1                 1                -1
+## 7            1                 0                 2
+## 8            1                -1                -1
+## 9            1                 0                 2
+## 10           1                 1                -1
+## 11           1                -1                -1
 ## 12           1                 0                 2
 ## attr(,"assign")
 ## [1] 0 1 1
@@ -815,9 +815,9 @@ helmert$coefficients
 
 ```
 ##                    Estimate Std. Error   t value     Pr(>|t|)
-## (Intercept)       5.9183333 0.12026078 49.212499 2.962114e-12
-## iris.sub$Species1 0.6125000 0.15566836  3.934647 3.433739e-03
-## iris.sub$Species2 0.2308333 0.07990687  2.888780 1.791986e-02
+## (Intercept)       6.1772222 0.11152685 55.387761 1.025515e-12
+## iris.sub$Species1 0.5633333 0.13803739  4.081020 2.753803e-03
+## iris.sub$Species2 0.4738889 0.07801793  6.074103 1.849744e-04
 ```
 
 Sum-to-zero contrasts
@@ -875,17 +875,17 @@ model.matrix(~ iris.sub$Species)
 
 ```
 ##    (Intercept) iris.sub$Species1 iris.sub$Species2
-## 1            1                -1                -1
-## 2            1                -1                -1
-## 3            1                -1                -1
-## 4            1                -1                -1
-## 5            1                 0                 1
-## 6            1                 1                 0
-## 7            1                 1                 0
-## 8            1                 0                 1
-## 9            1                 1                 0
-## 10           1                 1                 0
-## 11           1                 0                 1
+## 1            1                 1                 0
+## 2            1                 0                 1
+## 3            1                 1                 0
+## 4            1                 1                 0
+## 5            1                -1                -1
+## 6            1                 0                 1
+## 7            1                -1                -1
+## 8            1                 1                 0
+## 9            1                -1                -1
+## 10           1                 0                 1
+## 11           1                 1                 0
 ## 12           1                -1                -1
 ## attr(,"assign")
 ## [1] 0 1 1
@@ -901,10 +901,10 @@ sumtozero$coefficients
 ```
 
 ```
-##                     Estimate Std. Error   t value     Pr(>|t|)
-## (Intercept)        5.9183333  0.1202608 49.212499 2.962114e-12
-## iris.sub$Species1 -0.8433333  0.1682554 -5.012222 7.267511e-04
-## iris.sub$Species2  0.3816667  0.1814542  2.103378 6.476229e-02
+##                      Estimate Std. Error    t value     Pr(>|t|)
+## (Intercept)        6.17722222  0.1115268 55.3877605 1.025515e-12
+## iris.sub$Species1 -1.03722222  0.1482073 -6.9984566 6.335525e-05
+## iris.sub$Species2  0.08944444  0.1682761  0.5315339 6.079163e-01
 ```
 
 There is one final "off-the-shelf" contrast that we will learn, and that is polynomial contrasts.

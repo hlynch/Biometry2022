@@ -17,7 +17,7 @@ knitr::include_graphics('ModelComplexity.png')
 The aims of modelling -- A discussion of Shmueli (2010)
 ------------------
 
-Before we launch into the technical details of building linear models, let’s discuss the Shmueli (2010) paper. Shmeuli makes the distinction between three kinds of models
+Before we launch into the technical details of building linear models, let’s discuss the Shmueli (2010) paper. Shmueli makes the distinction between three kinds of models
 
 1.	Explanatory models 
 2.	Predictive models
@@ -42,9 +42,9 @@ Example: We can think back to our discussion of population statistics and sample
 </span>
 </details> 
 
-As noted by Shmeuli, prediction and explanation are conflated in the hypothetical-deductive paradigm of null hypothesis significance testing, because we are saying in essence "If it predicts the data, then it explains the data". Does everyone see why this is the case?
+As noted by Shmueli, prediction and explanation are conflated in the hypothetical-deductive paradigm of null hypothesis significance testing, because we are saying in essence "If it predicts the data, then it explains the data". Does everyone see why this is the case?
 
-The critical distinction between explanation and prediction can be seen by looking at the Expected Prediction Error (Shmeuli 2010; page 293), which we will discuss in more detail below.
+The critical distinction between explanation and prediction can be seen by looking at the Expected Prediction Error (Shmueli 2010; page 293), which we will discuss in more detail below.
 
 This distinction is at the core of model selection because, when faced with a number of competing models, we must decide whether we prefer the most accurate model (in terms of capturing the underlying mechanism) or the one that will yield the best predictions. It is also important to note that predictive models are restricted to variables which can actually be measured ahead of time. For example, a model to predict wine quality at the time of harvest cannot depend on the type of cask because the type of cask hasn’t been measured at the time the model is to be run. Likewise, the cost of running an aircraft may depend on the cost of fuel on the day of the flight, but fuel costs on the day of flight cannot be used in a predictive model because it is not possible to know what the cost of fuel will be on that day.
 
@@ -72,7 +72,7 @@ While the goal of predictive modeling is to minimize EPE, the goal of explanator
 </span>
 </details> 
 
-**Question: Shmeuli makes the case that predictive modeling requires a larger sample size than explanatory modeling. Why?**
+**Question: Shmueli makes the case that predictive modeling requires a larger sample size than explanatory modeling. Why?**
 
 <details>
   <summary>Click for Answer</summary>
@@ -99,7 +99,7 @@ Sometimes we want to combine a number of related predictors into a smaller set o
 </span>
 </details> 
 
-**Question: Shmeuli discusses “algorithmic modeling”. What is it?**
+**Question: Shmueli discusses “algorithmic modeling”. What is it?**
 
 <details>
   <summary>Click for Answer</summary>
@@ -136,7 +136,7 @@ Overfitting is when models are fit to the noise in the data as well as the under
   
 Model selection depends on a clear idea of purpose – i.e. whether the model is explanatory or predictive. In explanatory models, predictors that have a theoretical justification may be left in the model even if they are not statistically significant because they are thought to be part of the true underlying model F. On the other hand, predictive models may drop predictors even if they are statistically significant, if their effect size is so small than leaving them out of the model actually increases predictive accuracy.
 
-Shmeuli illustrates these ideas with two examples:
+Shmueli illustrates these ideas with two examples:
 
 Example #1: The Netflix prize
 
