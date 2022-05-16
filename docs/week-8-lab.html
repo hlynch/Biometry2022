@@ -24,7 +24,7 @@
 <meta name="author" content="Heather Lynch" />
 
 
-<meta name="date" content="2022-05-12" />
+<meta name="date" content="2022-05-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -468,9 +468,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">15</span> Week 8 Lab</h1>
 <p>Our first task is to go over how to write a linear model in R. Let’s take a moment to go through Logan Table 7.3.</p>
 <p>First we will read in <a href="https://github.com/hlynch/Biometry2021/tree/master/_data/fish.txt">some data</a> on mercury levels in fish.</p>
-<div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb408-1"><a href="week-8-lab.html#cb408-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;~/Dropbox/Biometry/Week 8 Introduction to linear models/Week 8 Lab&quot;</span>)</span>
-<span id="cb408-2"><a href="week-8-lab.html#cb408-2" aria-hidden="true" tabindex="-1"></a>data<span class="ot">&lt;-</span><span class="fu">read.table</span>(<span class="st">&quot;fish.txt&quot;</span>,<span class="at">header=</span>T)</span>
-<span id="cb408-3"><a href="week-8-lab.html#cb408-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data)</span></code></pre></div>
+<div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb408-1"><a href="week-8-lab.html#cb408-1" aria-hidden="true" tabindex="-1"></a>data<span class="ot">&lt;-</span><span class="fu">read.table</span>(<span class="st">&quot;~/Documents/Projects/Biometry2022/_data/fish.txt&quot;</span>,<span class="at">header=</span>T)</span>
+<span id="cb408-2"><a href="week-8-lab.html#cb408-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data)</span></code></pre></div>
 <pre><code>##   RIVER STATION LENGTH WEIGHT MERCURY
 ## 1     0       0   47.0   1616    1.60
 ## 2     0       0   48.7   1862    1.50

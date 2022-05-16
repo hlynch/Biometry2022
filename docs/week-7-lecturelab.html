@@ -24,7 +24,7 @@
 <meta name="author" content="Heather Lynch" />
 
 
-<meta name="date" content="2022-05-12" />
+<meta name="date" content="2022-05-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -497,8 +497,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="two-dimensional-data" class="section level2" number="13.4">
 <h2><span class="header-section-number">13.4</span> Two-dimensional data</h2>
 <p>Read in the following dataset describing <a href="https://github.com/hlynch/Biometry2021/tree/master/_data/FoxFurProduction.csv">fox fur production as a function of year</a></p>
-<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb355-1"><a href="week-7-lecturelab.html#cb355-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;~/Documents/Projects/Biometry2021/_data/&quot;</span>)</span>
-<span id="cb355-2"><a href="week-7-lecturelab.html#cb355-2" aria-hidden="true" tabindex="-1"></a>fox.data<span class="ot">&lt;-</span><span class="fu">read.csv</span>(<span class="st">&quot;FoxFurProduction.csv&quot;</span>, <span class="at">header=</span>F)</span></code></pre></div>
+<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb355-1"><a href="week-7-lecturelab.html#cb355-1" aria-hidden="true" tabindex="-1"></a>fox.data<span class="ot">&lt;-</span><span class="fu">read.csv</span>(<span class="st">&quot;~/Documents/Projects/Biometry2022/_data/FoxFurProduction.csv&quot;</span>, <span class="at">header=</span>F)</span></code></pre></div>
 <p>We could do our entire analysis referring to the two columns as [,1] and [,2] but to make our code more readable, lets add some column names</p>
 <div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb356-1"><a href="week-7-lecturelab.html#cb356-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(fox.data)<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">&quot;year&quot;</span>,<span class="st">&quot;production&quot;</span>)</span></code></pre></div>
 <p>Now we can refer to the two columns of data as $year and $production.</p>
@@ -779,8 +778,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="Week-7-lecture_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
 <p>Be aware of overplotting (points that overlap) especially when data are discrete or rounded. One strategy for overcoming this is jittering the points so the density of points can be displayed without overly distorting the underlying relationships. You can use the ‘jitter’ command in the base package.</p>
 <div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb372-1"><a href="week-7-lecturelab.html#cb372-1" aria-hidden="true" tabindex="-1"></a><span class="fu">jitter</span>(<span class="fu">rep</span>(<span class="dv">0</span>, <span class="dv">7</span>))</span></code></pre></div>
-<pre><code>## [1] -0.019282022 -0.017158160  0.012903333  0.019017806  0.002213812
-## [6]  0.012220910 -0.013521176</code></pre>
+<pre><code>## [1] -0.014510994 -0.018114311  0.001706107  0.009380780 -0.009754222
+## [6] -0.017737247 -0.012987953</code></pre>
 <p>Before we launch into three-dimensional plotting, we should introduce ‘ggplot2’ which is quickly becoming “industry standard” for making plots in R. There is <em>so</em> much that can be done with ggplot2 that we will only scratch the surface today, but at least this introduction will illustrate some of the things that ggplot2 can do.</p>
 <p>The basic function to make plots using ggplot2 is ‘qplot.’ We can recreate the scatterplot of the mtcars data using ggplot2 as follows</p>
 <div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb374-1"><a href="week-7-lecturelab.html#cb374-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
@@ -821,8 +820,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## Number of data points:  2000 
 ## Number of grid bins:  200 x 200 
-## X range: ( -17.30784 , 12.08984 )
-## Y range: ( -17.30784 , 12.08984 )</code></pre>
+## X range: ( -14.99544 , 14.26376 )
+## Y range: ( -14.99544 , 14.26376 )</code></pre>
 <p>Notice that we had to use “same.scale=T” to make sure that distances along the x and y axes were comparable.</p>
 <p>Now we will use the hisr2d function to create inputs for a three-dimensional perspective plot.</p>
 <div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="week-7-lecturelab.html#cb379-1" aria-hidden="true" tabindex="-1"></a>h2d <span class="ot">&lt;-</span> <span class="fu">hist2d</span>(x,y,<span class="at">show=</span><span class="cn">FALSE</span>, <span class="at">same.scale=</span><span class="cn">TRUE</span>, <span class="at">nbins=</span><span class="fu">c</span>(<span class="dv">20</span>,<span class="dv">30</span>))</span>

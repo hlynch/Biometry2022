@@ -6,8 +6,7 @@ Our first task is to go over how to write a linear model in R. Let's take a mome
 First we will read in [some data](https://github.com/hlynch/Biometry2021/tree/master/_data/fish.txt) on mercury levels in fish. 
 
 ```{r}
-setwd("~/Dropbox/Biometry/Week 8 Introduction to linear models/Week 8 Lab")
-data<-read.table("fish.txt",header=T)
+data<-read.table("~/Documents/Projects/Biometry2022/_data/fish.txt",header=T)
 head(data)
 ```
 

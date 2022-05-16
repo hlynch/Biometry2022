@@ -42,8 +42,7 @@ Two-dimensional data
 Read in the following dataset describing [fox fur production as a function of year](https://github.com/hlynch/Biometry2021/tree/master/_data/FoxFurProduction.csv)
 
 ```{r}
-setwd("~/Documents/Projects/Biometry2021/_data/")
-fox.data<-read.csv("FoxFurProduction.csv", header=F)
+fox.data<-read.csv("~/Documents/Projects/Biometry2022/_data/FoxFurProduction.csv", header=F)
 ```
 
 We could do our entire analysis referring to the two columns as [,1] and [,2] but to make our code more readable, lets add some column names

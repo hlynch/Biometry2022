@@ -7,8 +7,7 @@ First we will read in [some data](https://github.com/hlynch/Biometry2021/tree/ma
 
 
 ```r
-setwd("~/Dropbox/Biometry/Week 8 Introduction to linear models/Week 8 Lab")
-data<-read.table("fish.txt",header=T)
+data<-read.table("~/Documents/Projects/Biometry2022/_data/fish.txt",header=T)
 head(data)
 ```
 
